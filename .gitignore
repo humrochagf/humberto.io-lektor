@@ -1,0 +1,6 @@
+*.pyc
+*.pyo
+*.min.js
+*.css
+node_modules/
+bootstrap/

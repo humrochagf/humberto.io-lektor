@@ -1,0 +1,12 @@
+{
+  "name": "humrochagf.github.io",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "author": "Humberto Rocha",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.2",
+    "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.2.0"
+  }
+}

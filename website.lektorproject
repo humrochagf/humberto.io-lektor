@@ -1,0 +1,8 @@
+[project]
+name = Humberto Rocha
+locale = pt_BR
+url = https://humberto.io/
+url_style = absolute
+
+[servers.ghpages]
+target = ghpages://humrochagf/humrochagf.github.io?cname=humberto.io
