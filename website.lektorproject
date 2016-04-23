@@ -5,4 +5,5 @@ url = https://humberto.io/
 url_style = absolute
 
 [servers.ghpages]
+name = GitHub
 target = ghpages://humrochagf/humrochagf.github.io?cname=humberto.io
