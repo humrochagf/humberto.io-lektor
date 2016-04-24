@@ -5,6 +5,7 @@
 {% block body %}
   {% for child in this.pagination.items %}
     {{ render_blog_post(child, from_index=true) }}
+    <hr>
   {% endfor %}
 
   {{ render_pagination(this.pagination) }}
