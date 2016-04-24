@@ -7,3 +7,6 @@ url_style = absolute
 [servers.ghpages]
 name = GitHub
 target = ghpages://humrochagf/humrochagf.github.io?cname=humberto.io
+
+[packages]
+lektor-disqus-comments = 0.2
