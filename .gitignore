@@ -4,3 +4,4 @@
 *.css
 node_modules/
 bootstrap/
+temp/
