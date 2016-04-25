@@ -20,6 +20,12 @@ gulp.task('update-bootstrap-js', function () {
     .pipe(notify("Bootstrap js updated!"));
 });
 
+gulp.task('update-tether-js', function () {
+  gulp.src(['./node_modules/tether/dist/js/tether.min.js'])
+    .pipe(gulp.dest('./assets/static/js'))
+    .pipe(notify("Tether js updated!"));
+});
+
 gulp.task('sass-website', function () {
   gulp.src('./assets/static/scss/website.scss')
     .pipe(sass({ errLogToConsole: true }))
@@ -27,10 +33,11 @@ gulp.task('sass-website', function () {
     .pipe(notify("Website styles compiled"));
 });
 
-gulp.task('update-bootstrap', [
+gulp.task('update-assets', [
   'update-bootstrap-sass-base',
   'update-bootstrap-sass-mixins',
-  'update-bootstrap-js'
+  'update-bootstrap-js',
+  'update-tether-js'
 ]);
 
 gulp.task('watch', function() {
