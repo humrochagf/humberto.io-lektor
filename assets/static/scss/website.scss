@@ -3,7 +3,7 @@ $font-family-serif:          Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:           $font-family-sans-serif !default;
 
-@import "bootstrap/bootstrap-flex";
+@import "bootstrap/bootstrap";
 
 header {
   padding: 30px 0 0 0;
