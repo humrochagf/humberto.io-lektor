@@ -26,6 +26,18 @@ gulp.task('update-tether-js', function () {
     .pipe(notify("Tether js updated!"));
 });
 
+gulp.task('update-font-awesome-sass', function () {
+  gulp.src(['./node_modules/font-awesome/scss/*.scss'])
+    .pipe(gulp.dest('./assets/static/scss/font-awesome'))
+    .pipe(notify("Font Awesome sass updated!"));
+});
+
+gulp.task('update-font-awesome-fonts', function () {
+  gulp.src(['./node_modules/font-awesome/fonts/fontawesome*'])
+    .pipe(gulp.dest('./assets/static/fonts'))
+    .pipe(notify("Font Awesome fonts updated!"));
+});
+
 gulp.task('sass-website', function () {
   gulp.src('./assets/static/scss/website.scss')
     .pipe(sass({ errLogToConsole: true }))
@@ -37,7 +49,9 @@ gulp.task('update-assets', [
   'update-bootstrap-sass-base',
   'update-bootstrap-sass-mixins',
   'update-bootstrap-js',
-  'update-tether-js'
+  'update-tether-js',
+  'update-font-awesome-sass',
+  'update-font-awesome-fonts'
 ]);
 
 gulp.task('watch', function() {

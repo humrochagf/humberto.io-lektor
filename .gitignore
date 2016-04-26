@@ -4,4 +4,6 @@
 *.css
 node_modules/
 bootstrap/
+font-awesome/
+fonts/
 temp/

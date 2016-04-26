@@ -5,6 +5,7 @@
   "author": "Humberto Rocha",
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.2",
+    "font-awesome": "^4.6.1",
     "gulp": "^3.9.1",
     "gulp-notify": "^2.2.0",
     "gulp-sass": "^2.2.0",

@@ -1,10 +1,16 @@
+/* set custom fonts */
 $font-family-sans-serif:     Raleway, sans-serif !default;
 $font-family-serif:          Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:           $font-family-sans-serif !default;
 
+/* load bootstrap */
 @import "bootstrap/bootstrap";
 
+/* load font awesome */
+@import "font-awesome/font-awesome";
+
+/* my styles */
 header {
   padding: 30px 0 0 0;
   text-align: center;
