@@ -11,22 +11,35 @@ $font-family-base:           $font-family-sans-serif !default;
 @import "font-awesome/font-awesome";
 
 /* my styles */
+a {
+  color: #000000;
+
+  &:hover, &:focus {
+    color: #000000;
+    text-decoration: none;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900;
+}
+
+p {
+  a {
+    font-weight: 500;
+
+    &:hover, &:focus {
+      font-weight: 600;
+    }
+  }
+}
+
 header {
   padding: 30px 0 40px 0;
   text-align: center;
 
   h1 {
     margin-top: 10px;
-    font-weight: 900;
-  }
-
-  a {
-    color: #000000;
-
-    &:hover, &:focus {
-      color: #000000;
-      text-decoration: none;
-    }
   }
 
   .img-circle {
@@ -34,6 +47,7 @@ header {
     height: 120px;
     padding: 5px;
     border: 5px solid #000000;
+    box-shadow: 0px 0px 10px #000000;
   }
 }
 
@@ -56,6 +70,19 @@ img {
   }
 }
 
+.pagination {
+  text-align: center;
+  width: 100%;
+
+  a {
+    font-weight: 500;
+
+    &:hover, &:focus {
+      font-weight: 600;
+    }
+  }
+}
+
 .footer-wrapper {
   background-color: #000000;
 
@@ -66,7 +93,11 @@ img {
 
     a {
       color: #ffffff;
-      text-decoration: none;
+
+      &:hover, &:focus {
+        color: #ffffff;
+        text-decoration: none;
+      }
     }
 
     .icons {
