@@ -12,7 +12,7 @@ $font-family-base:           $font-family-sans-serif !default;
 
 /* my styles */
 header {
-  padding: 30px 0 0 0;
+  padding: 30px 0 40px 0;
   text-align: center;
 
   h1 {
@@ -42,10 +42,6 @@ nav {
   margin: 0 auto;
 }
 
-.page {
-  padding: 50px 0;
-}
-
 img {
   width: 70%;
   margin-left: 15%;
@@ -57,5 +53,24 @@ img {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+.footer-wrapper {
+  background-color: #000000;
+
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #ffffff;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .icons {
+      font-size: 40px;
+    }
   }
 }
