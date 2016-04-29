@@ -110,7 +110,7 @@ $ lektor build --output-path destino
 
 E a forma automática, que pode ser feita (neste caso para o GitHub Pages) adicionando a seguinte configuração no arquivo `meusite.lektorproject`:
 
-```
+```ini
 [servers.production]
 target = ghpages://usuario/repositorio
 ```
