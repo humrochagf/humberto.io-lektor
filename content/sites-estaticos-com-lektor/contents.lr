@@ -50,7 +50,7 @@ $ . venv/bin/activate
 $ pip install --editable .
 ```
 
-**obs.:** requer `npm` instalado para montar a interface de administração.
+!! requer `npm` instalado para montar a interface de administração.
 
 ## Criando o Site
 
@@ -121,7 +121,7 @@ E rodando em seguida o comando:
 $ lektor deploy
 ```
 
-**Obs.:** O deploy faz um force push na branch `master` ou `gh-pages` dependendo do tipo de repositório, portanto, cuidado para não sobrescrever os dados de seu repositório. Mantenha o código fonte em uma branch separada, você pode dar uma conferida no [meu repositório](https://github.com/humrochagf/humrochagf.github.io) para ter uma idéia.
+!!!! O deploy faz um force push na branch `master` ou `gh-pages` dependendo do tipo de repositório, portanto, cuidado para não sobrescrever os dados de seu repositório. Mantenha o código fonte em uma branch separada, você pode dar uma conferida no [meu repositório](https://github.com/humrochagf/humrochagf.github.io) para ter uma idéia.
 
 Para informações mais detalhadas você pode acessar a [documentação do lektor](https://www.getlektor.com/docs) e também ficar de olho nas próximas postagens.
 ---

@@ -8,7 +8,7 @@ A documentação oficial do django cobre muito bem sua funcionalidade de relacio
 
 Recentemente, precisei implementar um N:N com um lado genérico, e encontrei uma biblioteca chamada [django-gm2m](http://django-gm2m.readthedocs.io/en/stable/index.html) que me foi muito útil nesta tarefa, e vou descrever aqui dando dicas de como implementar evitando possíveis dores de cabeça.
 
-**Obs.:** As versões em que já implementei esta modelagem foram django 1.8 e 1.9 com python 2.7 e 3.4
+!! As versões em que já implementei esta modelagem foram django 1.8 e 1.9 com python 2.7 e 3.4
 
 ## Modelagem
 
@@ -68,9 +68,9 @@ class Usuario(models.Model):
     midias = GM2MField(related_name='usuarios')
 ```
 
-**Obs.:** O parâmetro `related_name` é o nome com o qual você vai acessar a relação inversa, ou seja, acessar os usuários através da mídia. Se você não usar este atributo ele assume o nome padrão que é `<model>_set`.
+!!! O parâmetro `related_name` é o nome com o qual você vai acessar a relação inversa, ou seja, acessar os usuários através da mídia. Se você não usar este atributo ele assume o nome padrão que é `<model>_set`.
 
-Feito isso já estaria pronto e você adicionaria uma mídia a um usuário através de `usuario.midias.add(video)`. 
+Feito isso já estaria pronto e você adicionaria uma mídia a um usuário através de `usuario.midias.add(video)`.
 
 Porém, eventualmente será necessário adicionar algum campo no model intermediário, gerando uma migração de dados seguida de alterações no código pois quando você define um model intermediário para uma relação N:N no django, a vinculação através do `.add()` é bloqueada, te obrigando a usar o manager do model.
 
