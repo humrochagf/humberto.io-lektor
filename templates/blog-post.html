@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% from "macros/blog.html" import render_blog_post %}
 {% block title %}{{ this.title }}{% endblock %}
-{% block body %}
+{% block content %}
   {{ render_blog_post(this) }}
 
   <!-- AddToAny BEGIN -->

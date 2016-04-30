@@ -1,0 +1,13 @@
+_model: page
+---
+_template: 404.html
+---
+title: Página não encontrada
+---
+body:
+
+A página que você está procurando não existe. Talvez ela foi realocada,
+removida ou você esqueceu algum caractere ao copiar o link.
+
+Se você acha que há algo de errado com o sistema, pode reportar abrindo uma
+issue clicando [aqui](https://github.com/humrochagf/humrochagf.github.io/issues).

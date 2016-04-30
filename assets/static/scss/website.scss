@@ -146,3 +146,12 @@ pre {
 .admonition-warning {
   @extend .alert-danger;
 }
+
+.block-404 {
+  text-align: center;
+  padding: 50px 0;
+
+  h2, .btn {
+    margin: 50px 0;
+  }
+}

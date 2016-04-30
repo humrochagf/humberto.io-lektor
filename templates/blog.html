@@ -2,7 +2,7 @@
 {% from "macros/blog.html" import render_blog_post %}
 {% from "macros/pagination.html" import render_pagination %}
 {% block title %}Blog{% endblock %}
-{% block body %}
+{% block content %}
   {% for child in this.pagination.items %}
     {{ render_blog_post(child, from_index=true) }}
     <hr>

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ this.title }}{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12-xs">
+        <div class="block-404">
+          <h1 class="display-1"><b>404</b></h1>
+
+          <h2>{{ this.title }}</h2>
+
+          {{ this.body }}
+
+          <a class="btn btn-primary" href="{{ '/'|url }}">voltar para a página inicial</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

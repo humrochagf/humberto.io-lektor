@@ -17,57 +17,59 @@
   </head>
 
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <header>
-            <a href="{{ '/'|url }}" class="hidden-xs-down">
-              <img class="img-circle" src="http://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=100" alt="Humberto Rocha">
-            </a>
-
-            <h1>
-              <a href="{{ '/'|url }}">HUMBERTO ROCHA</a>
-            </h1>
-
-            <p>Cientista da Computação, pythonista e curioso</p>
-          </header>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="page">
-            {% block body %}{% endblock %}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-wrapper">
+    {% block body %}
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            <footer>
-              <div class="row">
-                <div class="col-xs-12">
-                  <span class="icons">
-                    <a href="https://github.com/humrochagf"><i class="fa fa-github"></i></a>
-                    <a href="https://twitter.com/humrochagf"><i class="fa fa-twitter"></i></a>
-                    <a href="https://br.linkedin.com/in/humrochagf"><i class="fa fa-linkedin"></i></a>
-                    <a href="{{ '/feed.xml'|url }}"><i class="fa fa-feed"></i></a>
-                    <a href="mailto:humrochagf@gmail.com"><i class="fa fa-envelope"></i></a>
-                  </span>
+            <header>
+              <a href="{{ '/'|url }}" class="hidden-xs-down">
+                <img class="img-circle" src="http://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=100" alt="Humberto Rocha">
+              </a>
 
-                  <p>&copy; Copyright 2016 by Humberto Rocha.</p>
-                </div>
-              </div>
-            </footer>
+              <h1>
+                <a href="{{ '/'|url }}">HUMBERTO ROCHA</a>
+              </h1>
+
+              <p>Cientista da Computação, pythonista e curioso</p>
+            </header>
           </div>
         </div>
       </div>
-    </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="page">
+              {% block content %}{% endblock %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <footer>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <span class="icons">
+                      <a href="https://github.com/humrochagf"><i class="fa fa-github"></i></a>
+                      <a href="https://twitter.com/humrochagf"><i class="fa fa-twitter"></i></a>
+                      <a href="https://br.linkedin.com/in/humrochagf"><i class="fa fa-linkedin"></i></a>
+                      <a href="{{ '/feed.xml'|url }}"><i class="fa fa-feed"></i></a>
+                      <a href="mailto:humrochagf@gmail.com"><i class="fa fa-envelope"></i></a>
+                    </span>
+
+                    <p>&copy; Copyright 2016 by Humberto Rocha.</p>
+                  </div>
+                </div>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock %}
 
     <!-- jQuery first, then Bootstrap JS. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
