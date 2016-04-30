@@ -154,4 +154,8 @@ pre {
   h2, .btn {
     margin: 50px 0;
   }
+
+  @include media-breakpoint-down(sm) {
+    padding: 0;
+  }
 }
