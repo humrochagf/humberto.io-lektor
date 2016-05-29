@@ -159,3 +159,22 @@ pre {
     padding: 0;
   }
 }
+
+.license {
+  text-align: center;
+  padding: 20px 0;
+
+  img {
+    width: auto;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  a {
+    font-weight: 500;
+
+    &:hover, &:focus {
+      font-weight: 600;
+    }
+  }
+}
