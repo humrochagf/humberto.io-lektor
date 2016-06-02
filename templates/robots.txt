@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Host: humberto.io
+Sitemap: http://humberto.io/sitemap.xml
