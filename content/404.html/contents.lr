@@ -2,6 +2,8 @@ _model: page
 ---
 _template: 404.html
 ---
+_discoverable: no
+---
 title: Página não encontrada
 ---
 body:

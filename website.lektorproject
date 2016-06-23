@@ -1,7 +1,7 @@
 [project]
 name = Humberto Rocha
 locale = pt_BR
-url = https://humberto.io/
+url = http://humberto.io/
 url_style = absolute
 
 [servers.ghpages]
