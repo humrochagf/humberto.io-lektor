@@ -14,6 +14,12 @@ gulp.task('update-bootstrap-sass-mixins', function () {
     .pipe(notify("Bootstrap sass updated!"));
 });
 
+gulp.task('update-bootstrap-sass-utilities', function () {
+  gulp.src(['./node_modules/bootstrap/scss/utilities/*.scss'])
+    .pipe(gulp.dest('./assets/static/scss/bootstrap/utilities'))
+    .pipe(notify("Bootstrap sass updated!"));
+});
+
 gulp.task('update-bootstrap-js', function () {
   gulp.src(['./node_modules/bootstrap/dist/js/bootstrap.min.js'])
     .pipe(gulp.dest('./assets/static/js'))
@@ -48,6 +54,7 @@ gulp.task('sass-website', function () {
 gulp.task('update-assets', [
   'update-bootstrap-sass-base',
   'update-bootstrap-sass-mixins',
+  'update-bootstrap-sass-utilities',
   'update-bootstrap-js',
   'update-tether-js',
   'update-font-awesome-sass',
