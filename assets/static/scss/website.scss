@@ -15,9 +15,13 @@ a {
   color: #000000;
 
   &:hover, &:focus {
-    color: #000000;
+    color: #444444;
     text-decoration: none;
   }
+}
+
+p a {
+  font-weight: 600;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -28,16 +32,6 @@ h1, h2, h3, h4, h5, h6 {
 
 hr {
   margin-top: 40px;
-}
-
-p {
-  a {
-    font-weight: 500;
-
-    &:hover, &:focus {
-      font-weight: 600;
-    }
-  }
 }
 
 header {
@@ -54,9 +48,13 @@ header {
     padding: 5px;
     border: 5px solid #000000;
   }
+
+  a:hover, a:focus {
+    color: #000000;
+  }
 }
 
-img {
+img, .embedded-video {
   width: 70%;
   margin-left: 15%;
   margin-right: 15%;
@@ -82,14 +80,6 @@ pre {
 .pagination {
   text-align: center;
   width: 100%;
-
-  a {
-    font-weight: 500;
-
-    &:hover, &:focus {
-      font-weight: 600;
-    }
-  }
 }
 
 .footer-wrapper {
@@ -164,17 +154,13 @@ pre {
   text-align: center;
   padding: 20px 0;
 
+  a {
+    font-weight: 600;
+  }
+
   img {
     width: auto;
     border-radius: 0;
     margin: 0;
-  }
-
-  a {
-    font-weight: 500;
-
-    &:hover, &:focus {
-      font-weight: 600;
-    }
   }
 }
