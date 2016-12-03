@@ -60,7 +60,7 @@
                       <a href="https://github.com/humrochagf"><i class="fa fa-github"></i></a>
                       <a href="https://twitter.com/humrochagf"><i class="fa fa-twitter"></i></a>
                       <a href="https://br.linkedin.com/in/humrochagf"><i class="fa fa-linkedin"></i></a>
-                      <a href="{{ '/feed.xml'|url }}"><i class="fa fa-feed"></i></a>
+                      <a href="{{ '/feed.xml'|url }}" target="_blank"><i class="fa fa-feed"></i></a>
                       <a href="mailto:humrochagf@gmail.com"><i class="fa fa-envelope"></i></a>
                     </span>
 
@@ -80,5 +80,11 @@
     <script src="{{ '/static/js/bootstrap.min.js'|url }}"></script>
 
     <div class="ga-script">{{ generate_google_analytics() }}</div>
+
+    <!-- target to blank when external -->
+    <script>
+      $("a[href^='http://']").attr("target","_blank");
+      $("a[href^='https://']").attr("target","_blank");
+    </script>
   </body>
 </html>
