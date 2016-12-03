@@ -4,6 +4,13 @@ $font-family-serif:          Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:           $font-family-sans-serif !default;
 
+$font-size-h1: 2rem !default;
+$font-size-h2: 2rem !default;
+$font-size-h3: 1.5rem !default;
+$font-size-h4: 1.25rem !default;
+$font-size-h5: 1rem !default;
+$font-size-h6: 0.75rem !default;
+
 /* load bootstrap */
 @import "bootstrap/bootstrap";
 
@@ -11,18 +18,6 @@ $font-family-base:           $font-family-sans-serif !default;
 @import "font-awesome/font-awesome";
 
 /* my styles */
-a {
-  color: #000000;
-
-  &:hover, &:focus {
-    color: #444444;
-    text-decoration: none;
-  }
-}
-
-p a {
-  font-weight: 600;
-}
 
 h1, h2, h3, h4, h5, h6 {
   color: #000000;
@@ -30,8 +25,21 @@ h1, h2, h3, h4, h5, h6 {
   margin: 40px 0px 10px 0px;
 }
 
-h3 {
-  font-size: 1.5em;
+a {
+  color: #000000;
+
+  &:hover, &:focus, &:active {
+    color: #000000;
+    text-decoration: none;
+  }
+}
+
+p a {
+  border-bottom: 1px solid #dddddd;
+
+  &:hover, &:focus, &:active {
+    border-bottom: 1px solid #000000;
+  }
 }
 
 hr {
@@ -52,10 +60,6 @@ header {
     padding: 5px;
     border: 5px solid #000000;
   }
-
-  a:hover, a:focus {
-    color: #000000;
-  }
 }
 
 img, .embedded-video {
@@ -69,6 +73,14 @@ img, .embedded-video {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+.embedded-video {
+  height: 480px;
+
+  @include media-breakpoint-down(sm) {
+    height: 215px;
   }
 }
 
@@ -116,29 +128,65 @@ pre {
 .admonition {
   @extend .alert;
 
-  a {
-    color: inherit;
-
-    &:hover, &:focus {
-      color: inherit;
-    }
+  p {
+    margin-bottom: 0;
   }
 }
 
 .admonition-note {
   @extend .alert-success;
+
+  a {
+    color: $state-success-text;
+    border: 1px solid lighten($state-success-text, 30%);
+
+    &:hover, &:focus, &:active {
+      color: $state-success-text;
+      border: 1px solid $state-success-text;
+    }
+  }
 }
 
 .admonition-info {
   @extend .alert-warning;
+
+  a {
+    color: $state-warning-text;
+    border: 1px solid lighten($state-warning-text, 30%);
+
+    &:hover, &:focus, &:active {
+      color: $state-warning-text;
+      border: 1px solid $state-warning-text;
+    }
+  }
 }
 
 .admonition-tip {
   @extend .alert-info;
+
+  a {
+    color: $state-info-text;
+    border-bottom: 1px solid lighten($state-info-text, 30%);
+
+    &:hover, &:focus, &:active {
+      color: $state-info-text;
+      border-bottom: 1px solid $state-info-text;
+    }
+  }
 }
 
 .admonition-warning {
   @extend .alert-danger;
+
+  a {
+    color: $state-danger-text;
+    border-bottom: 1px solid lighten($state-danger-text, 30%);
+
+    &:hover, &:focus, &:active {
+      color: $state-danger-text;
+      border-bottom: 1px solid $state-danger-text;
+    }
+  }
 }
 
 .block-404 {
