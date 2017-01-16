@@ -16,15 +16,17 @@ Pygame é um conjunto de módulos python para desenvolvimento de jogos. Ele adic
 
 ### Instalação
 
-O processo de instalação varia de acordo com o sistema operacional utilizado, no [site oficial](http://www.pygame.org/wiki/GettingStarted#Pygame Installation) existem algumas opções de instalação descritas.
+Antes de  prosseguir com a instalação você precisa do python instalado no sistema, caso não saiba como proceder veja os guias de instalação para [linux](http://python.org.br/instalacao-linux), [mac](http://python.org.br/instalacao-mac) e [windows](http://python.org.br/instalacao-windows).
 
-Para instalar em sistemas baseados em debian você precisa instalar antes os pacotes externos ao python antes de instalar a biblioteca através de:
+O processo de instalação do pygame varia de acordo com o sistema operacional utilizado, no [site oficial](http://www.pygame.org/wiki/GettingStarted#Pygame Installation) existem algumas opções de instalação descritas.
+
+Para instalar em sistemas linux baseados em debian você precisa instalar antes os pacotes externos ao python através de:
 
 ```
 $ sudo apt-get build-dep python-pygame
 ```
 
-Em seguida basta rodar o seguinte comando em sua virtualenv:
+Em seguida, para instalar o pygame rode o seguinte comando em sua virtualenv:
 
 ```
 $ pip install pygame
