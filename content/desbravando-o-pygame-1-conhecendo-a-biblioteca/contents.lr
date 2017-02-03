@@ -80,11 +80,11 @@ As três primeiras linhas são comuns a maioria dos programas escritos em python
 
 O comando `pygame.init()` inicializa todos os módulos que necessitam de inicialização dentro do pygame.
 
-Em `pygame.display.set_mode` criamos uma janela do tamanho 640x480 seguido de `pygame.display.set_caption` onde atribuímos o texto "Olá mundo" para o título da janela.
+Em `pygame.display.set_mode` criamos uma superfície para a nossa janela do tamanho 640x480 seguido de `pygame.display.set_caption` onde atribuímos o texto "Olá mundo" para o título da janela.
 
 Com a janela criada, utilizamos o comando `fill` da janela `screen` para preenche-la com a cor preta. A cor é passada em formato de lista de três elementos que consistem dos valores do RGB que variam de 0 a 255. Troque os valores desta lista e rode novamente o programa para ver que a cor da janela mudar.
 
-O comando `pygame.display.flip` representa um conceito importante do pygame e do desenvolvimento de jogos em geral. Quando usamos comandos para desenhar na tela, na verdade estamos desenhando em um espaço de memória chamado buffer. Para copiar o conteúdo do buffer e mostrar ele na tela é preciso utilizar o `flip` que é análogo a você fazer o desenho para uma pessoa e ao terminar virar (flip) a superfície em que você estava desenhando para que ela veja.
+O comando `pygame.display.flip` representa um conceito importante do pygame e do desenvolvimento de jogos em geral. Quando usamos comandos para desenhar na tela, na verdade estamos desenhando na superfície criada em de memória que representa uma porção da nossa tela. Para copiar o conteúdo dela e mostra-lo na tela é preciso utilizar o `flip` que é análogo a você fazer o desenho para uma pessoa e ao terminar virar (flip) a superfície em que você estava desenhando para que ela veja. O `flip` atualiza a tela com o conteúdo desenhado na superfície `screen`.
 
 Para finalizar o comando `sleep` da biblioteca `time` faz o programa esperar 5 segundos antes de finalizar. Caso contrário o programa fecharia antes que você possa ver o resultado.
 
