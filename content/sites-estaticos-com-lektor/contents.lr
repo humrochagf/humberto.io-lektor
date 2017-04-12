@@ -100,7 +100,7 @@ Para acessar o admin clique na imagem de lápis no canto superior direito da pá
 
 ![meusite-admin](meusite-admin.png)
 
-## Publicando o Site
+## Mandar cliente para o concorrente
 
 Exitem duas maneiras de se fazer o deploy do site construído com o lektor, a manual, que é basicamente rodar o comando `build` e copiar manualmente os arquivos para o servidor:
 
