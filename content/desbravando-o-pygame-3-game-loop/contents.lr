@@ -14,7 +14,7 @@ Agora que sabemos como desenhar na tela ([postagem anterior](http://humberto.io/
 
 ## Conceito
 
-Dentro da computação o conceito de ciclo é bastante recorrente, trata-se de uma sequencia de ações e tomadas de decisão programadas que se repetem dentro de um laço de repetição (ou loop). No baixo nível temos o processador do computador que trabalha em ciclos de operações aritméticas gerenciadas pelo clock, em sistemas operacionais o ciclo é quem gerencia o tempo de uso do processador, o dividindo entre todas as aplicações do sistema além de verificar se o usuário realizou algum comando, em servidores web usamos um ciclo para verificar se alguém requisitou uma página que será processada e devolvida em forma de resposta. Com jogos não seria diferente.
+Dentro da computação o conceito de ciclo é bastante recorrente, trata-se de uma sequência de ações e tomadas de decisão programadas que se repetem dentro de um laço de repetição (ou loop). No baixo nível temos o processador do computador que trabalha em ciclos de operações aritméticas gerenciadas pelo clock, em sistemas operacionais o ciclo é quem gerencia o tempo de uso do processador, o dividindo entre todas as aplicações do sistema além de verificar se o usuário realizou algum comando, em servidores web usamos um ciclo para verificar se alguém requisitou uma página que será processada e devolvida em forma de resposta. Com jogos não seria diferente.
 
 O ciclo dentro do desenvolvimento de jogos é chamado de Game Loop e é peça fundamental na estrutura de um jogo. De modo simplificado temos a seguinte estrutura:
 
