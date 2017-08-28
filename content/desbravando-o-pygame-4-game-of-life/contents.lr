@@ -14,7 +14,7 @@ O jogo da vida é um jogo sem jogadores, que representa a a dinâmica de intera�
 
 Este plano possuí um formato tabular dividido em células, sendo que cada célula deste plano pode assumir dois estados, vivo ou morto. Além disso este plano tem dimensões infinitas, porém, limitaremos nosso plano a um recorte finito para simplificar nossa implementação.
 
-A  configuração inicial é chamada de semente (seed) e pode ser pre definida ou aleatória sendo ela alterada a cada ciclo (geração) pelas regras de interação que são as seguintes:
+A  configuração inicial é chamada de semente (seed) e pode ser pré-definida ou aleatória sendo ela alterada a cada ciclo (geração) pelas regras de interação que são as seguintes:
 
 - Toda célula com menos de dois vizinhos vivos morre por baixa população;
 
@@ -36,7 +36,7 @@ Não há interação entre gerações, ou seja, se por exemplo uma célula nasce
 
 ## Implementação
 
-Como o simulador foi implementado para testar nosso código de lógica do jogo eles estão separados em arquivos distintos, `game.py` para a lógica e `simulator.py` para o simulador. Sendo assim, analisaremos primeiramente o arquivo `game.py`, que não é o que implementamos no dia do dojo pois não concluímos toda a implementação a tempo, mas é uma versão que eu tinha criado previamente para testar o simulador e demonstrar ao final do dojo caso de não chegarmos a implementação completa.
+O simulador foi feito para testar a lógica do jogo e se encontra no arquivo `simulator.py` enquanto no arquivo `game.py` fica o código responsável pela implementação do game of life. Sendo assim, analisaremos primeiramente o arquivo `game.py`, que não é o que implementamos no dia do dojo pois não concluímos toda a implementação a tempo, mas é uma versão que eu tinha criado previamente para testar o simulador e demonstrar ao final do dojo caso não chegássemos a implementação completa.
 
 O desafio foi o seguinte, criar uma função `game_of_life` que recebesse uma seed em forma de uma matriz 50x50 e devolvesse a geração seguinte desta matriz como resultado:
 
@@ -222,11 +222,11 @@ while True:
     time.sleep(0.05)
 ```
 
-Desenhamos uma vez a seed na tela antes de iniciar o loop para dar tempo do usuário ver o estado inicial na tela. Em seguida damos continuidade ao loop de jogo checando por eventos com a adição da tecla `ESC` para finalizar o programa. Na etapa de atualização do jogo rodamos a função `game_of_life` do arquivo `game.py` para processar a geração seguinte e finalizamos com a etapa de desenho, agora com um tempo de espera menor entre os ciclos para ter uma visão mais dinâmica da evolução da nossa seed.
+Desenhamos uma vez a seed na tela antes de iniciar o loop para dar tempo do usuário ver o estado inicial na tela. Em seguida damos início ao loop de jogo checando por eventos como feito anteriormente mas com a adição da condição de parada utilizando a tecla `ESC` para finalizar o programa. Na etapa de atualização do jogo rodamos a função `game_of_life` do arquivo `game.py` para processar a geração seguinte e finalizamos com a etapa de desenho, agora com um tempo de espera menor entre os ciclos para ter uma visão mais dinâmica da evolução da nossa seed.
 
 ## Exemplos
 
-Para demonstrar o simulador em funcionamento utilizei o glider que é o padrão mais famoso dentro do game of life e foi absorvido pela comunidade hacker como seu emblema. Ele é o menor padrão cíclico que realiza deslocamento pelo, plano:
+Para demonstrar o simulador em funcionamento utilizei o [glider](https://goo.gl/jzm5UZ) que é o padrão mais famoso dentro do game of life e foi absorvido pela comunidade hacker como seu emblema. Ele é o menor padrão cíclico que realiza deslocamento pelo, plano:
 
 ![glider](glider.gif)
 
