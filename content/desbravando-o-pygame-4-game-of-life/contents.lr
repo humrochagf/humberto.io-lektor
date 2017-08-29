@@ -16,21 +16,21 @@ Este plano possuí um formato tabular dividido em células, sendo que cada célu
 
 A  configuração inicial é chamada de semente (seed) e pode ser pré-definida ou aleatória sendo ela alterada a cada ciclo (geração) pelas regras de interação que são as seguintes:
 
-- Toda célula com menos de dois vizinhos vivos morre por baixa população;
+1. Toda célula com menos de dois vizinhos vivos morre por baixa população;
 
-![regra um](rule-one.png)
+    ![regra um](rule-one.png)
 
-- Toda célula com dois ou três vizinhos vivos sobrevive para a próxima geração;
+2. Toda célula com dois ou três vizinhos vivos sobrevive para a próxima geração;
 
-![regra dois](rule-two.png)
+    ![regra dois](rule-two.png)
 
-- Toda célula com mais de três vizinhos vivos morre por superpopulação;
+3. Toda célula com mais de três vizinhos vivos morre por superpopulação;
 
-![regra tres](rule-three.png)
+    ![regra tres](rule-three.png)
 
-- Toda célula morta com exatamente três vizinhos vivos se torna uma célula viva por reprodução. 
+4. Toda célula morta com exatamente três vizinhos vivos se torna uma célula viva por reprodução. 
 
-![regra quatro](rule-four.png)
+    ![regra quatro](rule-four.png)
 
 Não há interação entre gerações, ou seja, se por exemplo uma célula nasce, ao se calcular a célula vizinha ela não é levada em conta pois ela não existia na geração vigente.
 
