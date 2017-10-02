@@ -8,6 +8,12 @@ url_style = absolute
 name = GitHub
 target = ghpages://humrochagf/humrochagf.github.io?cname=humberto.io
 
+[servers.production]
+name = Production
+enabled = yes
+default = yes
+target = rsync://humrochagf@webapp710.ip-50-116-32-253.cloudezapp.io/srv/humberto.io/www
+
 [packages]
 lektor-disqus-comments = 0.2
 lektor-google-analytics = 0.1.3
