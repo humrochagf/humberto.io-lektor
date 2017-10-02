@@ -39,3 +39,10 @@
   font-weight: 800;
   src: local('Montserrat ExtraBold'), local('Montserrat-ExtraBold'), url(../fonts/Montserrat-ExtraBold.ttf) format('ttf');
 }
+
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata Regular'), local('Inconsolata-Regular'), url(../fonts/Inconsolata-Regular.ttf) format('ttf');
+}
