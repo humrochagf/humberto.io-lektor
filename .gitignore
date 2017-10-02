@@ -3,4 +3,4 @@
 *.min.js
 *.css
 node_modules/
-dist/
+assets/
