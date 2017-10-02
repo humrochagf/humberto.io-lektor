@@ -10,7 +10,7 @@ const extractSass = new ExtractTextPlugin({
 module.exports = {
   entry: './js/main.js',
   output: {
-    path: path.dirname(__dirname) + '/assets/static',
+    path: path.dirname(__dirname) + '/assets/static/dist',
     filename: 'app.js'
   },
   module: {
@@ -46,7 +46,7 @@ module.exports = {
             options: {
               name: '[name].[ext]',
               outputPath: 'img/',  // where the fonts will go
-              publicPath: 'static/'  // override the default path
+              publicPath: '/static/dist/'  // override the default path
             }
           }
         ]
@@ -58,7 +58,7 @@ module.exports = {
           options: {
             name: '[name].[ext]',
             outputPath: 'fonts/',  // where the fonts will go
-            publicPath: '/static/'  // override the default path
+            publicPath: '/static/dist/'  // override the default path
           }
         }]
       }

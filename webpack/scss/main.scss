@@ -1,16 +1,23 @@
 /* set custom fonts */
 $fa-font-path: "~font-awesome/fonts";
-$font-family-sans-serif: Raleway, sans-serif;
+$font-family-sans-serif: Montserrat, sans-serif;
 $font-family-serif: Georgia, "Times New Roman", Times, serif;
 $font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
 $font-family-base: $font-family-sans-serif;
 
+$headings-font-family: $font-family-sans-serif;
+
 $font-size-h1: 2rem;
-$font-size-h2: 2rem;
-$font-size-h3: 1.5rem;
-$font-size-h4: 1.25rem;
+$font-size-h2: 1.5rem;
+$font-size-h3: 1.25rem;
+$font-size-h4: 1.10rem;
 $font-size-h5: 1rem;
 $font-size-h6: 0.75rem;
+
+$headings-font-weight: 600;
+$lead-font-weight: 300;
+
+$font-size-root: 14px;
 
 /* load font awesome */
 @import "~font-awesome/scss/font-awesome";
@@ -20,9 +27,12 @@ $font-size-h6: 0.75rem;
 
 /* my styles */
 
+html {
+  font-weight: $lead-font-weight;
+}
+
 h1, h2, h3, h4, h5, h6 {
   color: #000000;
-  font-weight: 900;
   margin: 40px 0px 10px 0px;
 }
 
@@ -52,7 +62,13 @@ header {
   text-align: center;
 
   h1 {
+    font-weight: 800;
     margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 12px;
   }
 
   .rounded-circle {
@@ -208,7 +224,6 @@ pre {
   padding: 20px 0;
 
   a {
-    font-weight: 600;
   }
 
   img {
