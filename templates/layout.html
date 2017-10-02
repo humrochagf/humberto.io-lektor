@@ -13,10 +13,10 @@
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,700,900' rel='stylesheet' type='text/css'>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ '/static/css/website.css'|url }}">
     <!-- pygments -->
     <link rel="stylesheet" href="{{ get_pygments_stylesheet()|url }}">
+    <!-- app code -->
+    <script src="{{ '/static/app.js'|url }}"></script>
   </head>
 
   <body>
@@ -74,17 +74,6 @@
       </div>
     {% endblock %}
 
-    <!-- jQuery first, then Bootstrap JS. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="{{ '/static/js/tether.min.js'|url }}"></script>
-    <script src="{{ '/static/js/bootstrap.min.js'|url }}"></script>
-
     <div class="ga-script">{{ generate_google_analytics() }}</div>
-
-    <!-- target to blank when external -->
-    <script>
-      $("a[href^='http://']").attr("target","_blank");
-      $("a[href^='https://']").attr("target","_blank");
-    </script>
   </body>
 </html>
