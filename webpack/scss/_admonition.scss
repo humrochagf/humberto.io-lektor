@@ -1,0 +1,63 @@
+.admonition {
+  @extend .alert;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.admonition-note {
+  @extend .alert-success;
+
+  a {
+    color: theme-color("success");
+    border: 1px solid lighten(theme-color("success"), 30%);
+
+    &:hover, &:focus, &:active {
+      color: theme-color("success");
+      border: 1px solid theme-color("success");
+    }
+  }
+}
+
+.admonition-info {
+  @extend .alert-warning;
+
+  a {
+    color: theme-color("warning");
+    border: 1px solid lighten(theme-color("warning"), 30%);
+
+    &:hover, &:focus, &:active {
+      color: theme-color("warning");
+      border: 1px solid theme-color("warning");
+    }
+  }
+}
+
+.admonition-tip {
+  @extend .alert-info;
+
+  a {
+    color: theme-color("info");
+    border-bottom: 1px solid lighten(theme-color("info"), 30%);
+
+    &:hover, &:focus, &:active {
+      color: theme-color("info");
+      border-bottom: 1px solid theme-color("info");
+    }
+  }
+}
+
+.admonition-warning {
+  @extend .alert-danger;
+
+  a {
+    color: theme-color("danger");
+    border-bottom: 1px solid lighten(theme-color("danger"), 30%);
+
+    &:hover, &:focus, &:active {
+      color: theme-color("danger");
+      border-bottom: 1px solid theme-color("danger");
+    }
+  }
+}

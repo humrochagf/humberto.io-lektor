@@ -1,0 +1,27 @@
+header {
+  padding-top: 30px;
+  text-align: center;
+
+  h1 {
+    font-weight: 800;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  .rounded-circle {
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+    border: 5px solid $black;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .header-photo {
+      display: none;
+    }
+  }
+}

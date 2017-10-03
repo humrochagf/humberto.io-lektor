@@ -1,0 +1,22 @@
+.footer-wrapper {
+  background-color: $black;
+
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    color: $white;
+
+    a {
+      color: $white;
+
+      &:hover, &:focus {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+
+    .icons {
+      font-size: 40px;
+    }
+  }
+}
