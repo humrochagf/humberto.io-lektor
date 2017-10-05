@@ -1,0 +1,23 @@
+{% macro render_research(research, from_index=false) %}
+  <div class="research">
+    {% if from_index %}
+      <h1><a href="{{ research|url }}">{{ research.title }}</a></h1>
+    {% else %}
+      <h1>{{ research.title }}</h1>
+    {% endif %}
+
+    <p class="meta">
+      pesquisa publicada em {{ research.pub_date.strftime('%d/%m/%Y') }}
+    </p>
+
+    {% if from_index %}
+      {{ research.summary }}
+    {% else %}
+      <p>{{ research.summary }}</p>
+
+      <p class="text-center"><a href="{{ research.url }}">Acesse o questionário</a></p>
+
+      {{ research.body }}
+    {% endif %}
+  </div>
+{% endmacro %}
