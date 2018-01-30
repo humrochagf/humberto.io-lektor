@@ -1,0 +1,34 @@
+title: Separando o Frontend do Backend com Angular e Django
+---
+author: Humberto Rocha
+---
+body:
+
+No ano de 2017 tivemos um crescimento expressivo dos frameworks javascript e uma grande evolução do frontend como um todo. E estas novas tecnologias possuem ferramentas e fluxos de desenvolvimento próprios tornando cada vez mais interessante o uso de API`s e a separação do frontend do backend em diferentes projetos.
+
+ Esta separação trás mais independência aos times de desenvolvimento mas também deixa muita gente perdida em como fazer isso na prática. Nesta postagem vamos ver um exemplo de como realizar esta separação.
+
+# # TODO: Requerimentos
+
+## TODO: Separando responsabilidades
+
+## Backend 
+
+Em uma arquitetura web de cliente e servidor nos referimos ao backend para designar a camada de acesso aos dados que é processada totalmente pelo servidor responsável pelo serviço. É dele a responsabilidade de acessar, processar, armazenar e controlar o acesso os dados requisitados pelo cliente. Seu modelo de implementação mais famoso e encontrado na internet são as API`s REST.
+
+## TODO: implementação
+## CORS
+
+## Frontend
+
+No modelo citado acima, o frontend é responsável pela camada de apresentação dos dados e seu processamento acontece em sua maioria no cliente, mas em alguns casos parte deste processamento pode ser feito pelo servidor.
+
+## TODO: implementação
+
+## TODO: conclusão
+---
+pub_date: 2018-01-30
+---
+summary: Descubra como separar suas stacks para ganhar independência entre o frontend e o backend
+---
+twitter_handle: humrochagf
