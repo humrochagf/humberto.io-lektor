@@ -2,6 +2,7 @@
 *.pyo
 *.min.js
 *.css
+package-lock.json
 node_modules/
 assets/
 temp/
