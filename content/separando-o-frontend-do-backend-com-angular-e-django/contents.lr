@@ -4,28 +4,31 @@ author: Humberto Rocha
 ---
 body:
 
-No ano de 2017 tivemos um crescimento expressivo dos frameworks javascript e uma grande evolução do frontend como um todo. E estas novas tecnologias possuem ferramentas e fluxos de desenvolvimento próprios tornando cada vez mais interessante o uso de API`s e a separação do frontend do backend em diferentes projetos.
+Dentro do escopo do desenvolvimento web as coisas vem evoluindo muito rápido e crescendo em complexidade em um ritmo intenso. Aquele modelo antigo de criação de sites onde tinamos o webmaster que dominava o html e logava no servidor para atualiza uma página é algo cada vez mais raro de se ver. Até para criar sites estáticos estamos utilizando ferramentas para agilizar nosso trabalho.
 
- Esta separação trás mais independência aos times de desenvolvimento mas também deixa muita gente perdida em como fazer isso na prática. Nesta postagem vamos ver um exemplo de como realizar esta separação.
+Em 2017 tivemos um crescimento expressivo dos frameworks javascript e uma grande evolução do frontend como um todo. E estas novas tecnologias possuem ferramentas e fluxos de desenvolvimento próprios, o que vem tornando mais oneroso para um sistema só entregar o backend e o frontend.
 
-# # TODO: Requerimentos
+Ao mesmo tempo vem se popularizando e ficando mais interessante o uso de API`s e a separação do frontend do backend em diferentes projetos, que trás a proposta de dar  mais autonomia as times de desenvolvimento além de tornar a aplicação mais escalável.
 
-## TODO: Separando responsabilidades
+Contudo, ao deparar com esta realidade muita gente (eu incluso em minha primeira tentativa de implementação) fica perdida em como botar em prática esta forma de se implementar sistemas web. 
 
-## Backend 
+Nesta postagem veremos um exemplo simplificado de como iniciar um projeto a estes moldes. Criaremos uma aplicação de lista de compras onde poderemos adicionar itens a nossa lista de compras, visualizar a lista, marcar como comprado e excluir itens da lista.
+
+## Separando as Responsabilidades
+
+Para começar vamos falar um pouco sobre esta separação de responsabilidades dentro do nosso projeto. Existem duas grandes responsabilidades dentro de uma aplicação web interativa. Uma é a gestão e a outra é a visualização dos dados como detalharemos abaixo.
+
+### Backend 
 
 Em uma arquitetura web de cliente e servidor nos referimos ao backend para designar a camada de acesso aos dados que é processada totalmente pelo servidor responsável pelo serviço. É dele a responsabilidade de acessar, processar, armazenar e controlar o acesso os dados requisitados pelo cliente. Seu modelo de implementação mais famoso e encontrado na internet são as API`s REST.
 
-## TODO: implementação
-## CORS
-
-## Frontend
+### Frontend
 
 No modelo citado acima, o frontend é responsável pela camada de apresentação dos dados e seu processamento acontece em sua maioria no cliente, mas em alguns casos parte deste processamento pode ser feito pelo servidor.
 
-## TODO: implementação
+## Implementação
 
-## TODO: conclusão
+Definidas as responsabilidades vamos implementar nossa aplicação.
 ---
 pub_date: 2018-01-30
 ---
