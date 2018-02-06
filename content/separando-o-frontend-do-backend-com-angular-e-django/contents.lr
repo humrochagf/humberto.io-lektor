@@ -18,17 +18,34 @@ Nesta postagem veremos um exemplo simplificado de como iniciar um projeto a este
 
 Para começar vamos falar um pouco sobre esta separação de responsabilidades dentro do nosso projeto. Existem duas grandes responsabilidades dentro de uma aplicação web interativa. Uma é a gestão e a outra é a visualização dos dados como detalharemos abaixo.
 
-### Backend 
+## Backend 
 
 Em uma arquitetura web de cliente e servidor nos referimos ao backend para designar a camada de acesso aos dados que é processada totalmente pelo servidor responsável pelo serviço. É dele a responsabilidade de acessar, processar, armazenar e controlar o acesso os dados requisitados pelo cliente. Seu modelo de implementação mais famoso e encontrado na internet são as API`s REST.
 
-### Frontend
+## Frontend
 
 No modelo citado acima, o frontend é responsável pela camada de apresentação dos dados e seu processamento acontece em sua maioria no cliente, mas em alguns casos parte deste processamento pode ser feito pelo servidor.
 
 ## Implementação
 
-Definidas as responsabilidades vamos implementar nossa aplicação.
+Definidas as responsabilidades vamos implementar nossa aplicação, partindo do backend:
+
+Começamos com a instalação do django seguido da criação do projeto:
+
+```shell
+$ pip install django
+$ django-admin startproject backend
+$ cd backend
+$ python manage.py migrate
+$ python manage.py runserver
+```
+
+Ao iniciar o navegador em [localhost:8000](http://localhost:8000) veremos a nova tela de sucesso de criação de aplicação do Django 2 mostrando que a inicialização da sua nova aplicação foi um sucesso (muito bonita a nova tela né?!).
+
+![novo projeto](django-startproject.gif)
+
+
+
 ---
 pub_date: 2018-01-30
 ---
