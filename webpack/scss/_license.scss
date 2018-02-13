@@ -3,7 +3,7 @@
   padding: 20px 0;
 
   a {
-    border-bottom: 1px solid grayscale(400);
+    border-bottom: 1px solid gray(400);
 
     &:hover, &:focus, &:active {
       border-bottom: 1px solid $black;
