@@ -80,7 +80,7 @@ Com isso, daremos inicio a nossa aplicação de lista de compras:
 python manage.py startapp shopping
 ```
 
-A aplicação será bem direta ao ponto com um único *model* que é quem representa a lista de compras no banco de dados, um *serializer* que transforma os dados de objeto para *json* e vice versa, além de e validar os dados da requisição e uma *view* que recebe, encaminha e responde a estas requisições:
+A aplicação será bem direta ao ponto com um único **model** que é quem representa a lista de compras no banco de dados, um **serializer** que transforma os dados de objeto para **json** e vice versa, além de e validar os dados da requisição e uma **view** que recebe, encaminha e responde a estas requisições:
 
 ```python
 # settings .py
@@ -158,7 +158,7 @@ E voilá, nosso backend está funcionando:
 
 ## Implementando o frontend
 
-Para iniciar a implementação do frontend vamos instalar a ferramenta de linha de comando do *Angular* e criar um novo projeto:
+Para iniciar a implementação do frontend vamos instalar a ferramenta de linha de comando do **Angular** e criar um novo projeto:
 
 ```shell
 $ npm install -g @angular/cli
@@ -171,7 +171,7 @@ Se tudo tiver corrido como esperado ao acessar [localhost:4200](http://localhost
 
 ![home angular](angular-startproject.png)
 
-Agora criaremos um *service* para acessar nossa api e uma *view* para listar os itens da nossa lista de compras:
+Agora criaremos um **service** para acessar nossa api e uma **view** para listar os itens da nossa lista de compras:
 
 ```typescript
 // shopping-item.interface.ts
@@ -287,7 +287,7 @@ Por questões de segurança navegadores implementam a [política de mesma origem
 
 Para habilitar requisições de origem cruzada de forma segura foi criado o [Mecanismo de Compartilhamento de Recursos entre Origens (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) que serve para permitir a comunicação entre um frontend e backend em domínios distintos, e também para requisições de fontes, imagens dentre outros recursos armazenados em uma CDN.
 
-O mecanismo opera adicionando novos cabeçalhos *HTTP* que permitem que o servidor descreva o conjunto de origens que podem ler a informação através do navegador. Além de requerer que os navegadores "pré-enviem" requisições que podem causar efeitos colaterais ao servidor (como *POST*, *PUT* e *DELETE*) com uma requisição *OPTIONS* que depois de aprovada libera o envio da requisição verdadeira.
+O mecanismo opera adicionando novos cabeçalhos **HTTP** que permitem que o servidor descreva o conjunto de origens que podem ler a informação através do navegador. Além de requerer que os navegadores "pré-enviem" requisições que podem causar efeitos colaterais ao servidor (como **POST**, **PUT** e **DELETE**) com uma requisição **OPTIONS** que depois de aprovada libera o envio da requisição verdadeira.
 
 O navegador (por consequência nosso frontend também) já está pronto para lidar com este mecanismo, nos resta agora implementá-lo em no backend.
 
@@ -416,7 +416,7 @@ E agora sim, temos a lista de compras completa e funcionando:
 
 ## Conclusão
 
-Separar o frontend do backend em projetos distintos gera um pouco mais de trabalho em relação a manter tudo em um único projeto monolítico. Porém, depois de acostumar com as particularidades desta separação é que começam a surgir seus frutos como, poder dar mais flexibilidade e liberdade aos times de desenvolvimento para utilizarem suas ferramentas e fluxos de desenvolvimento da forma que bem entenderem, além de retirar a carga de processamento de template de seu servidor de backend deixando-o focado na gestão e processamento dos seus dados e, talvez uma das maiores vantagens caso você tenha uma empresa, a possibilidade de poder contratar profissionais especializados em frontend e em backend para evoluir seu produto sem demandar de todos um conhecimento de fullstack.
+Separar o frontend do backend em projetos distintos gera um pouco mais de trabalho em relação a manter tudo em um único projeto monolítico. Porém, depois de acostumar com as particularidades desta separação é que começam a surgir seus frutos como poder dar mais flexibilidade e liberdade aos times de desenvolvimento para utilizarem suas ferramentas e fluxos de desenvolvimento da forma que bem entenderem, além de retirar a carga de processamento de template de seu servidor de backend deixando-o focado na gestão e processamento dos seus dados e, talvez uma das maiores vantagens caso você tenha uma empresa, a possibilidade de poder contratar profissionais especializados em frontend e em backend para evoluir seu produto sem demandar de todos um conhecimento de fullstack.
 ---
 pub_date: 2018-01-30
 ---
