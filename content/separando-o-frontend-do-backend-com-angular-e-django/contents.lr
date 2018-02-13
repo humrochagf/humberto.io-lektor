@@ -10,7 +10,7 @@ Nos últimos anos tivemos um crescimento expressivo dos frameworks javascript e 
 
 Ao mesmo tempo vem se popularizando e ficando mais interessante o uso de API`s e a separação do frontend do backend em diferentes projetos, o que trás a proposta de dar  mais autonomia aos times de desenvolvimento além de tornar a aplicação mais escalável.
 
-Contudo, ao deparar com esta realidade muita gente (eu incluso em minha primeira tentativa de implementação) fica perdida em como botar em prática esta forma de se implementar sistemas web. 
+Contudo, ao deparar com esta realidade muita gente (eu incluso em minha primeira tentativa de implementação) fica perdida em como botar em prática esta forma de se implementar sistemas web.
 
 Nesta postagem veremos um exemplo simplificado de como botar em prática esta arquitetura. Criaremos uma aplicação de lista de compras onde poderemos adicionar visualizar e excluir itens da lista.
 
@@ -20,7 +20,7 @@ Para começar vamos falar um pouco sobre esta separação de responsabilidades d
 
 Existem duas grandes responsabilidades dentro de uma aplicação web interativa. A gestão e a visualização dos dados.
 
-## Backend 
+## Backend
 
 Em uma arquitetura web de cliente e servidor, nos referimos ao backend como a camada de acesso aos dados que é processada totalmente pelo servidor responsável pelo serviço. É dele a responsabilidade de acessar, processar, armazenar e controlar o acesso os dados requisitados pelo cliente. Seu modelo de implementação mais famoso e encontrado na internet são as API`s REST.
 
@@ -418,7 +418,7 @@ E agora sim, temos a lista de compras completa e funcionando:
 
 Separar o frontend do backend em projetos distintos gera um pouco mais de trabalho em relação a manter tudo em um único projeto monolítico. Porém, depois de acostumar com as particularidades desta separação é que começam a surgir seus frutos como poder dar mais flexibilidade e liberdade aos times de desenvolvimento para utilizarem suas ferramentas e fluxos de desenvolvimento da forma que bem entenderem, além de retirar a carga de processamento de template de seu servidor de backend deixando-o focado na gestão e processamento dos seus dados e, talvez uma das maiores vantagens caso você tenha uma empresa, a possibilidade de poder contratar profissionais especializados em frontend e em backend para evoluir seu produto sem demandar de todos um conhecimento de fullstack.
 ---
-pub_date: 2018-01-30
+pub_date: 2018-02-13
 ---
 summary: Descubra como separar suas stacks para ganhar independência entre o frontend e o backend
 ---
