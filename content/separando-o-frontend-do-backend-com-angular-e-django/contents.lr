@@ -313,9 +313,9 @@ CORS_ORIGIN_WHITELIST = (
 )
 ```
 
-Lembre-se de colocar o `CorsMiddleware` o mais a cima o possível na lista de middlewares para que ele consiga adicionar o cabeçalho na requisição antes que ela seja tratada pelo backend.
+!!! Lembre-se de colocar o `CorsMiddleware` o mais a cima o possível na lista de middlewares para que ele consiga adicionar o cabeçalho na requisição antes que ela seja tratada pelo backend.
 
-Já para a whitelist de cors colocamos somente a origem que queremos liberar o acesso que no nosso caso é `localhost:4200`, mas em ambiente de produção seria algo como `https://api.backend.com`.
+Em `CORS_ORIGIN_WHITELIST` colocamos somente a origem que queremos liberar o acesso que no nosso caso é `localhost:4200`, mas em ambiente de produção seria algo como `https://api.backend.com`.
 
 Feito isso agora podemos ver que a comunicação entre frontend e backend está funcionando \o/.
 
