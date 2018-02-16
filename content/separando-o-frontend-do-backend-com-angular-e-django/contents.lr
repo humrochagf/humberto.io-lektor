@@ -12,7 +12,7 @@ Ao mesmo tempo vem se popularizando e ficando mais interessante o uso de API`s e
 
 Contudo, ao deparar com esta realidade muita gente (eu incluso em minha primeira tentativa de implementação) fica perdida em como botar em prática esta forma de se implementar sistemas web.
 
-Nesta postagem veremos um exemplo simplificado de como botar em prática esta arquitetura. Criaremos uma aplicação de lista de compras onde poderemos adicionar visualizar e excluir itens da lista.
+Nesta postagem veremos um exemplo simplificado de como botar em prática esta arquitetura. Criaremos uma aplicação de lista de compras onde poderemos adicionar visualizar e excluir itens da lista. Para isso utilizaremos Django 2 para o backend e Angular 5 para o frontend.
 
 ## Separando as Responsabilidades
 
