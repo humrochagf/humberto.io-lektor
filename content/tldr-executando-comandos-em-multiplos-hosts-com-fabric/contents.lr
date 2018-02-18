@@ -77,6 +77,22 @@ $ fab disk_usage -P
 ```
 
 !! Lembrando que ao rodar a tarefa em paralelo você perde o controle da ordem de execução da sua lista de servidores
+
+## Bônus
+
+Dica do [@luizirber](https://twitter.com/luizirber) no twitter.
+
+O Fabric possuí um padrão de comando muito legal que nos permite executar o exemplo acima totalmente da linha de comando que é:
+
+```shell
+$ fab [options] -- [shell command]
+```
+
+O comando ficaria desta forma:
+
+```shell
+$ fab -H 'user1@server1, user2@server2' -- df -h
+```
 ---
 pub_date: 2018-02-17
 ---
