@@ -1,0 +1,42 @@
+title: Autenticação JWT com Angular e Django
+---
+author: Humberto Rocha
+---
+body:
+
+Quase todo sistema que opera na internet e armazena dados de usuário hoje em dia depende de uma camada de autenticação. E com o crescimento do modelo de API`s e separação do frontend do backend a implementação desta camada cresceu em complexidade.
+
+Esta postagem tem como foco mostrar o caminho das pedras em uma stack de frontend Angular 5 e backend Django 2 utilizando o modelo de separação discutido na postagem ["Separando o Frontend do Backend com Angular e Django"](../../../2018/2/separando-o-frontend-do-backend-com-angular-e-django) .
+
+## Autenticação
+
+Existem diversas formas de se autenticar em um sistema. A adotada pela internet como padrão (sem questionar sua eficácia) é o modelo de usuário e senha, onde apresentamos nosso identificador (id, nome de usuário, email ou semelhante) e um segredo compartilhado com o serviço que queremos acessar, que após a confirmação de que os mesmos estão corretos, nos é retornado um token que funciona como um bilhete de acesso aos nossos recursos pessoais naquele serviço.
+
+Quando implementamos sistemas monolíticos onde o backend e o frontend estão juntos esta manutenção deste token acontece de forma automática pela maioria das bibliotecas de autenticação disponíveis por aí. No máximo decidimos coisas como tempo de validade da sessão ou onde o token será armazenado trocando uma variável de configuração ou outra.
+
+Porém, ao separarmos o backend do frontend esta gestão fica um pouco mais por nossa conta as decisões sobre o que fazer e usar para isso deve ser tomadas por nós durante a implementação. E existem enumeras formas de se fazer esta gestão  de acesso, uma delas é simplesmente utilizar o token padrão devolvido pelo sistema, mas neste caso como eles estão separados perdemos a possibilidade de atualizar a validade deste token nos obrigando a colocar novamente a senha para obter um novo acesso.
+
+Para nos auxiliar com estes problemas existe o Json Web Token ou JWT.
+
+## JWT
+
+## Backend
+
+O nosso backend é o responsável pelo lado do servidor.  É quem detém o recurso a ser acessado e quem autentica o cliente.
+
+Para iniciar nosso backend criaremos um projeto django:
+
+```
+$ pip install django
+$ django-admin startproject backend
+```
+
+## Frontend
+
+## Conclusão
+---
+pub_date: 2018-01-30
+---
+summary: Implemente um modelo de autenticação JWT com frontend em Angular 5 e um backend de api em Django 2
+---
+twitter_handle: humrochagf

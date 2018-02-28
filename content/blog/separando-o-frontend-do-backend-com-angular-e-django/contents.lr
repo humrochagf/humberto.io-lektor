@@ -420,6 +420,6 @@ Separar o frontend do backend em projetos distintos gera um pouco mais de trabal
 ---
 pub_date: 2018-02-13
 ---
-summary: Saiba como separar suas stacks para ganhar independência entre o frontend e o backend
+summary: Descubra como separar suas stacks para ganhar independência entre o frontend e o backend utilizando Angular 5 e Django 2
 ---
 twitter_handle: humrochagf
