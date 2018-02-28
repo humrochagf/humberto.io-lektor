@@ -24,4 +24,14 @@ header {
       display: none;
     }
   }
+
+  .nav {
+    a {
+      border-bottom: 1px solid gray("400");
+
+      &:hover, &:focus, &:active {
+        border-bottom: 1px solid $black;
+      }
+    }
+  }
 }

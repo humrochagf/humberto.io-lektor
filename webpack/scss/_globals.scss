@@ -13,7 +13,7 @@ a {
 }
 
 p a {
-  border-bottom: 1px solid gray(400);
+  border-bottom: 1px solid gray("400");
 
   &:hover, &:focus, &:active {
     border-bottom: 1px solid $black;
@@ -28,7 +28,7 @@ pre {
   color: $white;
   margin: 30px 0;
   padding: 5px 7px;
-  background-color: gray(900);
+  background-color: gray("900");
 }
 
 img, .embedded-video {
@@ -41,6 +41,10 @@ img, .embedded-video {
     margin-left: 0;
     margin-right: 0;
   }
+}
+
+.page {
+  margin-bottom: 40px;
 }
 
 .embedded-video {
