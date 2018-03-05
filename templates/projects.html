@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}Projetos{% endblock %}
+
+{% block content %}
+{{ this.children.pagination }}
+  {% for project in this.items %}
+    <div class="blog-post">
+      <h1><a href="{{ project|url }}">{{ project.title }}</a></h1>
+    </div>
+    <hr>
+  {% endfor %}
+{% endblock %}
