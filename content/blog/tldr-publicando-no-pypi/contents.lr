@@ -127,9 +127,11 @@ $ pip install pypandoc
 Adicione este código no seu `setup.py` para realizar a conversão:
 
 ```python
-import pypandoc
-
-readme = pypandoc.convert('README.md', 'rst')
+try:
+    import pypandoc
+    readme = pypandoc.convert('README.md', 'rst')
+except (IOError, ImportError):
+    readme = ''
 
 setup(
     ...
@@ -137,6 +139,8 @@ setup(
     ...
 )
 ```
+
+!!! É importante colocar a conversão dentro do **readme** dentro de um bloco `try ... except` para não demandar a instalação do pypandoc nos usuários que vão usar o seu pacote.
 ---
 pub_date: 2018-03-05
 ---
