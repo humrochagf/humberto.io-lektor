@@ -1,13 +1,11 @@
 {% extends "layout.html" %}
 
-{% from "macros/blog.html" import render_blog_post %}
+{% from "macros/project.html" import render_project %}
 
 {% block title %}{{ this.title }}{% endblock %}
 
 {% block content %}
-  {{ render_blog_post(this) }}
-
-  <div class="license">{{ render_cc_license('by-sa') }}</div>
+  {{ render_project(this) }}
 
   <!-- AddToAny BEGIN -->
   <div class="a2akit-container">
@@ -18,7 +16,7 @@
       <a class="a2a_button_telegram"></a>
       <a class="a2a_button_linkedin"></a>
       <a class="a2a_button_facebook"></a>
-      <a class="a2a_dd a2a_counter" href="https://www.addtoany.com/share?linkurl=http%3A%2F%2Fhumberto.io%2F&amp;linkname=Blog%20Humberto%20Rocha"></a>
+      <a class="a2a_dd a2a_counter" href="https://www.addtoany.com/share?linkurl=http%3A%2F%2Fhumberto.io%2F&amp;linkname=Projetos%20Humberto%20Rocha"></a>
     </div>
 
     <script>
