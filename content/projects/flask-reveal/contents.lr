@@ -1,3 +1,38 @@
 title: Flask Reveal
 ---
-github: https://github.com/humrochagf/flask-reveal
+repository: https://github.com/humrochagf/flask-reveal
+---
+license: MIT
+---
+description:
+
+Crie suas apresentações de slides em [reveal.js](https://github.com/hakimel/reveal.js) escrevendo em um arquivo markdown e sem depender de conexão com a internet através de um servidor local [flask](http://flask.pocoo.org/).
+
+## Instalação
+
+O flask-reveal está disponível no PyPI e pode ser instalado com:
+
+```shell
+$ pip install flask-reveal
+```
+
+## Usando
+
+Para criar uma apresentação basta rodar:
+
+```shell
+$ flaskreveal mkpresentation minha-apresentacao
+```
+
+Um diretório será criado com o arquivo de configuração a pasta de imagens e o arquivo markdown da apresentação.
+
+Para rodar sua apresentação entre na pasta e rode o comando:
+
+```shell
+$ cd minha-apresentacao
+$ flaskreveal start slides.md
+```
+
+Agora é só acessar o navegador em [localhost:5000](http://localhost:5000) para visualizar sua apresentação:
+
+![apresentação](presentation.png)

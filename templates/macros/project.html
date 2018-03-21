@@ -1,0 +1,21 @@
+{% macro render_project(project, from_index=false) %}
+  <div class="project">
+    {% if from_index %}
+      <h1><a href="{{ project|url }}">{{ project.title }}</a></h1>
+    {% else %}
+      <h1>{{ project.title }}</h1>
+    {% endif %}
+
+    <p class="meta">
+      <b>Licença:</b> {{ project.license }}
+
+      <br>
+
+      <b>Repositório:</b> <a href="{{ project.repository }}">{{ project.repository }}</a>
+    </p>
+
+    {% if not from_index %}
+      {{ project.description }}
+    {% endif %}
+  </div>
+{% endmacro %}
