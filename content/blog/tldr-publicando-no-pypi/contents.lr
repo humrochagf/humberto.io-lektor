@@ -129,7 +129,7 @@ Adicione este código no seu `setup.py` para realizar a conversão:
 ```python
 try:
     import pypandoc
-    readme = '\n' + pypandoc.convert('README.md', 'rst')
+    readme = pypandoc.convert('README.md', 'rst')
 except (IOError, ImportError):
     readme = ''
 
@@ -139,8 +139,6 @@ setup(
     ...
 )
 ```
-
-!!! A quebra de linha é importante para manter o alinhamento do texto gerado pelo `setup.py` caso contrário a formatação na descrição no PyPI pode ficar quebrada.
 
 !!! É importante colocar a conversão dentro do **readme** dentro de um bloco `try ... except` para não demandar a instalação do pypandoc nos usuários que vão usar o seu pacote.
 ---
