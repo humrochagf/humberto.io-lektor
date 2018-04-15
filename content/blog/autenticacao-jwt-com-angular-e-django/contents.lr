@@ -45,7 +45,7 @@ No **payload** (carga) ficam os dados do usuário e alguns metadados como a expi
 }
 ```
 
-Finalmente na **signature** (assinatura) os dados de **header** e **payload** codificados em **base 64** e unidos por `.` para serem assinados usando o algoritmo definido no **header**:
+Finalmente na **signature** (assinatura) os dados de **header** e **payload** codificados em **base 64** e unidos por `.` (ponto) para serem assinados usando o algoritmo definido no **header**:
 
 ```
 HMACSHA256(
@@ -57,42 +57,388 @@ HMACSHA256(
 
 Com a assinatura é possível verificar se o **token** não foi alterado no caminho, garantindo sua integridade. Com ela também é possível confirmar a autenticidade de sua fonte.
 
-Estes três blocos unidos por `.` cada um codificado em **base 64** compõem o **JWT Token**:
+Estes três blocos unidos por `.` (ponto) cada um codificado em **base 64** compõem o **JWT Token**:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.PcmVIPbcZl9j7qFzXRAeSyhtuBnHQNMuLHsaG5l804A
 ```
 
-Após confirmar os dados de usuário e receber o **JWT** ele deve ser armazenado, normalmente em `localstorage` para ser utilizado nas requisições autenticadas usando o esquema `Bearer`:
+Após confirmar os dados de usuário e receber o **JWT** ele deve ser armazenado, normalmente em **local storage** para ser utilizado nas requisições autenticadas usando o esquema de cabeçalho `JWT`:
 
 ```
-Authorization: Bearer <token>
+Authorization: JWT <token>
 ```
 
 Este é um mecanismo de autenticação que não guarda estado e por não dependerem de **token de sessão**, não há necessidade de se preocupar com **CORS**.
 
 Agora, com todo este conhecimento é hora da implementação!!!
 
-TODO: gif boladão
+![coding cat](coding-cat.gif)
 
-Para isso, utilizaremos como base a aplicação desenvolvida na postagem anterior ["Separando o Frontend do Backend com Angular e Django"](/blog/separando-o-frontend-do-backend-com-angular-e-django/).
+E para isso, utilizaremos como base a aplicação desenvolvida na postagem anterior ["Separando o Frontend do Backend com Angular e Django"](/blog/separando-o-frontend-do-backend-com-angular-e-django/).
 
 ## Backend
 
-O nosso backend é o responsável pelo lado do servidor.  É quem detém o recurso a ser acessado e quem autentica o cliente.
+A primeira coisa que faremos é instalar o pacote `djangorestframework-jwt`:
 
-Para iniciar nosso backend criaremos um projeto django:
+```shell
+$ pip install djangorestframework-jwt
+```
+Em seguida iremos adicionar suas configurações no `settings.py`:
 
+```python
+from datetime import timedelta
+
+# REST Framework configs
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'NON_FIELD_ERRORS_KEY': 'global',
+}
+
+# JWT settings
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': timedelta(days=2),
+}
 ```
-$ pip install django
-$ django-admin startproject backend
+
+Seguido das rotas de login e atualização de **token jwt** em `urls.py`:
+
+```python
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
+
+urlpatterns = [
+    ...
+
+    path('login/', obtain_jwt_token),
+    path('refresh-token/', refresh_jwt_token),
+]
 ```
+
+Como foi alterada a permissão padrão do sistema no `settings.py` para `IsAuthenticated` ao tentar acessar a lista de compra nos deparamos com a seguinte mensagem:
+
+![denied](denied.png)
+
+Agora que o acesso está sendo restrito a usuários logados chegou a hora de implementar a autenticação no **frontend**.
 
 ## Frontend
 
+A primeira tarefa a ser executada no **frontend** é a de mover o conteúdo de `app.component.ts` para um componente separado e adicionar rotas na aplicação, criando um segundo componente para o login:
+
+```typescript
+// app.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <router-outlet></router-outlet>
+  `
+})
+export class AppComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+}
+
+// login.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-login',
+  template: `
+  <div style="text-align:center">
+    <h1>
+      Login
+    </h1>
+  </div>
+
+  <input #username type='text' placeholder='username'>
+  <input #password type='password' placeholder='password'>
+  <button (click)="login(username.value, password.value)">login</button>
+  {{ error?.message }}
+  `
+})
+export class LoginComponent implements OnInit {
+
+  error: any;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  login(username: string, password: number) {
+    // TODO: call login
+  }
+}
+
+// app-routing.module.ts
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { LoginComponent } from './login.component';
+import { ListComponent } from './list.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'list', component: ListComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+// app.module.ts
+
+...
+import { AppRoutingModule } from './app-routing.module';
+import { ListComponent } from './list.component';
+import { LoginComponent } from './login.component';
+...
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    ListComponent,
+    LoginComponent,
+  ],
+  imports: [
+    ...
+
+    AppRoutingModule,
+  ],
+  ...
+})
+export class AppModule { }
+```
+
+Para auxiliar na implementação do **frontend** utilizaremos duas bibliotecas:
+
+```shell
+$ npm install -s moment
+$ npm install -s jsonwebtoken
+$ npm install -s @types/jsonwebtoken
+```
+
+A biblioteca [moment](https://momentjs.com/) facilitará o trabalho com tempo, já que precisamos controlar a expiração do **token** e sua renovação enquanto a biblioteca [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) cuidará do **token** em si.
+
+Com as bibliotecas em mãos iniciaremos pelo **service** de autênticação:
+
+```typescript
+// auth.service.ts
+
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { CanActivate, Router } from '@angular/router';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/shareReplay';
+
+import * as jwt from 'jsonwebtoken';
+import * as moment from 'moment';
+
+import { environment } from '../environments/environment';
+
+@Injectable()
+export class AuthService {
+
+  private apiRoot = 'http://localhost:8000/';
+
+  constructor(private http: HttpClient) { }
+
+  private setSession(authResult) {
+    const token = authResult.token;
+    const payload = <JWTPayload> jwt.decode(token);
+    const expiresAt = moment.unix(payload.exp);
+
+    localStorage.setItem('token', authResult.token);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+  }
+
+  get token(): string {
+    return localStorage.getItem('token');
+  }
+
+  login(username: string, password: string) {
+    return this.http.post(
+      this.apiRoot.concat('login/'),
+      { username, password }
+    ).do(response => this.setSession(response)).shareReplay();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expires_at');
+  }
+
+  refreshToken() {
+    if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
+      return this.http.post(
+        this.apiRoot.concat('refresh-token/'),
+        { token: this.token }
+      ).do(response => this.setSession(response)).shareReplay().subscribe();
+    }
+  }
+
+  getExpiration() {
+    const expiration = localStorage.getItem('expires_at');
+    const expiresAt = JSON.parse(expiration);
+
+    return moment(expiresAt);
+  }
+
+  isLoggedIn() {
+    return moment().isBefore(this.getExpiration());
+  }
+
+  isLoggedOut() {
+    return !this.isLoggedIn();
+  }
+}
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      const cloned = req.clone({
+        headers: req.headers.set('Authorization', 'JWT '.concat(token))
+      });
+
+      return next.handle(cloned);
+    } else {
+      return next.handle(req);
+    }
+  }
+}
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+
+  constructor(private authService: AuthService, private router: Router) { }
+
+  canActivate() {
+    if (this.authService.isLoggedIn()) {
+      this.authService.refreshToken();
+
+      return true;
+    } else {
+      this.authService.logout();
+      this.router.navigate(['login']);
+
+      return false;
+    }
+  }
+}
+
+interface JWTPayload {
+  user_id: number;
+  username: string;
+  email: string;
+  exp: number;
+}
+```
+
+O **service** criado possuí 3 classes e 1 interface das quais suas funções são as seguintes:
+
+A classe `AuthService` é a responsável por no autenticar de fato no sistema. Ela implemanta as funções de `login`, `logout` e `refreshToken` para fazer a manutenção da sessão no sistema, auxiliada das funções `setSession` que salva a sessão em **local storage**, `getExpiration` que realiza o cálculo de expiração para a função `refreshToken` decidir se é hora de atualizar o token ou não, os pares `isLoggedIn` e `isLoggedOut` que são utilizados para verificar se o usuário está logado e o **getter** `token` que retorna o **JWT** para ser utilizado nas requisições autenticadas.
+
+A classe `AuthInterceptor` implementa os interceptadores do Angular, que neste caso intercepta todas as requisições **http** realizadas e, caso o usuário esteja logado, injeta o cabeçalho `Authorization JWT <token>` na requisição para realizar chamadas autenticadas na **API**.
+
+A classe `AuthGuard` serve como um escudo que impede o acesso de usuário não logado nas rotas em que ela for vinculada, se um usuário não logado tenta acessar determinada rota protegida por ela, o mesmo será redirecionado para a tela de login.
+
+E por fim a interface `JWTPayload` que serve somente para definirmos o formato do **payload** retornado no **JWT** dentro do typescript.
+
+Após a criação do **service** vamos adicioná-lo na aplicação, definir as rotas protegidas e finalmente realizar a chamada de autenticação no componente de **login**:
+
+```typescript
+// app.module.ts
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService, AuthInterceptor, AuthGuard } from './auth.service';
+
+@NgModule({
+  ...
+  providers: [
+    ...
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+})
+export class AppModule { }
+
+// app-routing.module.ts
+
+import { AuthGuard } from './auth.service';
+...
+
+const routes: Routes = [
+  ...
+  { path: 'list', component: ListComponent, canActivate: [AuthGuard] },
+];
+
+// login.component.ts
+
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
+
+...
+export class LoginComponent implements OnInit {
+
+  error: any;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) { }
+
+  ngOnInit() {
+  }
+
+  login(username: string, password: string) {
+    this.authService.login(username, password).subscribe(
+      success => this.router.navigate(['list']),
+      error => this.error = error
+    );
+  }
+}
+```
+
+Com a aplicação rodando agora podemos visualizar processo de login funcionando \o/:
+
+![auth](auth.gif)
+
+![it works](it-works.jpg)
+
 ## Conclusão
+
+Já existem bibliotecas no Angular que implementam a autenticação usando **JWT** automaticamente, porém, compreender o funcionamento deste mecanismo que estará presente durante toda a vida útil da sua aplicação e ter a autonomia para fazer os ajustes necessários de acordo com suas necessidades faz com que uma implementação um pouco mais manual valha a pena o esforço.
 ---
-pub_date: 2018-04-14
+pub_date: 2018-04-15
 ---
 summary: Implemente um modelo de autenticação JWT com frontend em Angular 5 e um backend de api em Django 2
 ---
