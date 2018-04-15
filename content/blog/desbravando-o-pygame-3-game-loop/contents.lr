@@ -10,7 +10,7 @@ twitter_handle: humrochagf
 ---
 body:
 
-Agora que sabemos como desenhar na tela ([postagem anterior](http://humberto.io/2017/2/desbravando-o-pygame-2-desenhando-na-tela/)) seria interessante que nosso jogo ficasse rodando até que alguém o feche. Para isso vamos utilizar um dos fundamentos do desenvolvimento de jogos que é o Game Loop.
+Agora que sabemos como desenhar na tela ([postagem anterior](/blog/desbravando-o-pygame-2-desenhando-na-tela/)) seria interessante que nosso jogo ficasse rodando até que alguém o feche. Para isso vamos utilizar um dos fundamentos do desenvolvimento de jogos que é o Game Loop.
 
 ## Conceito
 
