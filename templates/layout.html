@@ -12,17 +12,48 @@
     </script>
 
     <!-- Required meta tags always come first -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <!-- SEO tags -->
+    <link rel="canonical" href="{{ '.'|url(external=true) }}" />
     <link rel="alternate" href="{{ '.'|url(external=true) }}" hreflang="pt-br" />
 
+    <!-- General -->
+    <meta name="description" content="{{ this.summary|default('Python, Open Source, Comunidade e muitas outras coisas') }}" />
+    <meta name="keywords" content="Python,Open Souce,Comunidade,FullStack,DevOps,Coding" />
+    <meta name="author" content="{{ this.author|default('Humberto Rocha') }}" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Google+ -->
+    <meta itemprop="name" content="{{ this.title|default('Humberto Rocha') }}" />
+    <meta itemprop="description" content="{{ this.summary|default('Python, Open Source, Comunidade e muitas outras coisas') }}" />
+    <meta itemprop="image" content="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200" />
+
+    <!-- Facebook -->
+    <meta property="og:site_name" content="Humberto Rocha" />
+    <meta property="og:type" content="blog" />
+    <meta property="og:title" content="{{ this.title|default('Humberto Rocha') }}" />
+    <meta property="og:description" content="{{ this.summary|default('Python, Open Source, Comunidade e muitas outras coisas') }}" />
+    <meta property="og:image" content="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200" />
+    <meta property="og:url" content="{{ '.'|url(external=true) }}" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="{{ '.'|url(external=true) }}" />
+    <meta name="twitter:site" content="@humrochagf" />
+    <meta name="twitter:creator" content="{{ this.twitter_handle|default('@humrochagf') }}" />
+    <meta name="twitter:title" content="{{ this.title|default('Humberto Rocha') }}" />
+    <meta name="twitter:description" content="{{ this.summary|default('Python, Open Source, Comunidade e muitas outras coisas') }}" />
+    <meta name="twitter:image" content="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=120" />
+
+    <!-- Page title -->
     <title>{% block title %}Blog{% endblock %} —  Humberto Rocha</title>
 
     <!-- pygments -->
     <link rel="stylesheet" href="{{ get_pygments_stylesheet()|url }}">
+
     <!-- app code -->
     <script src="{{ '/static/app.js'|url }}"></script>
   </head>
