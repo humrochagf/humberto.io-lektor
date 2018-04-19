@@ -18,13 +18,13 @@
       <a class="a2a_button_telegram"></a>
       <a class="a2a_button_linkedin"></a>
       <a class="a2a_button_facebook"></a>
-      <a class="a2a_dd a2a_counter" href="https://www.addtoany.com/share?linkurl=http%3A%2F%2Fhumberto.io%2F&amp;linkname=Blog%20Humberto%20Rocha"></a>
+      <a class="a2a_dd a2a_counter" href="https://www.addtoany.com/share?linkurl={{ '.'|url(external=true) }}&linkname={{ this.title }}"></a>
     </div>
 
     <script>
       var a2a_config = a2a_config || {};
       a2a_config.linkname = "{{ this.title }}";
-      a2a_config.linkurl = "{{ this.url }}";
+      a2a_config.linkurl = "{{ '.'|url(external=true) }}";
     </script>
 
     <script async src="https://static.addtoany.com/menu/page.js"></script>
