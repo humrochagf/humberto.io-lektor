@@ -9,26 +9,5 @@
 
   <div class="license">{{ render_cc_license('by-sa') }}</div>
 
-  <!-- AddToAny BEGIN -->
-  <div class="a2akit-container">
-    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-      <a class="a2a_button_whatsapp"></a>
-      <a class="a2a_button_twitter"></a>
-      <a class="a2a_button_telegram"></a>
-      <a class="a2a_button_linkedin"></a>
-      <a class="a2a_button_facebook"></a>
-      <a class="a2a_dd a2a_counter" href="https://www.addtoany.com/share"></a>
-    </div>
-
-    <script>
-      var a2a_config = a2a_config || {};
-      a2a_config.linkname = "{{ this.title }}";
-      a2a_config.linkurl = "{{ '.'|url(external=true) }}";
-    </script>
-
-    <script async src="https://static.addtoany.com/menu/page.js"></script>
-  </div>
-  <!-- AddToAny END -->
-
   <div class="comments">{{ render_disqus_comments() }}</div>
 {% endblock %}
