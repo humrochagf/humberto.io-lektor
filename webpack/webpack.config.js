@@ -45,7 +45,6 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'img/',  // where the fonts will go
               publicPath: '/static/'  // override the default path
             }
           }
@@ -57,7 +56,6 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            outputPath: 'fonts/',  // where the fonts will go
             publicPath: '/static/'  // override the default path
           }
         }]
