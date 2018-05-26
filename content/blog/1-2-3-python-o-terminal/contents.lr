@@ -1,0 +1,56 @@
+title: 1, 2, 3 Python! O Terminal
+---
+author: Humberto Rocha
+---
+body:
+
+Começar a programar é um processo que lembra muito uma montanha russa, cheio de pontos altos e baixos, momentos de emoção e adrenalina, mas também de medo e inseguranças.
+
+E, assim como em uma montanha russa, muitas vezes sua primeira experiência pode determinar se vamos nos aventuraremos em mais experiências como essas ou se iremos sair correndo sem nunca mais entrar em uma montanha russa novamente.
+
+Pensando nisso, e lembrando um pouco de minhas primeiras experiências com programação que estou começando esta série de postagens com o foco em quem está começando a se aventurar no mundo da programação **python**.
+
+![imagem montanha russa](rollercoaster.jpg)
+
+## O carrinho
+
+Como todo passeio de montanha russa, precisamos de um carrinho para nos levar pelos trilhos. E é com grande emoção que eu apresento a vocês o nosso carrinho:
+
+![imagem terminal](terminal.png)
+
+Isso mesmo, o bom e velho terminal. Eu sei que para muitas pessoas o medo já começa aqui, e que muita gente também tem preferência por [IDEs](https://pt.wikipedia.org/wiki/Ambiente_de_desenvolvimento_integrado) que resolvam tudo onde basta clicar no play e está tudo rodando, mas tem uma coisa importante que precisamos ter em mente "é o conhecimento do truque que separa o mago da plateia".
+
+Em algum momento você pode esbarrar em alguma limitação da IDE, decidir usar outra ferramenta ou simplesmente não estar em sua máquina. E a falta de intimidade com o terminal pode gerar uma barreira de aprendizagem e te atrapalhar em evoluir na programação.
+
+Então vamos nos sentir confortáveis com nosso carrinho e checar as "travas de segurança" antes de partir. Nesta primeira postagem em especial pode ser um ponto de partida para outras linguagens além de **python**.
+
+## O terminal
+
+O terminal é uma interface de controle do seu **sistema operacional** que funciona através de texto. Toda operação feita através de cliques na interface gráfica pode ser reproduzida através dele. Algumas dão mais trabalho outras menos, mas algo que é muito comum de acontecer quando se acostuma com o terminal é preferi-lo ao ter que aprender os comandos de cada interface gráfica.
+
+Os terminais em sua maioria possuem comandos iguais ou muito similares por seguir o padrão [POSIX](https://pt.wikipedia.org/wiki/POSIX) e seus sistemas operacionais terem um "parente" em comum lá no passado, o [Unix](https://pt.wikipedia.org/wiki/Unix).
+
+Eu recomendo fortemente para quem está começando e quer aprender a usar o terminal a seguir a [Julia Evans @b0rk](https://twitter.com/b0rk) no twitter, ela faz um trabalho maravilhoso postando resumos de comandos do terminal como este:
+
+![imagem do comando man](man.jpg)
+
+Ela também produz fanzines sobre sistemas operacionais e ferramentas de debug, vale muito a pena conferir: https://jvns.ca/zines/.
+
+Infelizmente nem tudo são flores, os terminais CMD e PowerShell do Windows são ponto fora da curva, pois seguem uma arquiteturas e padrões bem distintos dos demais. Mas nem tudo está perdido, existem terminais compatíveis com o padrão POSIX como o [Cygwin](http://www.cygwin.com/) e agora, a partir do Windows 10 é possível rodar terminais linux como o terminal do Ubuntu dentro do Windows \o/.
+
+Outro aspecto que pode causar confusão é se o terminal do seu sistema operacional é **case-sensitive**, ou seja, se ele diferencia maiúsculo de minúsculo, e como ele trata espaçamento e acentuação em nomes de pastas e arquivos. O python possuí uma biblioteca padrão que lida muito bem com estas diferenças , mas, eu pessoalmente dou preferência em nomear meus arquivos e pastas que serão usados em meus programas **somente com caracteres minúsculos substituindo espaço por underline "_"**. Isso me poupa bastante de ter que lidar com problemas inesperados, de algo que deixou de funcionar em algum sistema operacional por descuido na hora de tratar casos especiais de acesso a arquivos.
+
+E por último o que muda entre os terminais dos sistemas operacionais é o gerenciador de pacotes, que é o responsável pela instalação dos programas em sua máquina. No Mac o mais usado é o `brew`, no windows tem o `chocolatey` e no Linux varia de distribuição para distribuição (`apt`, `yum`, `pacman` e etc). Mas neste caso é mais tranquilo pois as documentações destas ferramentas são bem completas e dicas de como instalar programas em cada uma delas existem em grande volume na internet.
+
+## Concluindo
+
+Cintos apertados? Confortável com o seu carrinho? Estar pronto para utilizar o terminal quando for preciso tornará sua viagem pela montanha russa da programação python muito mais divertida.
+
+Na próxima postagem vou cobrir o processo de instalação do python nos principais sistemas operacionais: Linux, Windows e Mac. Provavelmente não conseguirei 100% dos casos de instalação de primeira, então conto com vocês para me ajudar a testar e apontar algo que não funcione para que eu possa atualizar a postagem :)
+
+---
+pub_date: 2018-05-26
+---
+summary: Dicas para quem está começando a programar
+---
+twitter_handle: humrochagf
