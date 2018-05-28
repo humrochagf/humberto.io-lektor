@@ -7,14 +7,7 @@
     {% endif %}
 
     <p class="meta">
-      escrito por
-      {% if post.twitter_handle %}
-        <a href="https://twitter.com/{{ post.twitter_handle
-          }}">{{ post.author or post.twitter_handle }}</a>
-      {% else %}
-        {{ post.author }}
-      {% endif %}
-      em {{ post.pub_date.strftime('%d/%m/%Y') }}
+      Publicado em {{ post.pub_date.strftime('%d/%m/%Y') }}
     </p>
 
     {% if from_index %}

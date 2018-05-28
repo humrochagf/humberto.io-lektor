@@ -1,7 +1,5 @@
 title: Desbravando o pygame 2 -  Desenhando na Tela
 ---
-author: Humberto Rocha
----
 body:
 
 Ao longo de um jogo estamos constantemente desenhando na tela. E agora que já sabemos criar um programa em pygame é hora de começar a desenhar.
@@ -94,5 +92,3 @@ O código deste capítulo encontra-se disponível no repositório [desbravando-p
 pub_date: 2017-02-03
 ---
 summary: Aprenda como funciona o plano de desenho no pygame e como desenhar na tela.
----
-twitter_handle: humrochagf

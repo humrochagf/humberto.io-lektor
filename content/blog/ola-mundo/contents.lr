@@ -1,7 +1,5 @@
 title: Olá mundo!
 ---
-author: Humberto Rocha
----
 body:
 
 Olá pessoal,
@@ -15,7 +13,5 @@ Em breve farei postagens dando algumas dicas de estrutura e configuração, mas,
 No mais, fiquem ligados nas cenas dos próximos capítulos xp
 ---
 pub_date: 2016-04-21
----
-twitter_handle: @humrochagf
 ---
 summary: Post de apresentação do blog

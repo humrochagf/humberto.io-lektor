@@ -1,7 +1,5 @@
 title: TLDR: Publicando no PyPI
 ---
-author: Humberto Rocha
----
 body:
 
 Já se perguntou como publicar seu próprio pacote Python para instalá-lo com o [pip](https://pypi.python.org/pypi/pip)? É menos complicado que parece, e qualquer pessoa pode fazer.
@@ -145,5 +143,3 @@ setup(
 pub_date: 2018-03-05
 ---
 summary: Publique seu primeiro pacote no Python Package Index (PyPi)
----
-twitter_handle: humrochagf

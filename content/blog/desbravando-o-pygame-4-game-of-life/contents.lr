@@ -1,7 +1,5 @@
 title: Desbravando o pygame 4 - Game of Life
 ---
-author: Humberto Rocha
----
 body:
 
 A um tempo atrás eu fiz uma postagem sobre [como organizar um coding dojo](/blog/coding-dojo-101/) publicada logo após um dojo de aniversário da comunidade python aqui do DF no qual eu preparei o desafio de implementar o [jogo da vida](https://pt.wikipedia.org/wiki/Jogo_da_vida) (game of life) do matemático John Horton Conway. 
@@ -241,5 +239,3 @@ E como sempre o código está disponível no [repositório](https://github.com/h
 pub_date: 2017-08-27
 ---
 summary: Demonstrando a implementação do game of life, feita para o dojo.
----
-twitter_handle: humrochagf

@@ -1,7 +1,5 @@
 title: Coding Dojo 101
 ---
-author: Humberto Rocha
----
 body:
 
 Meu primeiro Coding Dojo aconteceu próximo ao meu primeiro contato com a linguagem Python na faculdade. Um colega de classe ([Dirley](https://github.com/ravishi)) tinha acabado de voltar da Python Brasil muito animado, pois tinha visto uma palestra sobre o tema e queria colocar em prática com o pessoal da turma. Aquele dia foi muito divertido e talvez um dos mais importantes momentos que me levaram a mergulhar de cabeça na linguagem Python.
@@ -128,5 +126,3 @@ E para quem é da região do DF e ainda não conhece nossa comunidade, estão to
 pub_date: 2016-12-2
 ---
 summary: Descubra o que é e como organizar um Coding Dojo em sua faculdade ou comunidade local
----
-twitter_handle: humrochagf

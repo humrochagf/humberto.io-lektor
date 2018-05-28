@@ -1,6 +1,11 @@
-h1, h2, h3, h4, h5, h6 {
+h1 {
   color: $black;
-  margin: 30px 0px 10px 0px;
+  margin: 2.5rem 0 0.2rem 0;
+}
+
+h2, h3, h4, h5, h6 {
+  color: $black;
+  margin: 1.5rem 0 1rem 0;
 }
 
 a {
@@ -35,11 +40,27 @@ img, .embedded-video {
   width: 70%;
   margin-left: 15%;
   margin-right: 15%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
   @include media-breakpoint-down(sm) {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+.title-me {
+  margin-bottom: 2rem;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: gray("600");
+  margin-bottom: 2rem;
+
+  .license {
+    color: gray("900");
   }
 }
 

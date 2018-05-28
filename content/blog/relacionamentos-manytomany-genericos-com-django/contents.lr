@@ -1,7 +1,5 @@
 title: Relacionamentos ManyToMany genéricos com Django
 ---
-author: Humberto Rocha
----
 body:
 
 A documentação oficial do django cobre muito bem sua funcionalidade de relacionamento genérico na cardinalidade `OneToMany` (um para muitos ou 1:N), porém, quando é preciso implementar um relacionamento genérico de `ManyToMany` (muitos para muitos ou N:N) não há muita documentação a respeito.
@@ -130,5 +128,3 @@ Relacionamento genérico é uma ferramenta muito poderosa e permite alto nível 
 pub_date: 2016-04-29
 ---
 summary: Dicas de como resolver este problema com o django
----
-twitter_handle: humrochagf

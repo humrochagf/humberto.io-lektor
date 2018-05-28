@@ -1,7 +1,5 @@
 title: TLDR: Executando comandos em multiplos hosts com Fabric
 ---
-author: Humberto Rocha
----
 body:
 
 Me perguntaram como realizar uma conexão ssh em um servidor para rodar o comando `df -h` que mostra o uso de disco da máquina. Logo depois descobri que a dúvida se estendia a como fazer isso em vários servidores.
@@ -97,5 +95,3 @@ $ fab -H 'user1@server1, user2@server2' -- df -h
 pub_date: 2018-02-17
 ---
 summary: Descubra utilizar o Fabric para automatizar tarefas repetitivas
----
-twitter_handle: humrochagf

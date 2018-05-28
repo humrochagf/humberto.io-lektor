@@ -1,7 +1,5 @@
 title: Desbravando o pygame 1 - Conhecendo a Biblioteca
 ---
-author: Humberto Rocha
----
 body:
 
 Desenvolver jogos é um lugar comum dentre muitas das pessoas que começam a estudar programação. Comigo não foi diferente, mesmo não seguindo a carreira de desenvolvimento de jogos esta sempre foi uma área que me chamou a atenção.
@@ -97,5 +95,3 @@ Fique de olho nos próximos capítulos onde iremos descrever conceitos do desenv
 pub_date: 2017-01-15
 ---
 summary: Um pouco sobre o que é o pygame, como instalar usar e escrever seu primeiro programa com esta biblioteca
----
-twitter_handle: humrochagf

@@ -1,7 +1,5 @@
 title: TLDR: Configurando corretamente o default de um Model Field do Django
 ---
-author: Humberto Rocha
----
 body:
 
 Esta postagem é o resultado de um **bug** que me assombrou por uns três meses até conseguir isolar totalmente o erro e, por acontecer em condições muito específicas de temperatura e pressão, tomou muito tempo quebrando cabeça até perceber que o problema era este.
@@ -35,5 +33,3 @@ Funções **lambda** não podem ser usadas como **default** pois elas não conse
 pub_date: 2018-04-25
 ---
 summary: Poupe muitas horas de debug em seu código com esta dica de como definir o valor default de um campo no Model do Django.
----
-twitter_handle: humrochagf

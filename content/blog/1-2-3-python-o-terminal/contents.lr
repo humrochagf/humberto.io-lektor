@@ -1,7 +1,5 @@
 title: 1, 2, 3 Python! O Terminal
 ---
-author: Humberto Rocha
----
 body:
 
 Começar a programar é um processo que lembra muito uma montanha russa, cheio de pontos altos e baixos, momentos de emoção e adrenalina, mas também de medo e inseguranças.
@@ -53,4 +51,4 @@ pub_date: 2018-05-26
 ---
 summary: Dicas para quem está começando a programar
 ---
-twitter_handle: humrochagf
+image: rollercoaster.jpg

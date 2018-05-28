@@ -1,7 +1,5 @@
 title: Autenticação JWT com Angular e Django
 ---
-author: Humberto Rocha
----
 body:
 
 Quase todo sistema que opera na internet e armazena dados de usuário hoje em dia depende de uma camada de autenticação. E com o crescimento do modelo de API`s e separação do **frontend** do **backend** a implementação desta camada cresceu em complexidade.
@@ -441,5 +439,3 @@ Já existem bibliotecas no Angular que implementam a autenticação usando **JWT
 pub_date: 2018-04-15
 ---
 summary: Implemente um modelo de autenticação JWT com frontend em Angular 5 e um backend de api em Django 2
----
-twitter_handle: humrochagf

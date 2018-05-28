@@ -1,7 +1,5 @@
 title: GitHub Pages com Pelican e Travis-CI
 ---
-author: Humberto Rocha
----
 body:
 
 **Publicado originalmente em:** [df.python.org.br/blog/github-pages-com-pelican-e-travis-ci](http://df.python.org.br/blog/github-pages-com-pelican-e-travis-ci)
@@ -227,5 +225,3 @@ Caso você tenha animado de criar seu blog pessoal e quer saber mais sobre pelic
 pub_date: 2016-05-05
 ---
 summary: Montando um site estático com Pelican e hospedando no Github Pages usando Travis-CI para o deploy automático.
----
-twitter_handle: humrochagf

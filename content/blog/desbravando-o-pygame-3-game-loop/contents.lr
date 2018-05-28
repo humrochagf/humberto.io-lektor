@@ -1,12 +1,8 @@
 title: Desbravando o pygame 3 - Game Loop
 ---
-author: Humberto Rocha
----
 pub_date: 2017-08-24
 ---
 summary: Saiba mais sobre como funciona o game loop e como implementa-lo no pygame
----
-twitter_handle: humrochagf
 ---
 body:
 

@@ -1,7 +1,5 @@
 title: Sites Estáticos com Lektor
 ---
-author: Humberto Rocha
----
 body:
 
 Faz pelo menos 4 anos que eu ensaio para montar um blog, e nessa brincadeira já montei alguns,  mas quando chegava na hora de criar o meu eu nunca conseguia publicar.
@@ -126,7 +124,5 @@ $ lektor deploy
 Para informações mais detalhadas você pode acessar a [documentação do lektor](https://www.getlektor.com/docs) e também ficar de olho nas próximas postagens.
 ---
 pub_date: 2016-04-23
----
-twitter_handle: humrochagf
 ---
 summary: Introdução a construção de sites estáticos com lektor

@@ -1,7 +1,5 @@
 title: Software Livre ou Código Aberto?
 ---
-author: Humberto Rocha
----
 body:
 
 Recentemente, participei de uma discussão no [Telegram da comunidade Grupy-DF](https://telegram.me/grupydf) sobre como diferenciar de forma simples código aberto de software livre para pessoas que não são da área de TI. E na medida em que a discussão acontecia percebi que toda tentativa de simplificar levou a mais discussão e dúvidas sobre o assunto.
@@ -37,5 +35,3 @@ E caso queira licenciar seu código e possua dúvidas para escolher a licença o
 pub_date: 2016-05-25
 ---
 summary: Seriam eles a mesma coisa? o que tem de diferente nessas duas linhas de pensamento?
----
-twitter_handle: humrochagf
