@@ -30,7 +30,7 @@
     <meta itemprop="name" content="{{ this.title|default('Humberto Rocha') }}" />
     <meta itemprop="description" content="{{ this.summary|default('Cientista da Computação, pythonista e curioso') }}" />
     {% if this.share_image %}
-      <meta itemprop="image" content="{{ this.share_image|url }}" />
+      <meta itemprop="image" content="{{ this.share_image|url(external=True) }}" />
     {% else %}
       <meta itemprop="image" content="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200" />
     {% endif %}
@@ -42,7 +42,7 @@
     <meta property="og:url" content="{{ '.'|url(external=true) }}" />
     <meta property="og:type" content="article" />
     {% if this.share_image %}
-      <meta property="og:image" content="{{ this.share_image|url }}" />
+      <meta property="og:image" content="{{ this.share_image|url(external=True) }}" />
     {% else %}
       <meta property="og:image" content="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200" />
     {% endif %}
@@ -55,7 +55,7 @@
     <meta name="twitter:description" content="{{ this.summary|default('Cientista da Computação, pythonista e curioso') }}" />
     {% if this.share_image %}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content="{{ this.share_image|url }}" />
+      <meta name="twitter:image" content="{{ this.share_image|url(external=True) }}" />
     {% else %}
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:image" content="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=120" />
