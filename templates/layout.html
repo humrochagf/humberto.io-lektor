@@ -29,14 +29,14 @@
     <!-- Google+ -->
     <meta itemprop="name" content="{{ this.title|default('Humberto Rocha') }}" />
     <meta itemprop="description" content="{{ this.summary|default('Cientista da Computação, pythonista e curioso') }}" />
-    <meta itemprop="image" content="{{ this.image|default('https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200') }}" />
+    <meta itemprop="image" content="{{ this.share_image|default('https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200') }}" />
 
     <!-- Facebook -->
     <meta property="og:site_name" content="Humberto Rocha" />
     <meta property="og:type" content="blog" />
     <meta property="og:title" content="{{ this.title|default('Humberto Rocha') }}" />
     <meta property="og:description" content="{{ this.summary|default('Cientista da Computação, pythonista e curioso') }}" />
-    <meta property="og:image" content="{{ this.image|default('https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200') }}" />
+    <meta property="og:image" content="{{ this.share_image|default('https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200') }}" />
     <meta property="og:url" content="{{ '.'|url(external=true) }}" />
 
     <!-- Twitter -->
@@ -46,7 +46,7 @@
     <meta name="twitter:creator" content="@humrochagf" />
     <meta name="twitter:title" content="{{ this.title|default('Humberto Rocha') }}" />
     <meta name="twitter:description" content="{{ this.summary|default('Cientista da Computação, pythonista e curioso') }}" />
-    <meta name="twitter:image" content="{{ this.image|default('https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=120') }}" />
+    <meta name="twitter:image" content="{{ this.share_image|default('https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=120') }}" />
 
     <!-- Page title -->
     <title>{% block title %}Blog{% endblock %} —  Humberto Rocha</title>
