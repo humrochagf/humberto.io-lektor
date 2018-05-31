@@ -23,3 +23,5 @@ E em seu template adicionar a seguinte tag:
 license: MIT
 ---
 repository: https://github.com/humrochagf/lektor-creative-commons
+---
+share_image: creativecommons.png

@@ -42,3 +42,5 @@ $ revelation start slides.md
 Agora é só acessar o navegador em [localhost:4000](http://localhost:4000) para visualizar sua apresentação:
 
 ![apresentação](presentation.png)
+---
+share_image: presentation.png

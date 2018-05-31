@@ -33,3 +33,5 @@ Funções **lambda** não podem ser usadas como **default** pois elas não conse
 pub_date: 2018-04-25
 ---
 summary: Poupe muitas horas de debug em seu código com esta dica de como definir o valor default de um campo no Model do Django.
+---
+share_image: django.png

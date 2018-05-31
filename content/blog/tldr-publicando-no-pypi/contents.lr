@@ -143,3 +143,5 @@ setup(
 pub_date: 2018-03-05
 ---
 summary: Publique seu primeiro pacote no Python Package Index (PyPi)
+---
+share_image: pypi.png

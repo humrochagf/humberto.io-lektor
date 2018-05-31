@@ -239,3 +239,5 @@ E como sempre o código está disponível no [repositório](https://github.com/h
 pub_date: 2017-08-27
 ---
 summary: Demonstrando a implementação do game of life, feita para o dojo.
+---
+share_image: rule-one.png

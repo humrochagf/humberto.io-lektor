@@ -95,3 +95,5 @@ $ fab -H 'user1@server1, user2@server2' -- df -h
 pub_date: 2018-02-17
 ---
 summary: Descubra utilizar o Fabric para automatizar tarefas repetitivas
+---
+share_image: fabric.png

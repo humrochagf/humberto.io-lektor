@@ -126,3 +126,5 @@ Para informações mais detalhadas você pode acessar a [documentação do lekto
 pub_date: 2016-04-23
 ---
 summary: Introdução a construção de sites estáticos com lektor
+---
+share_image: meusite-admin.png

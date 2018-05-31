@@ -110,3 +110,5 @@ E finalmente na etapa de desenho usamos as funções previamente apresentadas pa
 ## Concluindo
 
 E com isso finalizamos nosso breve passeio pelo game loop. Não se esqueça que todo código estará disponível no repositório [desbravando-pygame](https://github.com/humrochagf/desbravando-pygame).
+---
+share_image: game-loop.png

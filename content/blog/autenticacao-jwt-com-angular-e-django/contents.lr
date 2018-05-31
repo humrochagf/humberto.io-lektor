@@ -439,3 +439,5 @@ Já existem bibliotecas no Angular que implementam a autenticação usando **JWT
 pub_date: 2018-04-15
 ---
 summary: Implemente um modelo de autenticação JWT com frontend em Angular 5 e um backend de api em Django 2
+---
+share_image: jwt.jpg

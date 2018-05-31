@@ -95,3 +95,5 @@ Fique de olho nos próximos capítulos onde iremos descrever conceitos do desenv
 pub_date: 2017-01-15
 ---
 summary: Um pouco sobre o que é o pygame, como instalar usar e escrever seu primeiro programa com esta biblioteca
+---
+share_image: hello.png
