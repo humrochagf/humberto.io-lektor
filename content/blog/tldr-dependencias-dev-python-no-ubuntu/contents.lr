@@ -2,7 +2,7 @@ title: TLDR: Dependências Dev Python no Ubuntu
 ---
 pub_date: 2018-06-19
 ---
-summary: Quais são as principais dependencias que precisam ser instaladas para se desenvolver com python no Ubuntu
+summary: Configure as principais dependencias externas de um ambiente de desenvolvimento python no Ubuntu
 ---
 body:
 
