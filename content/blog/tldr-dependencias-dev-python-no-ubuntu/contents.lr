@@ -21,7 +21,31 @@ Para resolver estes problemas basta instalar esta dependência externa que norma
 Para não sofrer com este problema, após instalar o sistema operacional e antes de preparar o ambiente de desenvolvimento eu já instalo as principais dependências que costumo utilizar:
 
 ```shell
-$ sudo apt-get install build-essential python-dev python3-dev libncursesw5-dev libsqlite3-dev libreadline-dev libbz2-dev libffi-dev libssl-dev libgdbm-dev zlib1g-dev libjpeg-dev libpq-dev libxml2-dev libxslt1-dev
+$ sudo apt-get install dpkg-dev \
+                       build-essential \
+                       python-dev \
+                       python3-dev \
+                       libncursesw5-dev \
+                       libsqlite3-dev \
+                       libreadline-dev \
+                       libbz2-dev \
+                       libffi-dev \
+                       libssl-dev \
+                       libgdbm-dev \
+                       zlib1g-dev \
+                       libjpeg-dev \
+                       libtiff-dev \
+                       libpq-dev \
+                       libxml2-dev \
+                       libxslt1-dev \
+                       libsdl2-dev \
+                       libgstreamer-plugins-base1.0-dev \
+                       libnotify-dev \
+                       freeglut3-dev \
+                       libsm-dev \
+                       libgtk-3-dev \
+                       libwebkitgtk-3.0-dev \
+                       libxtst-dev
 ```
 
 !!!! Este comando foi testado no **Ubuntu 18.04**, os nomes dos pacotes podem mudar de uma versão para outra.
@@ -31,7 +55,7 @@ $ sudo apt-get install build-essential python-dev python3-dev libncursesw5-dev l
 Para quem tiver curiosidade ou quer instalar somente alguns dos itens da lista quebrei o comando acima descrevendo cada um:
 
 ```shell
-$ sudo apt-get install build-essential
+$ sudo apt-get install dpkg-dev build-essential
 ```
 
 Instala os compiladores de C e C++ bem como o comando make essenciais para compilar as dependências em cpython.
@@ -67,7 +91,7 @@ $ sudo apt-get install libgdbm-dev
 Base para boa parte dos pacotes que lidam com **banco de dados**.
 
 ```shell
-$ sudo apt-get install zlib1g-dev libjpeg-dev
+$ sudo apt-get install zlib1g-dev libjpeg-dev libtiff-dev
 ```
 
 Dependências externas de pacotes que tratam imagem como o [Pillow](https://github.com/python-pillow/Pillow)
@@ -83,5 +107,24 @@ $ sudo apt-get install libxml2-dev libxslt1-dev
 ```
 
 Bibliotecas usadas para tratar xml como o pacote [lxml](https://github.com/lxml/lxml)
+
+```shell
+$ sudo apt-get install dpkg-dev \
+                       build-essential \
+                       libjpeg-dev \
+                       libtiff-dev \
+                       libsdl2-dev \
+                       libgstreamer-plugins-base1.0-dev \
+                       libnotify-dev \
+                       freeglut3-dev \
+                       libsm-dev \
+                       libgtk-3-dev \
+                       libwebkitgtk-3.0-dev \
+                       libxtst-dev
+```
+
+Este conjunto em específico é utilizado para instalar pacotes de gerenciamento de janelas em interface gráfica como o [wxPhoenix](https://github.com/wxWidgets/Phoenix). Em uma postagem anterior em que eu falei sobre [como organizar um dojo](/blog/coding-dojo-101/) foi citado um semáforo para TDD chamado [dose](https://github.com/danilobellini/dose) que depende do wxPhoenix para rodar em ambientes python 3. 
+
+Instalando estas dependências é possível realizar sua instalação sem problemas.
 ---
 share_image: python-ubuntu.jpg

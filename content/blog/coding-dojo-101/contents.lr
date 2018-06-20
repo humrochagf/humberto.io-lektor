@@ -115,6 +115,8 @@ Ele funciona tanto com python quanto com outras linguagens além de integrar bem
 $ dose nosetests arquivo.py
 ```
 
+Caso tenha problemas no processo de instalação dê uma olhada na postagem que eu fiz sobre [dependências dev python](/blog/tldr-dependencias-dev-python-no-ubuntu/), talvez ela possa lhe ajudar nesta questão.
+
 ## Concluindo
 
 No dojo o mais importante é se divertir e aprender, estas são apenas algumas dicas a partir da minha experiência. Sintam-se a vontade para adaptar, criar e subverter tudo que foi descrito aqui e poste o que funcionou e o que não deu muito certo nos comentários.
@@ -123,7 +125,7 @@ Para quem estiver curioso sobre os códigos produzidos no dojo ou quiser sugest�
 
 E para quem é da região do DF e ainda não conhece nossa comunidade, estão todos convidados a participar. O site com todos os contatos da comunidade é [df.python.org.br](http://df.python.org.br/).
 ---
-pub_date: 2016-12-2
+pub_date: 2016-12-02
 ---
 summary: Descubra o que é e como organizar um Coding Dojo em sua faculdade ou comunidade local
 ---
