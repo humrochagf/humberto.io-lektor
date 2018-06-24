@@ -4,43 +4,6 @@ repository: https://github.com/humrochagf/revelation
 ---
 license: MIT
 ---
-description:
-
-Crie suas apresentações de slides em [reveal.js](https://github.com/hakimel/reveal.js) escrevendo em markdown e sem depender de conexão com a internet.
-
-## Instalação
-
-O revelation está disponível no PyPI e pode ser instalado com:
-
-```shell
-$ pip install revelation
-```
-
-Após a instalação, antes de rodá-lo pela primeira vez, é necessário baixar e instalar os arquivos no **reveal.js**. O revelation já vem com um comando para executar esta tarefa, basta rodar:
-
-```shell
-$ revelation installreveal
-``` 
-
-## Usando
-
-Para criar uma apresentação basta rodar:
-
-```shell
-$ revelation mkpresentation minha-apresentacao
-```
-
-Um diretório será criado com o arquivo de configuração a pasta de media e o arquivo markdown da apresentação.
-
-Para rodar sua apresentação entre na pasta e rode o comando:
-
-```shell
-$ cd minha-apresentacao
-$ revelation start slides.md
-```
-
-Agora é só acessar o navegador em [localhost:4000](http://localhost:4000) para visualizar sua apresentação:
-
-![apresentação](presentation.png)
----
 share_image: presentation.png
+---
+summary: Crie e apresentações de slides com reveal.js e markdown sem precisar de conexão com a internet.

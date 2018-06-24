@@ -1,7 +1,7 @@
 {% macro render_project(project, from_index=false) %}
   <div class="project">
     {% if from_index %}
-      <h1><a href="{{ project|url }}">{{ project.title }}</a></h1>
+      <h1><a href="{{ project.repository }}">{{ project.title }}</a></h1>
     {% else %}
       <h1>{{ project.title }}</h1>
     {% endif %}
@@ -14,8 +14,10 @@
       <b>Repositório:</b> <a href="{{ project.repository }}">{{ project.repository }}</a>
     </p>
 
+    <p>{{ project.summary }}</p>
+
     {% if not from_index %}
-      {{ project.description }}
+      <meta http-equiv="refresh" content="0;url={{ project.repository }}">
     {% endif %}
   </div>
 {% endmacro %}

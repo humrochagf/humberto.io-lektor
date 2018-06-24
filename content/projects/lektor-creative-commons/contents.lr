@@ -1,27 +1,9 @@
 title: Lektor Creative Commons
 ---
-description:
-
-O Lektor Creative Commons é um plugin para o gerenciador de conteúdo estático [Lektor](https://www.getlektor.com/). Este plugin adiciona de forma fácil em suas publicações a [licença creative commons](https://creativecommons.org/choose/) desejada para suas publicações.
-
-Para usá-lo basta adicionar no seu arquivo `.lektorproject` a seguinte configuração:
-
-```ini
-[packages]
-lektor-creative-commons = 0.1.2
-```
-
-E em seu template adicionar a seguinte tag:
-
-```html
-<div class="license">{{ render_cc_license(type, size) }}</div>
-```
-
-- Substitua `type` por uma string informando a licença a ser utilizada (**ex.:** `'by'`, `'by-sa'`, `'by-nc-sa'`).
-- O campo `size` é opcional e representa o tamanho da imagem da licença que pode ser `'normal'` ou `'compact'`. O valor padrão é `'normal'`.
----
 license: MIT
 ---
 repository: https://github.com/humrochagf/lektor-creative-commons
 ---
 share_image: creativecommons.png
+---
+summary: Plugin para adicionar licença creative commons nos conteúdos gerados com Lektor.

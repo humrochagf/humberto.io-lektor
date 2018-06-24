@@ -19,5 +19,5 @@ lektor-disqus-comments = 0.2
 lektor-markdown-highlighter = 0.2
 lektor-atom = 0.2
 lektor-markdown-admonition = 0.1
-lektor-creative-commons = 0.3.1
+lektor-creative-commons = 0.4
 lektor-webpack-support = 0.4
