@@ -33,7 +33,7 @@ unicode_file = tempfile.mktemp()
 
 # escrita
 with open(unicode_file, 'wb') as f:
-    f.write('こんいちわ'.encode('utf-8'))
+    f.write('こんいちは'.encode('utf-8'))
 
 # leitura
 with open(unicode_file, 'rb') as f:
@@ -42,7 +42,7 @@ with open(unicode_file, 'rb') as f:
 
 O resultado é um código que roda tanto em Python 2 quanto em Python 3:
 
-![rodando o código](unicode_file.png)
+![rodando o código](unicode-file.png)
 
 !!! Esta dica também funciona para outros padrões de codificação como `latin-1` por exemplo
 ---
