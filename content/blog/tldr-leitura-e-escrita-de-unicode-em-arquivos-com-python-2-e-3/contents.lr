@@ -33,7 +33,7 @@ unicode_file = tempfile.mktemp()
 
 # escrita
 with open(unicode_file, 'wb') as f:
-    f.write('こんいちは'.encode('utf-8'))
+    f.write('こんにちは'.encode('utf-8'))
 
 # leitura
 with open(unicode_file, 'rb') as f:
