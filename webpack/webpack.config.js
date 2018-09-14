@@ -39,19 +39,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg|jpeg|gif)(\?.*$|$)/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              publicPath: '/static/'  // override the default path
-            }
-          }
-        ]
-      },
-      {
-        test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        test: /\.(png|jpg|jpeg|gif|ttf|otf|eot|svg|woff(2)?)$/,
         use: [{
           loader: 'file-loader',
           options: {

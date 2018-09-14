@@ -19,4 +19,13 @@
       font-size: 40px;
     }
   }
+
+  .image-host {
+    display: inline-block;
+    height: 25px;
+    width: 180px;
+    background: url(../images/hospedadocomamor_negativo.png) no-repeat center;
+    background-size: auto 25px;
+    margin-top: 25px;
+  }
 }
