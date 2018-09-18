@@ -4,7 +4,14 @@ body:
 
 Quase todo sistema que opera na internet e armazena dados de usuário hoje em dia depende de uma camada de autenticação. E com o crescimento do modelo de API`s e separação do **frontend** do **backend** a implementação desta camada cresceu em complexidade.
 
-Esta postagem tem como foco mostrar o caminho das pedras em uma stack de frontend **Angular 5** e backend **Django 2** utilizando o modelo de separação discutido na postagem ["Separando o Frontend do Backend com Angular e Django"](/blog/separando-o-frontend-do-backend-com-angular-e-django/) .
+Esta postagem tem como foco mostrar o caminho das pedras em uma stack de frontend **Angular 6** e backend **Django 2** utilizando o modelo de separação discutido na postagem ["Separando o Frontend do Backend com Angular e Django"](/blog/separando-o-frontend-do-backend-com-angular-e-django/) .
+
+Os repositórios com o código desta postagem são:
+
+- **Backend**: [https://github.com/humrochagf/post-jwt-backend](https://github.com/humrochagf/post-jwt-backend)
+- **Frontend**: [https://github.com/humrochagf/post-jwt-frontend](https://github.com/humrochagf/post-jwt-frontend)
+
+!!! **UPDATE (18/09/2018)** Postagem atualizada e testada para utilizar Angular 6
 
 ## Autenticação
 
@@ -87,7 +94,8 @@ Em seguida iremos adicionar suas configurações no `settings.py`:
 ```python
 from datetime import timedelta
 
-# REST Framework configs
+# REST Framework settings
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -101,6 +109,7 @@ REST_FRAMEWORK = {
 }
 
 # JWT settings
+
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': timedelta(days=2),
@@ -128,9 +137,66 @@ Agora que o acesso está sendo restrito a usuários logados chegou a hora de imp
 
 ## Frontend
 
-A primeira tarefa a ser executada no **frontend** é a de mover o conteúdo de `app.component.ts` para um componente separado e adicionar rotas na aplicação, criando um segundo componente para o login:
+A primeira tarefa a ser executada no **frontend** é a de mover o conteúdo de `app.component.ts` para um componente separado nomeado como `list.component.ts` e adicionar rotas na aplicação, criando um segundo componente para o login:
 
 ```typescript
+// list.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+import { ApiService } from './api.service';
+import { ShoppingItem } from './shopping-item.interface';
+
+@Component({
+  selector: 'app-list',
+  template: `
+  <div style="text-align:center">
+    <h1>
+      Lista de compras
+    </h1>
+  </div>
+  <ul>
+    <li *ngFor="let item of items">
+      <h2>{{ item.quantity }}x {{ item.name }}
+      <button (click)="delete(item.id)">x</button></h2>
+    </li>
+  </ul>
+
+  <input #itemQuantity type='text' placeholder='Qtd'>
+  <input #itemName type='text' placeholder='Name'>
+  <button (click)="add(itemName.value, itemQuantity.value)">Add</button>
+  {{ error?.message }}
+  `
+})
+export class ListComponent implements OnInit {
+
+  items: ShoppingItem[];
+  error: any;
+
+  constructor(private api: ApiService) { }
+
+  ngOnInit() {
+    this.api.getShoppingItems().subscribe(
+      (items: ShoppingItem[]) => this.items = items,
+      (error: any) => this.error = error
+    );
+  }
+
+  add(itemName: string, itemQuantity: number) {
+    this.api.createShoppingItem(itemName, itemQuantity).subscribe(
+      (item: ShoppingItem) => this.items.push(item)
+    );
+  }
+
+  delete(id: number) {
+    this.api.deleteShoppingItem(id).subscribe(
+      (success: any) => this.items.splice(
+        this.items.findIndex(item => item.id === id)
+      )
+    );
+  }
+}
+
 // app.component.ts
 
 import { Component, OnInit } from '@angular/core';
@@ -177,7 +243,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(username: string, password: number) {
+  login(username: string, password: string) {
     // TODO: call login
   }
 }
@@ -230,11 +296,11 @@ Para auxiliar na implementação do **frontend** utilizaremos duas bibliotecas:
 
 ```shell
 $ npm install -s moment
-$ npm install -s jsonwebtoken
-$ npm install -s @types/jsonwebtoken
+$ npm install -s jwt-decode
+$ npm install -s @types/jwt-decode
 ```
 
-A biblioteca [moment](https://momentjs.com/) facilitará o trabalho com tempo, já que precisamos controlar a expiração do **token** e sua renovação enquanto a biblioteca [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) cuidará do **token** em si.
+A biblioteca [moment](https://momentjs.com/) facilitará o trabalho com tempo, já que precisamos controlar a expiração do **token** e sua renovação enquanto a biblioteca [jwt-decode](https://github.com/auth0/jwt-decode) cuidará do **token** em si.
 
 Com as bibliotecas em mãos iniciaremos pelo **service** de autênticação:
 
@@ -245,11 +311,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { CanActivate, Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/shareReplay';
+import { Observable } from 'rxjs';
+import { tap, shareReplay } from 'rxjs/operators';
 
-import * as jwt from 'jsonwebtoken';
+import * as jwtDecode from 'jwt-decode';
 import * as moment from 'moment';
 
 import { environment } from '../environments/environment';
@@ -263,7 +328,7 @@ export class AuthService {
 
   private setSession(authResult) {
     const token = authResult.token;
-    const payload = <JWTPayload> jwt.decode(token);
+    const payload = <JWTPayload> jwtDecode(token);
     const expiresAt = moment.unix(payload.exp);
 
     localStorage.setItem('token', authResult.token);
@@ -278,7 +343,10 @@ export class AuthService {
     return this.http.post(
       this.apiRoot.concat('login/'),
       { username, password }
-    ).do(response => this.setSession(response)).shareReplay();
+    ).pipe(
+      tap(response => this.setSession(response)),
+      shareReplay(),
+    );
   }
 
   logout() {
@@ -291,7 +359,10 @@ export class AuthService {
       return this.http.post(
         this.apiRoot.concat('refresh-token/'),
         { token: this.token }
-      ).do(response => this.setSession(response)).shareReplay().subscribe();
+      ).pipe(
+        tap(response => this.setSession(response)),
+        shareReplay(),
+      ).subscribe();
     }
   }
 
@@ -438,6 +509,6 @@ Já existem bibliotecas no Angular que implementam a autenticação usando **JWT
 ---
 pub_date: 2018-04-15
 ---
-summary: Implemente um modelo de autenticação JWT com frontend em Angular 5 e um backend de api em Django 2
+summary: Implemente um modelo de autenticação JWT com frontend em Angular 6 e um backend de api em Django 2
 ---
 share_image: jwt.jpg
