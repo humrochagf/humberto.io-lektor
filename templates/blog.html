@@ -5,6 +5,30 @@
 
 {% block title %}Blog{% endblock %}
 
+{% block json_ld %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Blog",
+      "author": {
+        "@type": "Person",
+        "name": "Humberto Rocha",
+        "url": "https://humberto.io"
+      },
+      "blogPost": [
+        {% for child in this.pagination.items %}
+          {
+            "@type": "BlogPosting",
+            "headline": "{{ child.title }}",
+            "url": "{{ child|url(external=true) }}",
+            "datePublished": "{{ child.pub_date }}",
+          }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endblock %}
+
 {% block content %}
   {% for child in this.pagination.items %}
     {{ render_blog_post(child, from_index=true) }}

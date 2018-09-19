@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block json_ld %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "Person",
+      "name": "Humberto Rocha",
+      "url": "https://humberto.io",
+      "jobTitle": "CTO at Configr",
+      "gender": "male",
+      "image": "https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d",
+      "sameAs": [
+        "https://github.com/humrochagf/",
+        "https://www.linkedin.com/in/humrochagf/"
+      ]
+    }
+  </script>
+{% endblock %}
+
+{% block title %}{{ this.title }}{% endblock %}
+
+{% block content %}
+  <h2 class='title-me'>{{ this.title }}</h2>
+
+  {{ this.body }}
+{% endblock %}

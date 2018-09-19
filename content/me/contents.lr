@@ -1,5 +1,7 @@
 _model: page
 ---
+_template: about.html
+---
 title: Cientista da Computação, pythonista e curioso
 ---
 body:

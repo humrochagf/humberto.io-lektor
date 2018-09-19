@@ -4,6 +4,27 @@
 
 {% block title %}{{ this.title }}{% endblock %}
 
+{% block json_ld %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{ this.title }}",
+      "url": "{{ this|url(external=true) }}",
+      "datePublished": "{{ this.pub_date }}",
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{ this.share_image|url(external=True) }}",
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Humberto Rocha",
+        "url": "https://humberto.io"
+      }
+    }
+  </script>
+{% endblock %}
+
 {% block content %}
   {{ render_blog_post(this) }}
 
