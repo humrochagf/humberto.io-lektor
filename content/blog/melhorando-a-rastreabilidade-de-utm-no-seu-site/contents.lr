@@ -6,6 +6,8 @@ Esses dias tive a oportunidade de encarar um desafio de frontend lá na [Configr
 
 !!! **TLDR**: Eu criei uma biblioteca **javascript** chamada **utmkeeper** que faz a mágica para você e está disponível em [https://github.com/humrochagf/utmkeeper](https://github.com/humrochagf/utmkeeper)
 
+!!! **UPDATE (21/09/2018)** Postagem atualizada para a cobrir a versão **0.3** do **utmkeeper**
+
 ## UTM
 
 O termo **UTM** surgiu do **Urchin** que era um software de Analytics feito para analisar a efetividade de campanhas de marketing e utilizava os parâmetros do **U**rchin **T**raffic **M**odule para realizar esta tarefa. Com o tempo o **Google** passou a dar suporte a estes parâmetros, em seguida o **Facebook** e atualmente estes parâmetros são comumente utilizados para rastrear a efetividade de campanhas de marketing na internet popularmente conhecidos como **as utm tags**, ou simplesmente, **as utms**.
@@ -54,20 +56,33 @@ Em seguida adicionar o script ao final do **html** antes da tag de fechamento `<
 </script>
 ```
 
-A função `load` é responsável por carregar a biblioteca e persistir a **utm** pela navegação. Nela podemos passar os seguintes parâmetros:
+A função `load` é responsável por carregar a biblioteca e persistir a **utm** pela navegação. Nela podemos passar um **objeto** de configuração:
+
+```javascript
+{
+  forceOriginUTM: true,
+  fillForms: true,
+  utmObject: {},
+  postLoad: null,
+}
+```
 
 - **forceOriginUTM**: recebe um **booleano** que indica se você quer ou não sobrescrever qualquer **utm** que já estiver em algum link da página. Seu valor padrão é `true`
 - **fillForms**: recebe um **booleano** que indica se você deseja adicionar as **utms** nos formulários da página. Caso já exista um campo para ele seu valor será preenchido, caso contrário um campo do tipo `hidden` será adicionado no formulário para cada **utm**. Seu valor padrão é `true`
+- **utmObject**: recebe um **objeto** onde serão salvos as **utms**, pode ser usado para enviar valores iniciais de utm para serem usados caso algo aquela **utm** não seja preenchida
 - **postLoad**: recebe uma função de um parâmetro que será rodada ao final do processamento da função `load` sendo este parâmetro um objeto com as **utms** extraídas. Ele pode ser usado para rodar alguma lógica customizada como enviar estes dados para um gerenciador de leads como o [mautic](https://www.mautic.org/)
 
 Um exemplo da função `load` com todos os parâmetros é o seguinte:
 
 ```javascript
-utmkeeper.load(
-  true, true, function(utms) {
-    console.log(utms);
-  }
-);
+utmkeeper.load({
+  forceOriginUTM: true,
+  fillForms: true,
+  utmObject: {
+    utm_test: 'test'
+  },
+  postLoad: function(utms){console.log(utms);}
+});
 ```
 
 ## Resultado
