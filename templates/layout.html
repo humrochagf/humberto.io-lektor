@@ -25,43 +25,43 @@
     <link rel="alternate" href="{{ '.'|url(external=true) }}" hreflang="pt-br" />
 
     <!-- General -->
-    <meta name="description" content="{{ this.summary|default('Um blog para programadores e interessados em conteúdo sobre automação, frontend, backend, python, devops, javascript, desenvolvimento de jogos e muito mais.') }}" />
-    <meta name="author" content="Humberto Rocha" />
+    <meta name="description" content="{{ this.summary|default(config.PROJECT.description) }}" />
+    <meta name="author" content="{{ config.PROJECT.author }}" />
     <meta name="theme-color" content="#ffffff" />
 
     <!-- Google+ -->
-    <meta itemprop="name" content="{{ this.title|default('Humberto Rocha') }}" />
-    <meta itemprop="description" content="{{ this.summary|default('Um blog para programadores e interessados em conteúdo sobre automação, frontend, backend, python, devops, javascript, desenvolvimento de jogos e muito mais.') }}" />
+    <meta itemprop="name" content="{{ this.title|default(config.PROJECT.name) }}" />
+    <meta itemprop="description" content="{{ this.summary|default(config.PROJECT.description) }}" />
     {% if this.share_image %}
       <meta itemprop="image" content="{{ this.share_image|url(external=True) }}" />
     {% else %}
-      <meta itemprop="image" content="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200" />
+      <meta itemprop="image" content="{{ config.PROJECT.logo|url(external=True) }}" />
     {% endif %}
 
     <!-- Facebook -->
-    <meta property="og:site_name" content="Humberto Rocha" />
-    <meta property="og:title" content="{{ this.title|default('Humberto Rocha') }}" />
-    <meta property="og:description" content="{{ this.summary|default('Um blog para programadores e interessados em conteúdo sobre automação, frontend, backend, python, devops, javascript, desenvolvimento de jogos e muito mais.') }}" />
+    <meta property="og:site_name" content="{{ config.PROJECT.name }}" />
+    <meta property="og:title" content="{{ this.title|default(config.PROJECT.name) }}" />
+    <meta property="og:description" content="{{ this.summary|default(config.PROJECT.description) }}" />
     <meta property="og:url" content="{{ '.'|url(external=true) }}" />
     <meta property="og:type" content="article" />
     {% if this.share_image %}
       <meta property="og:image" content="{{ this.share_image|url(external=True) }}" />
     {% else %}
-      <meta property="og:image" content="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=200" />
+      <meta property="og:image" content="{{ config.PROJECT.logo|url(external=True) }}" />
     {% endif %}
 
     <!-- Twitter -->
     <meta name="twitter:url" content="{{ '.'|url(external=true) }}" />
-    <meta name="twitter:site" content="@humrochagf" />
-    <meta name="twitter:creator" content="@humrochagf" />
-    <meta name="twitter:title" content="{{ this.title|default('Humberto Rocha') }}" />
-    <meta name="twitter:description" content="{{ this.summary|default('Um blog para programadores e interessados em conteúdo sobre automação, frontend, backend, python, devops, javascript, desenvolvimento de jogos e muito mais.') }}" />
+    <meta name="twitter:site" content="@{{ config.PROJECT.twitter }}" />
+    <meta name="twitter:creator" content="@{{ config.PROJECT.twitter }}" />
+    <meta name="twitter:title" content="{{ this.title|default(config.PROJECT.name) }}" />
+    <meta name="twitter:description" content="{{ this.summary|default(config.PROJECT.description) }}" />
     {% if this.share_image %}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content="{{ this.share_image|url(external=True) }}" />
     {% else %}
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:image" content="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=120" />
+      <meta name="twitter:image" content="{{ config.PROJECT.logo|url(external=True) }}" />
     {% endif %}
 
     <!-- json-ld -->
@@ -69,7 +69,7 @@
     {% endblock %}
 
     <!-- Page title -->
-    <title>{% block title %}Blog{% endblock %} - Humberto Rocha{% if not this.title %} - Cientista, pythonista e curioso{% endif %}</title>
+    <title>{% block title %}Blog{% endblock %} - {{ config.PROJECT.name }}{% if not this.title %} - Cientista, pythonista e curioso{% endif %}</title>
 
     <!-- pygments -->
     <link rel="stylesheet" href="{{ get_pygments_stylesheet()|url }}">
@@ -85,11 +85,11 @@
           <div class="col-12">
             <header>
               <a class="header-photo" href="{{ '/'|url }}">
-                <img class="rounded-circle" src="https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d?s=100" alt="Humberto Rocha">
+                <img class="rounded-circle" src="{{ config.PROJECT.logo|url }}" alt="Humberto Rocha">
               </a>
 
               <h1>
-                <a href="{{ '/'|url }}">HUMBERTO ROCHA</a>
+                <a href="{{ '/'|url }}">{{ config.PROJECT.name.upper() }}</a>
               </h1>
 
               <ul class="nav justify-content-center">
@@ -128,11 +128,11 @@
                 <div class="row">
                   <div class="col-12">
                     <span class="icons">
-                      <a href="https://github.com/humrochagf"><i class="fa fa-github"></i></a>
-                      <a href="https://twitter.com/humrochagf"><i class="fa fa-twitter"></i></a>
-                      <a href="https://br.linkedin.com/in/humrochagf"><i class="fa fa-linkedin"></i></a>
+                      <a href="https://github.com/{{ config.PROJECT.github }}/"><i class="fa fa-github"></i></a>
+                      <a href="https://twitter.com/{{ config.PROJECT.twitter }}/"><i class="fa fa-twitter"></i></a>
+                      <a href="https://br.linkedin.com/in/{{ config.PROJECT.linkedin }}/"><i class="fa fa-linkedin"></i></a>
                       <a href="{{ '/feed.xml'|url }}" target="_blank"><i class="fa fa-feed"></i></a>
-                      <a href="mailto:humrochagf@gmail.com"><i class="fa fa-envelope"></i></a>
+                      <a href="mailto:{{ config.PROJECT.email }}"><i class="fa fa-envelope"></i></a>
                     </span>
                   </div>
 

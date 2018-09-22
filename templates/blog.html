@@ -12,8 +12,8 @@
       "@type": "Blog",
       "author": {
         "@type": "Person",
-        "name": "Humberto Rocha",
-        "url": "https://humberto.io"
+        "name": "{{ config.PROJECT.author }}",
+        "url": "{{ '/me'|url(external=True) }}"
       },
       "blogPost": [
         {% for child in this.pagination.items %}

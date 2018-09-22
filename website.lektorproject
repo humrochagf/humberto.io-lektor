@@ -1,8 +1,17 @@
 [project]
 name = Humberto Rocha
+description = Um blog para programadores e interessados em conteúdo sobre automação, frontend, backend, python, devops, javascript, desenvolvimento de jogos e muito mais.
 locale = pt_BR
 url = https://humberto.io/
 url_style = absolute
+logo = /images/me.jpg
+author = Humberto Rocha
+job_title = CTO na Configr
+gender = male
+email = humrochagf@gmail.com
+twitter = humrochagf
+linkedin = humrochagf
+github = humrochagf
 
 [servers.ghpages]
 name = GitHub

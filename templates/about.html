@@ -5,14 +5,14 @@
     {
       "@context": "http://schema.org/",
       "@type": "Person",
-      "name": "Humberto Rocha",
-      "url": "https://humberto.io",
-      "jobTitle": "CTO at Configr",
-      "gender": "male",
-      "image": "https://www.gravatar.com/avatar/9b980649495021f77c36912c090a5a1d",
+      "name": "{{ config.PROJECT.author }}",
+      "url": "{{ '/me'|url(external=True) }}",
+      "jobTitle": "{{ config.PROJECT.job_title }}",
+      "gender": "{{ config.PROJECT.gender }}",
+      "image": "{{ config.PROJECT.logo|url(external=True) }}",
       "sameAs": [
-        "https://github.com/humrochagf/",
-        "https://www.linkedin.com/in/humrochagf/"
+        "https://github.com/{{ config.PROJECT.github }}/",
+        "https://www.linkedin.com/in/{{ config.PROJECT.linkedin }}/"
       ]
     }
   </script>
