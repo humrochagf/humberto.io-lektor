@@ -13,6 +13,16 @@ twitter = humrochagf
 linkedin = humrochagf
 github = humrochagf
 
+[alternatives.pt-br]
+name = Português
+primary = yes
+locale = pt_BR
+
+[alternatives.en]
+name = English
+url_prefix = /en/
+locale = en_US
+
 [servers.ghpages]
 name = GitHub
 target = ghpages://humrochagf/humrochagf.github.io?cname=humberto.io
