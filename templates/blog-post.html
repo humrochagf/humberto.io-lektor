@@ -14,7 +14,11 @@
       "datePublished": "{{ this.pub_date }}",
       "image": {
         "@type": "ImageObject",
-        "url": "{{ this.share_image|url(external=True) }}",
+        {% if this.share_image %}
+          "url": "{{ this.share_image|url(external=True) }}",
+        {% else %}
+          "url": "{{ config.PROJECT.logo|url(external=True) }}",
+        {% endif %}
       },
       "author": {
         "@type": "Person",
