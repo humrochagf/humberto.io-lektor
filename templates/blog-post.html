@@ -32,7 +32,7 @@
 {% block content %}
   {{ render_blog_post(this) }}
 
-  <div class="license">{{ render_cc_license('by-sa') }}</div>
+  <div class="license">{{ render_cc_license('by-sa', locale=bag('translation', this.alt, 'this_locale')) }}</div>
 
   <div class="comments">{{ render_disqus_comments() }}</div>
 {% endblock %}

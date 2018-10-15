@@ -7,7 +7,7 @@
     {% endif %}
 
     <p class="meta">
-      Publicado em {{ post.pub_date|dateformat('long') }}
+      {{ bag('translation', post.alt, 'published_on') }} {{ post.pub_date|dateformat('long') }}
     </p>
 
     {% if from_index %}

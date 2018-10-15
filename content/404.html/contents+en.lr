@@ -1,0 +1,13 @@
+_discoverable: no
+---
+_template: 404.html
+---
+body:
+
+The page you are looking for doesn't exists. Maybe it was changed,
+removed or you forgot some character when copying the link.
+
+If you think there is something wrong with the system, you can report that by opening
+an issue by clicking [here](https://github.com/humrochagf/humrochagf.github.io/issues).
+---
+title: Not found

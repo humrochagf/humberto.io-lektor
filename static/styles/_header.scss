@@ -29,9 +29,23 @@ header {
     a {
       border-bottom: 1px solid gray("400");
 
-      &:hover, &:focus, &:active {
+      &:hover, &:focus, &:active, &.active {
         border-bottom: 1px solid $black;
       }
+    }
+  }
+}
+
+.alternatives {
+  li {
+    background-color: $black;
+    padding: 0 10px 5px;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+
+    a {
+      color: $white;
+      font-weight: 800;
     }
   }
 }

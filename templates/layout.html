@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="{{ this.alt }}">
   <head>
     <!-- Required meta tags always come first -->
     <meta charset="UTF-8" />
@@ -21,17 +21,20 @@
     <link rel="icon" type="image/png" href="{{ '/images/favicon-16x16.png'|url(external=True) }}" sizes="16x16" />
 
     <!-- SEO tags -->
-    <link rel="canonical" href="{{ '.'|url(external=true) }}" />
-    <link rel="alternate" href="{{ '.'|url(external=true) }}" hreflang="pt-br" />
+    <link rel="canonical" href="{{ '.'|url(alt='pt-br', external=true) }}" />
+
+    {% for alt in get_alts(this) %}
+      <link rel="alternate" href="{{ '.'|url(alt=alt, external=true) }}" hreflang="{{ alt }}" />
+    {% endfor %}
 
     <!-- General -->
-    <meta name="description" content="{{ this.summary|default(config.PROJECT.description) }}" />
+    <meta name="description" content="{{ this.summary|default(bag('translation', this.alt, 'website_description')) }}" />
     <meta name="author" content="{{ config.PROJECT.author }}" />
     <meta name="theme-color" content="#ffffff" />
 
     <!-- Google+ -->
     <meta itemprop="name" content="{{ this.title|default(config.PROJECT.name) }}" />
-    <meta itemprop="description" content="{{ this.summary|default(config.PROJECT.description) }}" />
+    <meta itemprop="description" content="{{ this.summary|default(bag('translation', this.alt, 'website_description')) }}" />
     {% if this.share_image %}
       <meta itemprop="image" content="{{ this.share_image|url(external=True) }}" />
     {% else %}
@@ -41,7 +44,7 @@
     <!-- Facebook -->
     <meta property="og:site_name" content="{{ config.PROJECT.name }}" />
     <meta property="og:title" content="{{ this.title|default(config.PROJECT.name) }}" />
-    <meta property="og:description" content="{{ this.summary|default(config.PROJECT.description) }}" />
+    <meta property="og:description" content="{{ this.summary|default(bag('translation', this.alt, 'website_description')) }}" />
     <meta property="og:url" content="{{ '.'|url(external=true) }}" />
     <meta property="og:type" content="article" />
     {% if this.share_image %}
@@ -55,7 +58,7 @@
     <meta name="twitter:site" content="@{{ config.PROJECT.twitter }}" />
     <meta name="twitter:creator" content="@{{ config.PROJECT.twitter }}" />
     <meta name="twitter:title" content="{{ this.title|default(config.PROJECT.name) }}" />
-    <meta name="twitter:description" content="{{ this.summary|default(config.PROJECT.description) }}" />
+    <meta name="twitter:description" content="{{ this.summary|default(bag('translation', this.alt, 'website_description')) }}" />
     {% if this.share_image %}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content="{{ this.share_image|url(external=True) }}" />
@@ -69,7 +72,7 @@
     {% endblock %}
 
     <!-- Page title -->
-    <title>{% block title %}Blog{% endblock %} - {{ config.PROJECT.name }}{% if not this.title %} - Cientista, pythonista e curioso{% endif %}</title>
+    <title>{% block title %}Blog{% endblock %} - {{ config.PROJECT.name }}{% if not this.title %} - {{ bag('translation', this.alt, 'website_title') }}{% endif %}</title>
 
     <!-- pygments -->
     <link rel="stylesheet" href="{{ get_pygments_stylesheet()|url }}">
@@ -82,6 +85,16 @@
     {% block body %}
       <div class="container">
         <div class="row">
+          <div class="mx-auto col-md-8 col-sm-12">
+            <ul class="nav justify-content-end alternatives">
+              {% for alt in get_alts(this) %}
+                {% if alt != this.alt %}
+                  <li><a href="{{ '.'|url(alt=alt) }}">{{ alt }}</a></li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+
           <div class="col-12">
             <header>
               <a class="header-photo" href="{{ '/'|url }}">
@@ -93,17 +106,11 @@
               </h1>
 
               <ul class="nav justify-content-center">
-                <li class="nav-item">
-                  <a class="nav-link active" href="{{ '/me'|url }}">Sobre</a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link active" href="{{ '/projects'|url }}">Projetos</a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ '/blog'|url }}">Blog</a>
-                </li>
+                {% for path, label in bag('navigation', this.alt).items() %}
+                  <li class="nav-item">
+                    <a class="nav-link{% if this.is_child_of(path) %} active{% endif %}" href="{{ path|url }}">{{ label }}</a>
+                  </li>
+                {% endfor %}
               </ul>
             </header>
           </div>

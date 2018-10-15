@@ -6,8 +6,8 @@
       "@context": "http://schema.org/",
       "@type": "Person",
       "name": "{{ config.PROJECT.author }}",
-      "url": "{{ '/me'|url(external=True) }}",
-      "jobTitle": "{{ config.PROJECT.job_title }}",
+      "url": "{{ '/sobre'|url(external=True) }}",
+      "jobTitle": "{{ bag('translation', this.alt, 'job_title') }}",
       "gender": "{{ config.PROJECT.gender }}",
       "image": "{{ config.PROJECT.logo|url(external=True) }}",
       "sameAs": [

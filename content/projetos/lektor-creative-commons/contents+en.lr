@@ -1,0 +1,9 @@
+license: MIT
+---
+repository: https://github.com/humrochagf/lektor-creative-commons
+---
+share_image: creativecommons.png
+---
+summary: Plugin to add creative commons license at Lektor generated content.
+---
+title: Lektor Creative Commons

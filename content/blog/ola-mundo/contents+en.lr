@@ -1,0 +1,19 @@
+body:
+
+Hello everyone,
+
+This is my first post at this blog, here I will talk about python, technology, open source, the universe and everything.
+
+I am developing this blog using a **static page generator/cms** called  [Lektor](https://www.getlektor.com).
+
+Soon I will make some posts about it with tips on how to structure and configure a project with **Lektor** but, if you're curious about it, you can go to my [repository](https://github.com/humrochagf/humrochagf.github.io) and check things out.
+
+Without further ado, keep watching for the next postings...
+---
+pub_date: 2016-04-21
+---
+share_image: hello.jpg
+---
+summary: Blog presentation posting
+---
+title: Hello World!

@@ -1,0 +1,9 @@
+license: MIT
+---
+repository: https://github.com/humrochagf/revelation
+---
+share_image: presentation.png
+---
+summary: Create slide presentation with reveal.js and markdown without internet connection.
+---
+title: Revelation

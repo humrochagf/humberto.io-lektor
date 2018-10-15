@@ -13,7 +13,7 @@
       "author": {
         "@type": "Person",
         "name": "{{ config.PROJECT.author }}",
-        "url": "{{ '/me'|url(external=True) }}"
+        "url": "{{ '/sobre'|url(external=True) }}"
       },
       "blogPost": [
         {% for child in this.pagination.items %}
@@ -35,5 +35,5 @@
     <hr>
   {% endfor %}
 
-  {{ render_pagination(this.pagination) }}
+  {{ render_pagination(this.pagination, this.alt) }}
 {% endblock %}

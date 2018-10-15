@@ -7,11 +7,11 @@
     {% endif %}
 
     <p class="meta">
-      <b>Licença:</b> <span class="license">{{ project.license }}</span>
+      <b>{{ bag('translation', project.alt, 'license') }}:</b> <span class="license">{{ project.license }}</span>
 
       <br>
 
-      <b>Repositório:</b> <a href="{{ project.repository }}">{{ project.repository }}</a>
+      <b>{{ bag('translation', project.alt, 'repository') }}:</b> <a href="{{ project.repository }}">{{ project.repository }}</a>
     </p>
 
     <p>{{ project.summary }}</p>
