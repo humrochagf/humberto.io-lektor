@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 Host: humberto.io
-Sitemap: http://humberto.io/sitemap.xml
+Sitemap: {{ '/sitemap.xml'|url(external=true, alt=this.alt) }}

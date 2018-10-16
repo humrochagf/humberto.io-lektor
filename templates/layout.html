@@ -138,7 +138,7 @@
                       <a href="https://github.com/{{ config.PROJECT.github }}/"><i class="fa fa-github"></i></a>
                       <a href="https://twitter.com/{{ config.PROJECT.twitter }}/"><i class="fa fa-twitter"></i></a>
                       <a href="https://br.linkedin.com/in/{{ config.PROJECT.linkedin }}/"><i class="fa fa-linkedin"></i></a>
-                      <a href="{{ '/feed.xml'|url }}" target="_blank"><i class="fa fa-feed"></i></a>
+                      <a href="{{ '/feed.xml'|url(alt=alt, external=true) }}" target="_blank"><i class="fa fa-feed"></i></a>
                       <a href="mailto:{{ config.PROJECT.email }}"><i class="fa fa-envelope"></i></a>
                     </span>
                   </div>

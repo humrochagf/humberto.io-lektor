@@ -17,3 +17,5 @@ share_image: hello.jpg
 summary: Blog presentation posting
 ---
 title: Hello World!
+---
+_slug: hello-world
