@@ -39,11 +39,12 @@ header {
 .alternatives {
   li {
     background-color: $black;
-    padding: 0 10px 5px;
     border-bottom-left-radius: .5rem;
     border-bottom-right-radius: .5rem;
 
     a {
+      display: block;
+      padding: 0 10px 5px;
       color: $white;
       font-weight: 800;
     }
