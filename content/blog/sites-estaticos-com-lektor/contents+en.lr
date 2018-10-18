@@ -1,0 +1,146 @@
+body:
+
+Theres about 4 years that I try to start a blog and during that time I created some for the community but never my own.
+
+Using publishing tools like wordpress the problem was the difficulty of customizing it and the amount of tooling that I would never use, plus it's not **Python**.
+
+Then I discovered [GitHub Pages](https://pages.github.com), and at the same time [Pelican](http://blog.getpelican.com) by indication of [Magnun Leno](http://mindbending.org/pt) and I started to do a lot things with it.
+
+That was cool, but still, there some things that were bugging me. Even with the freedom to customize everything, the publishing was the same as the development pipeline. At first you say that this is a plus right? Yeah but that become a problem when you stop your writing because you found a bug or just seen something that can be improved and here we go again...
+
+![here we go again meme](again.png)
+
+So a while ago, chatting with some friends at the [Brazilian Python community Telegram group](https://telegram.me/pythonbr) someone quoted **Lektor** as a new alternative to **Pelican** then my adventure at **Lektor** started.
+
+## Lektor
+
+[Lektor](https://www.getlektor.com) is a flexible and powerful static content management system for building complex and beautiful websites out of flat files created by [Armin Ronacher](http://lucumr.pocoo.org) (the creator of [flask](http://flask.pocoo.org)) and maintained by the community.
+
+## Why use Lektor
+
+As described at its [website](https://www.getlektor.com/docs/what) **Lektor** learned from content management systems like WordPress, static website generators like Pelican, web frameworks like Django and created something that balances its weak ad strong points in a tool that is:
+
+- **Static**: The final product is a static website that allows you to host is anywhere.
+- **CMS**: A local admin interface that allows a publishing pipeline different from coding easy to non programmers to use.
+- **Framework**: It has a models system on plain text files and a template system with Jinja2 that creates an environment that is fammiliar to developers that uses Django, Flask and other Python web frameworks.
+- **Deploy**: The deploy system is just a single configuration file that helps you to deploy your content to production.
+
+## Lektor Installation
+
+Lektor runs on python 2.7 and above and requires `python-dev`, `libssl-dev`, `libffi-dev` and `imagemagick` that you can easily install with that command if you are using Ubuntu:
+
+```
+$ sudo apt-get install python-dev libssl-dev libffi-dev imagemagick
+```
+
+!!! You can check for **brew** packages on Mac **chocolatey** on Windows and the other package managers for different distributions of Linux they have its versions of these packages
+
+The installation itself is pretty straight forward:
+
+```
+$ curl -sf https://www.getlektor.com/install.sh | sh
+```
+
+This  command installs it right into your system but if you prefer to use a virtualenv:
+
+```
+$ virtualenv venv
+$ . venv/bin/activate
+$ pip install Lektor
+```
+
+This is not the recommended way of installing Lektor because of it plugin system but if you are a Python developer it will be no problem to you. If you want to contribute with Lektor development you can clone the repository and start coding by running: 
+
+```
+$ git clone https://github.com/lektor/lektor
+$ cd lektor
+$ make build-js
+$ virtualenv venv
+$ . venv/bin/activate
+$ pip install --editable .
+```
+
+!! It requires `node` installed to mount the admin interface.
+
+## Creating the Website
+
+Após a instalação para criar o seu site basta utilizar o comando de criação de projeto:
+
+```
+$ lektor quickstart
+```
+
+Ele irá te fazer algumas perguntas e criar um projeto com o nome que você informou.
+
+### Estrutura
+
+Esta é a estrutura básica de um site gerado pelo lektor:
+
+```
+meusite
+├── assets/
+├── content/
+├── templates/
+├── models/
+└── meusite.lektorproject
+```
+
+- **assets:** Pasta onde ficam os arquivos  .css, .js, .ico entre outros recursos estáticos;
+- **content:** Pasta onde ficam os arquivos que iram gerar as páginas do site, cada subpasta corresponde a uma página no site gerado;
+- **templates:** Pasta onde ficam os arquivos de template que definem a sua estrutura visual;
+- **models:** Pasta onde ficam os arquivos que definem a modelagem de dados;
+- **meusite.lektorproject:** Arquivo com as configurações gerais do site.
+
+### Executando localmente
+
+Para rodar o site em sua máquina basta entrar no diretório criado e iniciar o servidor local:
+
+```
+$ cd meusite
+$ lektor server
+```
+
+Com o servidor rodando acesse [localhost:5000](http://localhost:5000) para ver o resultado:
+
+![meusite](meusite.png)
+
+### Acessando o Admin
+
+Para acessar o admin clique na imagem de lápis no canto superior direito da página que você criou ou acesse [localhost:5000](http://localhost:5000/admin)
+
+![meusite-admin](meusite-admin.png)
+
+## Publicando o Site
+
+Exitem duas maneiras de se fazer o deploy do site construído com o lektor, a manual, que é basicamente rodar o comando `build` e copiar manualmente os arquivos para o servidor:
+
+```
+$ lektor build --output-path destino
+```
+
+E a forma automática, que pode ser feita (neste caso para o GitHub Pages) adicionando a seguinte configuração no arquivo `meusite.lektorproject`:
+
+```ini
+[servers.production]
+target = ghpages://usuario/repositorio
+```
+
+E rodando em seguida o comando:
+
+```
+$ lektor deploy
+```
+
+!!!! O deploy faz um force push na branch `master` ou `gh-pages` dependendo do tipo de repositório, portanto, cuidado para não sobrescrever os dados de seu repositório. Mantenha o código fonte em uma branch separada, você pode dar uma conferida no [meu repositório](https://github.com/humrochagf/humrochagf.github.io) para ter uma idéia.
+
+Para informações mais detalhadas você pode acessar a [documentação do lektor](https://www.getlektor.com/docs) e também ficar de olho nas próximas postagens.
+---
+pub_date: 2016-04-23
+---
+share_image: meusite-admin.png
+---
+summary: Introduction to building static sites with lektor
+---
+title: Static Websites with Lektor
+---
+_slug: static-websites-with-lektor
