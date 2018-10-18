@@ -4,6 +4,7 @@ locale = pt_BR
 url = https://humberto.io/
 url_style = absolute
 logo = /images/me.jpg
+logo_100 = /images/me-100x100.jpg
 author = Humberto Rocha
 gender = male
 email = humrochagf@gmail.com
