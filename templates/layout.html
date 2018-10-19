@@ -21,7 +21,7 @@
     <link rel="icon" type="image/png" href="{{ '/images/favicon-16x16.png'|url(external=True) }}" sizes="16x16" />
 
     <!-- SEO tags -->
-    <link rel="canonical" href="{{ '.'|url(alt='pt-br', external=true) }}" />
+    <link rel="canonical" href="{{ '.'|url(alt=this.alt, external=true) }}" />
 
     {% for alt in get_alts(this) %}
       <link rel="alternate" href="{{ '.'|url(alt=alt, external=true) }}" hreflang="{{ alt }}" />
