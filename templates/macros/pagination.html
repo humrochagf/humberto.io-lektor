@@ -1,15 +1,19 @@
 {% macro render_pagination(pagination, alt) %}
-  <div class="paginate">
-    {% if pagination.has_prev %}
-    <a href="{{ pagination.prev|url }}"><i class="fa fa-angle-double-left"></i> {{ bag('translation', alt, 'previous') }}</a>
-    {% else %}
-    <span class="disabled"><i class="fa fa-angle-double-left"></i> {{ bag('translation', alt, 'previous') }}</span>
-    {% endif %}
-    | {{ pagination.page }} |
-    {% if pagination.has_next %}
-      <a href="{{ pagination.next|url }}">{{ bag('translation', alt, 'next') }} <i class="fa fa-angle-double-right"></i></a>
-    {% else %}
-    <span class="disabled">{{ bag('translation', alt, 'next') }} <i class="fa fa-angle-double-right"></i></span>
-    {% endif %}
-  </div>
+  <nav aria-label="pagination">
+    <ul class="pagination justify-content-center">
+      {% if pagination.has_prev %}
+        <li class="page-item"><a class="page-link" href="{{ pagination.prev|url }}">{{ bag('translation', alt, 'previous') }}</a></li>
+      {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">{{ bag('translation', alt, 'previous') }}</a></li>
+      {% endif %}
+
+      <li class="page-item active"><a class="page-link" href="#">{{ pagination.page }}</a></li>
+
+      {% if pagination.has_next %}
+        <li class="page-item"><a class="page-link" href="{{ pagination.next|url }}">{{ bag('translation', alt, 'next') }}</a></li>
+      {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">{{ bag('translation', alt, 'next') }}</a></li>
+      {% endif %}
+    </ul>
+  </nav>
 {% endmacro %}
