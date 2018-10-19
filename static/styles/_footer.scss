@@ -20,11 +20,18 @@
     }
   }
 
-  .image-host {
+  .image-host-pt-br {
+    background: url(../images/hospedadocomamor_negativo.png) no-repeat center;
+  }
+
+  .image-host-en {
+    background: url(../images/hostedwithlove_negative.png) no-repeat center;
+  }
+
+  .image-host-pt-br, .image-host-en {
     display: inline-block;
     height: 25px;
     width: 180px;
-    background: url(../images/hospedadocomamor_negativo.png) no-repeat center;
     background-size: auto 25px;
     margin-top: 25px;
   }
