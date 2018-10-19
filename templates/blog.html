@@ -13,14 +13,14 @@
       "author": {
         "@type": "Person",
         "name": "{{ config.PROJECT.author }}",
-        "url": "{{ '/sobre'|url(external=True) }}"
+        "url": "{{ '/sobre'|url(external=True, alt=this.alt) }}"
       },
       "blogPost": [
         {% for child in this.pagination.items %}
           {
             "@type": "BlogPosting",
             "headline": "{{ child.title }}",
-            "url": "{{ child|url(external=true) }}",
+            "url": "{{ child|url(external=true, alt=this.alt) }}",
             "datePublished": "{{ child.pub_date }}",
           }{% if not loop.last %},{% endif %}
         {% endfor %}

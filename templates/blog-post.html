@@ -10,12 +10,12 @@
       "@context": "http://schema.org",
       "@type": "BlogPosting",
       "headline": "{{ this.title }}",
-      "url": "{{ this|url(external=true) }}",
+      "url": "{{ this|url(external=true, alt=this.alt) }}",
       "datePublished": "{{ this.pub_date }}",
       "image": {
         "@type": "ImageObject",
         {% if this.share_image %}
-          "url": "{{ this.share_image|url(external=True) }}",
+          "url": "{{ this.share_image|url(external=True, alt='pt-br') }}",
         {% else %}
           "url": "{{ config.PROJECT.logo|url(external=True) }}",
         {% endif %}
@@ -23,7 +23,7 @@
       "author": {
         "@type": "Person",
         "name": "{{ config.PROJECT.author }}",
-        "url": "{{ '/me'|url(external=True) }}"
+        "url": "{{ '/sobre'|url(external=True, alt=this.alt) }}"
       }
     }
   </script>

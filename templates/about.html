@@ -6,7 +6,7 @@
       "@context": "http://schema.org/",
       "@type": "Person",
       "name": "{{ config.PROJECT.author }}",
-      "url": "{{ '/sobre'|url(external=True) }}",
+      "url": "{{ '/sobre'|url(external=True, alt=this.alt) }}",
       "jobTitle": "{{ bag('translation', this.alt, 'job_title') }}",
       "gender": "{{ config.PROJECT.gender }}",
       "image": "{{ config.PROJECT.logo|url(external=True) }}",
