@@ -36,7 +36,7 @@
     <meta itemprop="name" content="{{ this.title|default(config.PROJECT.name) }}" />
     <meta itemprop="description" content="{{ this.summary|default(bag('translation', this.alt, 'website_description')) }}" />
     {% if this.share_image %}
-      <meta itemprop="image" content="{{ this.share_image|url(external=True) }}" />
+      <meta itemprop="image" content="{{ this.share_image|url(external=True, alt='pt-br') }}" />
     {% else %}
       <meta itemprop="image" content="{{ config.PROJECT.logo|url(external=True) }}" />
     {% endif %}
@@ -48,7 +48,7 @@
     <meta property="og:url" content="{{ '.'|url(external=true) }}" />
     <meta property="og:type" content="article" />
     {% if this.share_image %}
-      <meta property="og:image" content="{{ this.share_image|url(external=True) }}" />
+      <meta property="og:image" content="{{ this.share_image|url(external=True, alt='pt-br') }}" />
     {% else %}
       <meta property="og:image" content="{{ config.PROJECT.logo|url(external=True) }}" />
     {% endif %}
@@ -61,7 +61,7 @@
     <meta name="twitter:description" content="{{ this.summary|default(bag('translation', this.alt, 'website_description')) }}" />
     {% if this.share_image %}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content="{{ this.share_image|url(external=True) }}" />
+      <meta name="twitter:image" content="{{ this.share_image|url(external=True, alt='pt-br') }}" />
     {% else %}
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:image" content="{{ config.PROJECT.logo|url(external=True) }}" />
