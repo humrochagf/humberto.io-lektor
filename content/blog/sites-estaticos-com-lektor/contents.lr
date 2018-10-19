@@ -2,17 +2,21 @@ title: Sites Estáticos com Lektor
 ---
 body:
 
-Faz pelo menos 4 anos que eu ensaio para montar um blog, e nessa brincadeira já montei alguns,  mas quando chegava na hora de criar o meu eu nunca conseguia publicar.
+Faz pelo menos 4 anos que eu ensaio montar um blog, e neste período já criei alguns para a comunidade,  mas quando chegava a hora de criar o meu nunca conseguia chegar ao ponto de publicar.
 
-Inicialmente com ferramentas de publicação como wordpress o problema era a dificuldade de customizar e o tanto de coisa que vinha junto que eu não ia usar mas ficava me tirando a atenção. Em seguida com o [GitHub Pages](https://pages.github.com) eu descobri o [Pelican](http://blog.getpelican.com) por indicação do [Magnun Leno](http://mindbending.org/pt) e comecei a fazer muita coisa com ele, mas da mesma forma que eu ganhei em liberdade de customização, o processo autoral é o mesmo de desenvolvimento, e como descrito no subtitulo do blog, meu lado cientista, pythonista e curioso ficava ali me cutucando para melhorar o site ao invés de escrever conteúdo.
+Usando ferramentas como o WordPress o problema era a dificuldade de customização e a quantidade de ferramentas e padrões que eu nunca iria usar, além é claro, de não ser **Python**. 
+
+Em seguida com o [GitHub Pages](https://pages.github.com) eu descobri o [Pelican](http://blog.getpelican.com) por indicação do [Magnun Leno](http://mindbending.org/pt) e comecei a fazer muita coisa com ele, mas da mesma forma com que eu ganhei em liberdade de customização, o processo autoral era o mesmo do desenvolvimento o que em um primeiro momento parece legal não é mesmo? Pois é, mas com o tempo você percebe que isso acaba virando um problema quando você para a escrita de uma postagem para arrumar um **bug** ou melhorar alguma coisa no layout e lá vamos nós novamente...
+
+![e lá vamos nós novamente](again.png)
 
 Eis que em uma conversa no [grupo de telegram da comunidade python](https://telegram.me/pythonbr) me citam o Lektor e aí começou a aventura.
 
-## Lektor?
+## Lektor
 
 [Lektor](https://www.getlektor.com) é um gerenciador de conteúdo estático criado por [Armin Ronacher](http://lucumr.pocoo.org) (sim, o criador do [flask](http://flask.pocoo.org)) que permite a criação de websites a partir de arquivos de texto.
 
-## Porque usar?
+## Porque usar o Lektor
 
 Como descrito no próprio [site](https://www.getlektor.com/docs/what) ele bebeu das fontes dos CMS`s, dos frameworks e dos geradores de site estático e chegou em algo que eu considero um ponto de equilíbrio entre eles, e que nos leva as seguintes vantagens:
 
@@ -21,7 +25,15 @@ Como descrito no próprio [site](https://www.getlektor.com/docs/what) ele bebeu 
 - **Framework:** Ele possuí um sistema de models em arquivos de texto e um sistema de templates que usa Jinja2 que cria um ambiente familiar para quem já desenvolveu algo em django, flask e similares;
 - **Deploy:** O sistema de deploy dele é reduzido á uma configuração em um arquivo, o que permite a rápida publicação sem ficar dias aprendendo técnicas de deploy quando tudo que você quer no começo é colocar seu site no ar.
 
-## Instalação
+## Instalação do Lektor
+
+O Lektor roda em Python 2.7 ou superior e depende das bibliotecas `python-dev`, `libssl-dev`, `libffi-dev` e `imagemagick` que você pode facilmente instalar rodando:
+
+```
+$ sudo apt-get install python-dev libssl-dev libffi-dev imagemagick
+```
+
+!!! No Mac você pode dar uma olhada nos pacotes do **brew**, no Windows o **chocolatey** en os outros gerenciadores de pacotes das outras distribuições Linux, ambos possuem suas versões das bibliotecas citadas
 
 A instalação do Lektor é bem direta:
 
@@ -79,7 +91,7 @@ meusite
 - **models:** Pasta onde ficam os arquivos que definem a modelagem de dados;
 - **meusite.lektorproject:** Arquivo com as configurações gerais do site.
 
-### Executando localmente
+### Executando o projeto
 
 Para rodar o site em sua máquina basta entrar no diretório criado e iniciar o servidor local:
 
@@ -90,13 +102,13 @@ $ lektor server
 
 Com o servidor rodando acesse [localhost:5000](http://localhost:5000) para ver o resultado:
 
-![meusite](meusite.png)
+![primeiro site rodando com Lektor](meusite.png)
 
 ### Acessando o Admin
 
 Para acessar o admin clique na imagem de lápis no canto superior direito da página que você criou ou acesse [localhost:5000](http://localhost:5000/admin)
 
-![meusite-admin](meusite-admin.png)
+![página de admin do Lektor](meusite-admin.png)
 
 ## Publicando o Site
 
@@ -106,11 +118,21 @@ Exitem duas maneiras de se fazer o deploy do site construído com o lektor, a ma
 $ lektor build --output-path destino
 ```
 
-E a forma automática, que pode ser feita (neste caso para o GitHub Pages) adicionando a seguinte configuração no arquivo `meusite.lektorproject`:
+E a forma automática, que pode ser feita (neste caso para o GitHub Pages) adicionando a seguinte configuração no arquivo `.lektorproject`:
 
 ```ini
 [servers.production]
 target = ghpages://usuario/repositorio
+```
+
+!!!! O deploy faz um force push na branch `master` ou `gh-pages` dependendo do tipo de repositório, portanto, cuidado para não sobrescrever os dados de seu repositório. Mantenha o código fonte em uma branch separada, você pode dar uma conferida no [meu repositório](https://github.com/humrochagf/humrochagf.github.io) para ter uma ideia.
+
+No caso de hospedagem cloud:
+
+```ini
+[servers.production]
+name = Production
+target = rsync://usuario@servidor.dominio.com.br/srv/meusite/www
 ```
 
 E rodando em seguida o comando:
@@ -118,8 +140,6 @@ E rodando em seguida o comando:
 ```
 $ lektor deploy
 ```
-
-!!!! O deploy faz um force push na branch `master` ou `gh-pages` dependendo do tipo de repositório, portanto, cuidado para não sobrescrever os dados de seu repositório. Mantenha o código fonte em uma branch separada, você pode dar uma conferida no [meu repositório](https://github.com/humrochagf/humrochagf.github.io) para ter uma idéia.
 
 Para informações mais detalhadas você pode acessar a [documentação do lektor](https://www.getlektor.com/docs) e também ficar de olho nas próximas postagens.
 ---
