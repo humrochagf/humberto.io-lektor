@@ -1,49 +1,49 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-A documentação oficial do django cobre muito bem sua funcionalidade de relacionamento genérico na cardinalidade `OneToMany` (um para muitos ou 1:N), porém, quando é preciso implementar um relacionamento genérico de `ManyToMany` (muitos para muitos ou N:N) não há muita documentação a respeito.
+Django's official documentation nicely covers its generic relationship functionality when you have to make an **OneToMany** (one-to-many or **1:N**) relation, but when you need to implement a generic **ManyToMany** (many-to-many or **N:N**) relation, there is not much documentation about it.
 
-Recentemente, precisei implementar um N:N com um lado genérico, e encontrei uma biblioteca chamada [django-gm2m](http://django-gm2m.readthedocs.io/en/stable/index.html) que me foi muito útil nesta tarefa, e vou descrever aqui dando dicas de como implementar evitando possíveis dores de cabeça.
+I recently had to implement an **N:N** with a generic side, and discovered a library called [django-gm2m](http://django-gm2m.readthedocs.io/en/stable/index.html) that was very useful to me in this task, and I will describe here giving tips on how to make this implementation and how to avoid possible headaches.
 
-!! As versões em que já implementei esta modelagem foram django 1.8 e 1.9 com python 2.7 e 3.4
+!! This implementation was tested at Django 1.8 and 2.1 with python 2.7 and 3.7 respectively.
 
-## Modelagem
+## Modeling
 
-Para demonstrar esta modelagem iremos usar a ideia de uma biblioteca  digital onde os usuários podem alugar mídias em **audio**, **video** e **texto** e a mesma mídia pode estar alugada para mais de um usuário.
+To demonstrate this modeling we will follow the concept of a digital library were the user profiles can get different formats of media like **audio**, **video** and **text** and the same media can be linked to more than one profile.
 
-Neste caso teremos do lado N os usuários e do lado N genérico as mídias. E seus models no django sem aplicar o relacionamento são:
+In this kind of scenario we have at one side **N profiles** and at the other side **N medias** at different formats and the models on **Django** are:
 
 ```python
 from django.db import models
 
-class Usuario(models.Model):
-    nome = models.CharField(max_length=80)
+class Profile(models.Model):
+    name = models.CharField(max_length=80)
     email = models.EmailField()
 
 class Audio(models.Model):
-    titulo = models.CharField(max_length=60)
-    num_faixas = models.PositiveSmallIntegerField()
+    title = models.CharField(max_length=60)
+    records = models.PositiveSmallIntegerField()
 
 class Video(models.Model):
-    titulo = models.CharField(max_length=60)
-    resolucao_x = models.PositiveSmallIntegerField()
-    resolucao_y = models.PositiveSmallIntegerField()
+    title = models.CharField(max_length=60)
+    resolution_x = models.PositiveSmallIntegerField()
+    resolution_y = models.PositiveSmallIntegerField()
 
-class Texto(models.Model):
-    titulo = models.CharField(max_length=60)
-    num_paginas = models.PositiveSmallIntegerField()
+class Text(models.Model):
+    title = models.CharField(max_length=60)
+    pages = models.PositiveSmallIntegerField()
 ```
 
-## Instalação
+## Installation
 
-Para instalar o django-gm2m rode em sua virtualenv ou ambiente do seu projeto:
+To install `django-gm2m` run at your **virtualenv** or environment of choice:
 
 ```
 $ pip install django-gm2m
 ```
 
-Em seguida certifique-se de ter em seus `INSTALLED_APPS` o `django.contrib.contenttypes` e adicione `gm2m`:
+After that make sure you have at your `INSTALLED_APPS` the `django.contrib.contenttypes` entry and add `gm2m`:
 
 ```python
 INSTALLED_APPS = [
@@ -54,81 +54,66 @@ INSTALLED_APPS = [
 ]
 ```
 
-## Montando o Relacionamento
+## Making the Relation
 
-Para criar o relacionamento insira do lado não genérico o campo `GM2MField`:
+To create the relation add to the not generic side the field `GM2MField`:
 
 ```python
 from gm2m import GM2MField
 
-class Usuario(models.Model):
+class Profile(models.Model):
     ...
-    midias = GM2MField(related_name='usuarios')
+    medias = GM2MField('Video', 'Audio', 'Text', related_name='profiles')
 ```
 
-!!! O parâmetro `related_name` é o nome com o qual você vai acessar a relação inversa, ou seja, acessar os usuários através da mídia. Se você não usar este atributo ele assume o nome padrão que é `<model>_set`.
+!!! The parameter `related_name` will create the reverse relation at the other models so you can access the profiles trough any media instance. If you don't set it to anything it will follow the pattern `<model>_set`. 
 
-Feito isso já estaria pronto e você adicionaria uma mídia a um usuário através de `usuario.midias.add(video)`.
+!!! Another important point are the positional parameters of  `GM2MField` that are the models that you want Django mount the reverse relations automatically. In case of not setting the classes there the field will work but the reverse relation will not be mounted.
 
-Porém, eventualmente será necessário adicionar algum campo no model intermediário, gerando uma migração de dados seguida de alterações no código pois quando você define um model intermediário para uma relação N:N no django, a vinculação através do `.add()` é bloqueada, te obrigando a usar o manager do model.
+Now you are ready to add a media to a profile through `profile.medias.add(video)`.
 
-Para evitar isso, se você possuí planos de incrementar esta modelagem (que é o nosso caso) já crie da forma que será demonstrada, que é passando o parâmetro `through` para o campo e criando o model intermediário, que no nosso caso chamaremos de `Aluguel`:
+Eventually will be needed to add some field on the relation and to do that you will need to implement the relation model. To do that without blocking the `.add()` function you need to set the `through` parameter to define which model that will represent the relation:
 
 ```python
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
-class Usuario(models.Model):
+class Profile(models.Model):
     ...
-    midias = GM2MField('Video', 'Audio', 'Texto', through='Aluguel',
-                       related_name='usuarios')
+    medias = GM2MField(
+        'Video', 'Audio', 'Text', through='ProfileMediaLink', related_name='profiles'
+    )
 
-class Aluguel(models.Model):
-    # campos base da modelagem
-    usuario = models.ForeignKey(Usuario)
-    midia = GenericForeignKey('midia_ct', 'midia_id')
-    midia_ct = models.ForeignKey(ContentType)
-    midia_id = models.PositiveIntegerField()
-    # campos extras
-    alugado_em = models.DateField(auto_now_add=True)
-    vencido_em = models.DateField(null=True)
+class ProfileMediaLink(models.Model):
+    # required fields to mount the relation
+    profile = models.ForeignKey(Profile)
+    media = GenericForeignKey('media_ct', 'media_id')
+    media_ct = models.ForeignKey(ContentType)
+    media_id = models.PositiveIntegerField()
+
+    # extras
+    linked_at = models.DateField(auto_now_add=True)
 ```
 
-Observe que para o lado genérico é utilizado o mesmo padrão de [relacionamento genérico](https://docs.djangoproject.com/en/1.9/ref/contrib/contenttypes/#generic-relations) descrito na documentação oficial do django. Uma `GenericForeignKey` composta de uma `ForeignKey` para `ContentType` e um `PositiveIntegerField` para guardar o id da instância do model referenciado.
+See that for the generic side we use the same pattern from [generic relations](https://docs.djangoproject.com/en/dev/ref/contrib/contenttypes/#generic-relations) described at the official documentation of **Django**.  A `GenericForeignKey` composed by a `ForeignKey` to `ContentType` and a `PositiveIntegerField` to keep the id for the model instance referenced.
 
-Outro ponto importante são os parâmetros posicionais do `GM2MField`, que são os models no qual você quer que o django monte o relacionamento inverso automaticamente,  caso não seja informado a vinculação funciona da mesma forma, porém, o acesso aos usuários através da mídia não será montado.
 
-Para vincular um usuário a uma mídia basta criar e salvar um aluguél da seguinte forma:
+To link a profile to a media you just need to do the following:
 
 ```python
->>> Aluguel(usuario=usuario, midia=video).save()
+>>> ProfileMediaLink(profile=profile, media=video).save()
 ```
 
-## Migrando os Dados
+## Conclusion
 
-No caso de criar este tipo de relacionamento em uma base que já possuí dados, tenha em mente que o a `GenericForeignKey` não estará disponível durante o processo de migração:
-
-```python
-...
-
-def forwards(apps, schema_editor):
-    ContentType = apps.get_model('contenttypes', 'ContentType')
-    Aluguel = apps.get_model('manager', 'Aluguel')
-    video_ct = ContentType.objects.get(model='video')
-
-    ...
-
-    Aluguel(usuario=usuario, midia_ct=video_ct, midia_id=video.pk).save()
-```
-
-## Conclusão
-
-Relacionamento genérico é uma ferramenta muito poderosa e permite alto nível de abstração. Mas modelagens deste tipo costumam a levar a tabelas com um volume de dados muito grande, portanto analise sua arquitetura antes de implementar para ter certeza que esta é a modelagem correta para seu caso antes de implementa-la.
+Generic relation is a powerful tool that allow us to achieve a high abstraction level. However its implementation can scale up at volume and complexity, so think a little before going to this kind of solution right upfront.
 ---
 pub_date: 2016-04-29
 ---
-share_image: django.png
+share_image: /blog/relacionamentos-manytomany-genericos-com-django/django.png
 ---
-summary: Dicas de como resolver este problema com o django
+summary: Tip on how to solve the issue of dealing with generic many to many relations on Django
 ---
-title: Relacionamentos ManyToMany genéricos com Django
+title: Django Generic ManyToMany Relations
+---
+_slug: django-generic-manytomany-relations
