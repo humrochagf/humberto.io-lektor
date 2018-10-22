@@ -4,15 +4,15 @@ body:
 
 **Publicado originalmente em:** [df.python.org.br/blog/github-pages-com-pelican-e-travis-ci](http://df.python.org.br/blog/github-pages-com-pelican-e-travis-ci)
 
-Olá pessoal!
-
 Estou fazendo esta postagem para ajudar quem quer criar seu site no [GitHub Pages](http://pages.github.com) usando [Pelican](http://blog.getpelican.com) para a criação das páginas e o [Travis-CI](https://travis-ci.org) para automatizar a tarefa de geração e publicação.
 
 Este guia assume que o leitor possua conta no [GitHub](http://github.com) e no Travis-CI e tenha familiaridade com o ambiente python. A versão do pelican utilizada ao elaborar esta publicação foi a 3.6.
 
 ## O GitHub Pages
 
-O GitHub Pages é uma funcionalidade gratuita do GitHub para hospedar conteúdo estático (html, css, js e imagens) e publicar através de um sub-domínio de **github.io** ou até mesmo de um domínio customizado. É baseado em seu funcionamento que iremos guiar nossos próximos passos.
+O GitHub Pages é uma funcionalidade gratuita do GitHub para hospedar conteúdo estático (html, css, js e imagens) e publicar através de um sub-domínio de **github.io** ou até mesmo de um domínio customizado.
+
+É baseado em seu funcionamento que iremos guiar nossos próximos passos.
 
 Resumidamente existem duas formas de se criar uma página pelo gh pages:
 
@@ -107,7 +107,7 @@ $ make github
 
 ![Primeira publicação do blog](blog.png)
 
-Para publicar no caso da página de projeto altere o conteúdo da variável `GITHUB_PAGES_BRANCH` do makefile de `master` para `gh-pages`.
+!!! Para publicar no caso da página de projeto altere o conteúdo da variável `GITHUB_PAGES_BRANCH` do makefile de `master` para `gh-pages`.
 
 Agora que o nosso blog está rodando no gh pages vamos automatizar a tarefa de geração das páginas para poder alterar o conteúdo do blog e fazer novas postagens sem precisar estar um uma máquina com o ambiente do pelican configurado.
 
