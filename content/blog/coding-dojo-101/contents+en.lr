@@ -1,134 +1,135 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-Meu primeiro Coding Dojo aconteceu próximo ao meu primeiro contato com a linguagem Python na faculdade. Um colega de classe ([Dirley](https://github.com/ravishi)) tinha acabado de voltar da Python Brasil muito animado, pois tinha visto uma palestra sobre o tema e queria colocar em prática com o pessoal da turma. Aquele dia foi muito divertido e talvez um dos mais importantes momentos que me levaram a mergulhar de cabeça na linguagem Python.
+My first **Coding Dojo** happened right after my first contact with the **Python** language at college. A class mate ([Dirley](https://github.com/ravishi)) that had back from **Python Brasil** conference were discovered the concept of Coding Dojo and was excited to put that to practice. That was a realy fun day and probably the most important moment that started a spark on me to learn more about Python.
 
-Assim como me trouxe para a linguagem e posteriormente para a comunidade, o dojo pode ser uma porta de entrada para muita gente na programação.
+In the same way as that brought me to Python and after to the community, Coding Dojo can be an entry door to a lot of people to programming.
 
-### O que é o Coding Dojo?
+### What is Coding Dojo?
 
-Assim como nas artes marciais o dojo é um ambiente de aprendizado e este é um conceito que deve ser reforçado na cabeça dos participantes.
+Just like on martial arts the dojo is an environment for learning and this concept must be reinforced to everyone that are participating on it.
 
-Além disso é um ambiente no qual é praticado o desenvolvimento orientado a testes ou TDD, a programação pareada e babysteps para resolver um desafio proposto pelo organizador.
+Besides that it's an environment where we apply the concepts of **Test Driven Development** (e.g. **TDD**), **Pair Programming** and **baby steps** to solve a challenge given by the dojo master.
 
-A resolução do desafio não é obrigatória para um dojo de sucesso, o objetivo principal é e sempre será a diversão.
+The challenge resolution isn't an obligation to call it as a successful dojo, the main goal is to be a fun experience to everyone.
 
-Este vídeo ilustra brevemente seu funcionamento:
+This video illustrates briefly how it works (its in Portuguese, but you can turn on the caption auto translation):
 
 <iframe class="embedded-video" src="https://www.youtube.com/embed/vqnwQ3oVM1M" frameborder="0"></iframe>
 
-Um dojo pode ser feito remotamente, mas o presencial é onde a mágica acontece de verdade.
+A dojo can be done remotely, but the face-to-face one is where the magic happens.
 
-### Requisitos
+### Requirements
 
-Para organizar um dojo não é preciso de muita coisa:
+To make a dojo you don't need much:
 
-- Uma sala ou um ambiente com lugar para sentar
-- Somente 1 computador onde os participantes iram programar
-- Uma tela maior ou projetor para a platéia acompanhar a  programação
+- A room or place with some seats
+- Only one computer where people will code
+- A big screen or projector where the crowd can see the coding
 
-### Dinâmica
+### The Coding Dojo Flow
 
-A dinâmica acontece seguindo este fluxo:
+The flow of a coding dojo is pretty much like that:
 
-![dinamica](flow.jpg)
+![the flow of a coding dojo](/blog/coding-dojo-101/flow-en.jpg)
 
-O fluxo é composto de ciclos de 5 a 7 minutos, este tempo é flexível, porém para iniciantes não é recomendado que seja muito extenso para evitar que a pessoa fique travada e para estimular mais pessoas a participar (eu pessoalmente sempre uso 5 minutos).
+It has **cycles of 5 to 7 minutes**, which can be changed, but for beginners it's recommended that the cycle don't be too big to avoid someone getting stuck at some logic and also to invite more people to go to the computer to code (I personally like it to be of 5 minutes).
 
-O piloto é o único que programa e não deve ser interrompido pela platéia durante cada ciclo, onde realiza programação pareada com o copiloto, que é a única pessoa que tem permissão para falar, ajudar e dar opinião.
+The **pilot** is the only one who codes and can't be interrupted by the audience during a cycle, where the **pair programming** is happening with the **co-pilot**, which is the only person allowed to give opinions about the code.
 
-A platéia assiste e não fala até o final de cada ciclo. Algumas pessoas gostam de fazer pequenas pausas quando os testes passam para discutir algo com a platéia, porém quando os testes estiverem falhando não é permitido nenhuma interação da platéia com a dupla no comando.
+The **audience** remains quiet until the end of each cycle. Some people like to make some quick pauses when the **tests are passing** to discuss something with the audience which is fine, but when the **tests are failing** any interaction of the audience with the pilot and co-pilot **is not allowed**.
 
-No intervalo de cada ciclo a dupla explica sua linha de pensamento e o que está fazendo, o piloto vai para a platéia, o copiloto assume a posição de piloto e um voluntário (de preferência quem ainda não programou) assume o copiloto.
+On the break of each cycle both pilot and co-pilot share its toughs of what they are doing with the audience, the pilot goes back to audience, the co-pilot goes to the pilot seat and someone from the audience (preferably who not coded yet)  assumes voluntarily the co-pilot seat.
 
-Isso se repete durante todo o dojo, até a solução do desafio ou até o tempo máximo estipulado que costuma variar de 40 minutos até 1 hora e meia, mais que isso costuma ficar muito cansativo.
+That will repeat all along the dojo until the challenge being solved or the dojo time is up (something around 40 minutes to one hour and a half).
 
-### Programação Pareada
+### Pair Programming
 
-A programação pareada é uma das metodologias utilizadas no dojo e ela consiste nada mais nada menos de duas pessoas trabalhando em conjunto na solução de um problema. Sempre um programando e o outro ajudando com o raciocínio, sugestões e dúvidas.
+**Pair Programming** is a technique used at the dojo and at programming environments to improve team work and share knowledge. It is basically two people working together at a computer to solve a problem by talking about it giving opinions on the implementation, helping to remember how to do something and collaborating as team towards the solution.
 
-### Desenvolvimento Orientado a Testes
+### Test Driven Development
 
-Outra metodologia essencial é o TDD, que consiste em escrever testes antes do código para resolver o seu problema. Se todos os testes estiverem passando você não tem o que programar, portanto é preciso escrever mais um teste que valide algo que ainda não foi implementado para que o teste falhe e lhe obrigue a escrever código para fazer aquele teste passar.
+Another essential technique used on a coding dojo is **Test Driven Development** (e.g. **TDD**). It is about writing tests before the real implementation, you write tests that proves your business logic first, then you write code to make it pass.
+
+When the tests passes it's time to write more tests that covers another aspect of the business logic and so forth.
 
 ### Babysteps
 
-Escrever os testes primeiro é um grande desafio para quem não possuí este costume, as pessoas já querem testar a solução do problema de cara e sair resolvendo tudo o que leva a uma experiência ruim do TDD. Você possuí dificuldade em fazer os testes passarem? Provavelmente você está testando muita coisa em um único teste.
+To write code using **TDD** can be a real challenge for beginners, people try to test the hole business logic at first to comeback to the "real coding".  The problem here is that you get an awful  first impression about **TDD** getting stuck for hours at complex tests.
 
-A ideia do babysteps é andar a "passos de bebê", quebrando seu problema em pequenos passos facilitando a resolução e a compreensão para o copiloto e para a platéia.
+That's why at a dojo we use another technique called **babysteps** where you break your problem at smaller pieces as possible and start to write tests for this tiny bits of logic until reach the big picture. It's easier to your co-pilot and the audience to understand where you are trying to go with the code besides, you only have 5 to 7 minutes to the next pilot assume the control.
 
-### Finalizando
+### Finishing the Coding Dojo
 
-Ao término de um dojo é comum finalizar com um levantamento dos prós (o que foi legal), contras (o que não foi tão legal e poderia melhorar), sugestões (tanto de tema quanto de melhorias para o dojo) e o registro dos participantes.
+At the end of e dojo it's a good practice to get all **pros** and **cons** about that experience and also to get suggestions about what can be done to improve the next dojo session.
 
-Outro costume importante é disponibilizar o que foi produzido publicamente para consulta dos participantes e para a comunidade como um todo.
+All the participants gets their names at the dojo list and the code and the feedback are posted in a public repo to inspire others to make their own dojos.
 
-## Ferramentas
+## Tools used in a Coding Dojo
 
-Para auxiliar na experiência do dojo existem diversas ferramentas, a seguir apresentarei algumas das que eu utilizo:
+To help improve the dojo experience there are some tools that I like to use:
 
-### Editor de texto
+### Text editor
 
-Eu sou um usuário de VIM e adoro utiliza-lo. Porém, a não ser que seja um dojo de VIM não é uma ferramenta muito recomendada pois pode causar frustração nas pessoas que não o utilizam.
+I am a VIM user and I love to use it but, that is not a good tool to present a dojo to beginners, unless you are making a VIM dojo.
 
-No dojo eu gosto de utilizar o [sublime text](https://www.sublimetext.com/), por ser direto ao ponto e oferecer o code highlighting sem ter que configurar nada. Mas caso não possua a licença do sublime exitem outros bons editores gratuitos como o [Atom](https://atom.io/).
+So at the dojo I prefer to use beginner friendly text editors like [Sublime Text](https://www.sublimetext.com/) or [VS Code](https://code.visualstudio.com/) that have code highlighting and autocomplete support without much tweaking.
 
-### Biblioteca de testes
+### Test Library
 
-Na realização dos testes costumo utilizar a biblioteca padrão de testes do Python, a [unittest](https://docs.python.org/3/library/unittest.html) em conjunto com a biblioteca [nose](https://nose.readthedocs.io/en/latest/) para facilitar o processo de rodar os testes.
+On a Python dojo I like to use for tests Python's standard library [unittest](https://docs.python.org/3/library/unittest.html) in conjunction with [nose](https://nose.readthedocs.io/en/latest/) test runner to keep configuration as low as possible and to use Python's batteries included feature.
 
-Para escrever testes com a **unittest** basta criar uma classe que extende `unittest.TestCasse`:
+To write a test with **unittest** you must create a class that extends `unittest.TestCase`:
 
 ```python
 import unittest
 
-def incremento(x):
+def increment(x):
     return x + 1
 
-class MeuTeste(unittest.TestCase):
-    def testa_incremento(self):
-        self.assertEqual(incremento(3), 4)
+class MyTest(unittest.TestCase):
+    def test_increment(self):
+        self.assertEqual(increment(3), 4)
 ```
 
-O exemplo acima implementa um método em `MeuTeste` que verifica se a função `incremento` com o parâmetro `3` retorna o valor esperado `4`.
+The example above creates a test that tests a function called `increment` checking if we call the function passing `3` as parameter we will receive `4` as result.
 
-Rodando os testes com o **nose**:
-
-```
-$ nosetests arquivo.py
-```
-
-Ele buscará em seu arquivo todas classes que extendem `unittest.TestCase` e rodar os testes automaticamente.
-
-### Semáforo
-
-Para saber se os testes estão passando teríamos que ficar rodando o comando de teste em toda alteração no código. Com um semáforo automatizamos este processo além de rodar os testes sempre que o arquivo é salvo disponibilizando um feedback visual bem interessante.
-
-O semáforo que eu gosto de utilizar é o [dose](https://github.com/danilobellini/dose) do [Danilo Bellini](https://twitter.com/danilobellini):
-
-![dose](dose.png)
-
-Ele funciona tanto com python quanto com outras linguagens além de integrar bem com o **nose**, basta rodar o comando:
+To run de tests with **nose** we call:
 
 ```
-$ dose nosetests arquivo.py
+$ nosetests file.py
 ```
 
-Caso tenha problemas no processo de instalação dê uma olhada na postagem que eu fiz sobre [dependências dev python](/blog/tldr-dependencias-dev-python-no-ubuntu/), talvez ela possa lhe ajudar nesta questão.
+It will look into the file for classes that extends `unittest.TestCase` and will run all of its methods that have `test` prefix automatically.
 
-## Concluindo
+### Semaphore
 
-No dojo o mais importante é se divertir e aprender, estas são apenas algumas dicas a partir da minha experiência. Sintam-se a vontade para adaptar, criar e subverter tudo que foi descrito aqui e poste o que funcionou e o que não deu muito certo nos comentários.
+To keep everyone aware about if the tests are passing we will need to run the test command at each change to the code but, we can improve that and run the tests automatically and with a good visual feedback using a tests semaphore called [dose](https://github.com/danilobellini/dose) created by [Danilo Bellini](https://twitter.com/danilobellini):
 
-Para quem estiver curioso sobre os códigos produzidos no dojo ou quiser sugestão de temas dê uma olhada no [repositório do Grupy-DF](https://github.com/grupydf/dojos) que é onde eu e a comunidade Python do Distrito Federal mantemos nosso registro dos dojos passados.
+![dose coding dojo semaphore](/blog/coding-dojo-101/dose.png)
 
-E para quem é da região do DF e ainda não conhece nossa comunidade, estão todos convidados a participar. O site com todos os contatos da comunidade é [df.python.org.br](http://df.python.org.br/).
+It works with python and another languages too.
+
+To run our tests with **nose** just call:
+
+```
+$ dose nosetests file.py
+```
+
+## Conclusion
+
+At the dojo the most important thing is to learn and have fun learning, this was just some tips by my experience at Coding Dojos. Feel free to adapt, create and subvert everything that was written here and go back to tell me what was your experience, things that worked, things that not much and so forth at the comments bellow.
+
+If you want some reference of dojo I have two but they are in Portuguese but with some help with google translator you can get along:
+
+- First is my local community [dojo github repo](https://github.com/grupydf/dojos) where you can find some challenges, how it was solved at the dojo and how its projects looks like.
+- And the second is the [Dojo Puzzle website](http://dojopuzzles.com/) where you can get random dojo challenges.
 ---
 pub_date: 2016-12-02
 ---
-share_image: flow.jpg
+share_image: /blog/coding-dojo-101/flow-en.jpg
 ---
-summary: Descubra o que é e como organizar um Coding Dojo em sua faculdade ou comunidade local
+summary: Discover what is and how to start a Conding Dojo at you college or at you local comunity
 ---
 title: Coding Dojo 101
