@@ -124,6 +124,10 @@ No dojo o mais importante é se divertir e aprender, estas são apenas algumas d
 Para quem estiver curioso sobre os códigos produzidos no dojo ou quiser sugestão de temas dê uma olhada no [repositório do Grupy-DF](https://github.com/grupydf/dojos) que é onde eu e a comunidade Python do Distrito Federal mantemos nosso registro dos dojos passados.
 
 E para quem é da região do DF e ainda não conhece nossa comunidade, estão todos convidados a participar. O site com todos os contatos da comunidade é [df.python.org.br](http://df.python.org.br/).
+
+Uma indicação do [@juanplopes](https://twitter.com/juanplopes) nos comentários da postagem em inglês foi o [repo do DojoRio](https://github.com/dojorio/dojo-centro) que já vem fazendo semanalmente nos últimos 10 anos dojos e tem em seu repositório mais de 400 dojos salvos.
+
+Outra indicação do [@juanplopes](https://twitter.com/juanplopes) é o [semáforo DojoTimer](https://github.com/juanplopes/dojotimer) que além de rodar os testes também gerencia o tempo do dojo e salva os nomes dos pilotos. É uma ferramenta muito legal que com certeza será usada no meu próximo dojo e assim que usar voltarei aqui para escrever uma seção para ele.
 ---
 pub_date: 2016-12-02
 ---

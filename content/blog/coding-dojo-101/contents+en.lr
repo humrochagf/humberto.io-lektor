@@ -121,10 +121,12 @@ $ dose nosetests file.py
 
 At the dojo the most important thing is to learn and have fun learning, this was just some tips by my experience at Coding Dojos. Feel free to adapt, create and subvert everything that was written here and go back to tell me what was your experience, things that worked, things that not much and so forth at the comments bellow.
 
-If you want some reference of dojo I have two but they are in Portuguese but with some help with google translator you can get along:
+If you want some reference of dojo I have some but they are in Portuguese but with some help with google translator you can get along:
 
-- First is my local community [dojo github repo](https://github.com/grupydf/dojos) where you can find some challenges, how it was solved at the dojo and how its projects looks like.
-- And the second is the [Dojo Puzzle website](http://dojopuzzles.com/) where you can get random dojo challenges.
+- My local community [dojo github repo](https://github.com/grupydf/dojos) where you can find some challenges, how it was solved at the dojo and how its projects looks like.
+- The [Dojo Puzzle website](http://dojopuzzles.com/) where you can get random dojo challenges.
+- An indication of [@juanplopes](https://twitter.com/juanplopes) at the comments is the [DojoRio github repo](https://github.com/dojorio/dojo-centro), they have about 10 years of history on making weekly dojos and currently have more than 400 dojo sessions on their repo.
+- Another one from [@juanplopes](https://twitter.com/juanplopes) is the [DojoTimer semaphore](https://github.com/juanplopes/dojotimer) that runs tests and also keeps session time and logs the pilots names, that is an awesome tool and i will definitely use at my next dojo and comeback here to and a section for it.
 ---
 pub_date: 2016-12-02
 ---
