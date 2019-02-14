@@ -1,46 +1,48 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-Desenvolver jogos é um lugar comum dentre muitas das pessoas que começam a estudar programação. Comigo não foi diferente, mesmo não seguindo a carreira de desenvolvimento de jogos esta sempre foi uma área que me chamou a atenção.
+Game development is one of the most common reasons to start to study programming. With me it was not different, despite not following the game developer path, this was always a field that caught my attention.
 
-Estou criando esta série para aprender mais sobre desenvolvimento de jogos utilizando como ferramenta o [pygame](http://www.pygame.org/) e para compartilhar minhas descobertas no processo. Irei desbrava-lo partindo de seus princípios básicos até a criação de um pequeno jogo pong single player.
+I'm creating this series of posts to learn more about the game development basics and to share my discoveries with everyone. I'll use the [pygame](http://www.pygame.org/) library as tool and I will start by the most basic principles of game development until the creation of a single player **pong like** game.
 
-Para isso, usarei programação procedural com o objetivo de atingir com mais facilidade os iniciantes em programação, finalizando com a refatoração para introduzir os conceitos de orientação a objetos para quem ainda não está familiarizado. Esta série foi elaborada tendo como base python 3.
+To reach this goal I'll start with [Structured Programming](https://en.wikipedia.org/wiki/Structured_programming) focused at the basics of **game development** and **pygame** to make it more comfortable for beginners. As the series goes I'll refactor the code to introduce [Object Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming) concepts.
+
+The code used on this series will be running at **Python 3**
 
 ## Pygame
 
-Pygame é um conjunto de módulos python para desenvolvimento de jogos. Ele adiciona funcionalidades em cima do [SDL](https://www.libsdl.org/) que é uma biblioteca multiplataforma que abstrai os componentes multimídia do computador como áudio e vídeo, permitindo o desenvolvimento com maior facilidade de programas que lidam com estes recursos como os jogos.
+**Pygame** is a set of Python modules designed to make games. It uses [SDL](https://www.libsdl.org/) which is a cross-platform library that abstracts the multimedia components of a computer as audio and video and allows an easier development of programs that uses this resources.
 
-### Instalação
+### Installation
 
-Antes de  prosseguir com a instalação você precisa do python instalado no sistema, caso não saiba como proceder veja os guias de instalação para [linux](http://python.org.br/instalacao-linux), [mac](http://python.org.br/instalacao-mac) e [windows](http://python.org.br/instalacao-windows).
+Before starting the installation process you must have python installed at your system. In case you don't have it check this [installation guide](https://docs.python-guide.org/starting/installation/) first.
 
-O processo de instalação do pygame varia de acordo com o sistema operacional utilizado, no [site oficial](http://www.pygame.org/wiki/GettingStarted#Pygame Installation) existem algumas opções de instalação descritas.
+The **pygame** installation itself can be different from an **OS** and can be checked for more details at its [official install guide](http://www.pygame.org/wiki/GettingStarted#Pygame Installation).
 
-Para instalar em sistemas linux baseados em debian você precisa instalar antes os pacotes externos ao python através de:
+But, to install it into a **Debian** based system such as **Ubuntu** you must first make sure its dependencies are installed:
 
 ```
 $ sudo apt-get build-dep python-pygame
 ```
 
-Em seguida, para instalar o pygame rode o seguinte comando em sua virtualenv:
+After that install **pygame** at your **virtualenv**:
 
 ```
 $ pip install pygame
 ```
 
-Ou no próprio sistema:
+Or system wide:
 
 ```
 $ sudo pip install pygame
 ```
 
-### Olá mundo
+### Hello World
 
-Como de costume, ao aprender algo novo em programação vamos escrever um programa mínimo para verificar se está tudo funcionando e pronto para dar continuidade com o aprendizado.
+As usual, when we are learning something new in programming we start as small as possible to check it everything is working properly before proceeding with the studies.
 
-Para isso criaremos um arquivo `hello.py` com o seguinte conteúdo:
+To make that let's create a file called `hello.py` with the following content:
 
 ```python
 # -*- coding: utf-8 -*-
@@ -53,7 +55,7 @@ pygame.init()
 
 screen = pygame.display.set_mode([640, 480])
 
-pygame.display.set_caption('Olá mundo')
+pygame.display.set_caption('Hello World')
 
 screen.fill([0, 0, 0])
 
@@ -62,40 +64,44 @@ pygame.display.flip()
 time.sleep(5)
 ```
 
-Para rodar basta executar:
+Then we just need to run it:
 
 ```
 $ python hello.py
 ```
 
-O resultado será este:
+So the result will be this:
 
-![hello](hello.png)
+![hello](/blog/desbravando-o-pygame-1-conhecendo-a-biblioteca/hello.png)
 
-Ainda está longe de ser um jogo, mas já temos alguns conceitos básicos importantes a serem comentados.
+It's still far from a game, but we can see some basic concepts to be discussed.
 
-As três primeiras linhas são comuns a maioria dos programas escritos em python. Na primeira, definimos o tipo de codificação de caracteres usado pelo interpretador python que no caso foi `utf-8`. Esta linha não é necessária em python 3, mas para que as pessoas que estejam testando em python 2 não tenham problemas com acentuação prefiro manter este costume. As outras duas são a importação da biblioteca padrão `time` e da `pygame` que é onde reside toda a mágica.
+The three first lines are common to the most programs written in python. At the first line, we define the file encoding used by the python interpreter which was **utf-8**. This line is most common at codes written in python 2 that has non **ASCII** characters, if you are using python 3 you probably won't use it because **utf-8** is the default encoding already. The second and third code lines are importing the python libraries that will be responsible for all the magic.
 
-O comando `pygame.init()` inicializa todos os módulos que necessitam de inicialização dentro do pygame.
+The command `pygame.init()` starts all modules that need initialization inside pygame.
 
-Em `pygame.display.set_mode` criamos uma superfície para a nossa janela do tamanho 640x480 seguido de `pygame.display.set_caption` onde atribuímos o texto "Olá mundo" para o título da janela.
+At `pygame.display.set_mode` we create an area for the game window at the size of 640x480 pixels, followed by `pygame.display.set_caption` were we set the value "Hello World" to our window title.
 
-Com a janela criada, utilizamos o comando `fill` da janela `screen` para preenche-la com a cor preta. A cor é passada em formato de lista de três elementos que consistem dos valores do RGB que variam de 0 a 255. Troque os valores desta lista e rode novamente o programa para ver que a cor da janela mudar.
+With the window created we can use the command `fill` from `screen` to fill it with the black color. The colors are passed on a list of three elements that represent the values from RGB. Each value can go from 0 to 255. You can change the values to see by yourself the window changing its color.
 
-O comando `pygame.display.flip` representa um conceito importante do pygame e do desenvolvimento de jogos em geral. Quando usamos comandos para desenhar na tela, na verdade estamos desenhando na superfície criada em de memória que representa uma porção da nossa tela. Para copiar o conteúdo dela e mostra-lo na tela é preciso utilizar o `flip` que é análogo a você fazer o desenho para uma pessoa e ao terminar virar (flip) a superfície em que você estava desenhando para que ela veja. O `flip` atualiza a tela com o conteúdo desenhado na superfície `screen`.
+The command `pygame.display.flip` represents an important concept to pygame and game development itself. When we use commands to draw at the screen, we are actually drawing a  virtual surface at the memory that represents a portion of our actual screen. To make that drawing visible to the user we need to send it to the actual screen, and we do it in these two separate steps to prevent from displaying incomplete frames to the user. It is like drawing at a board and then "flipping it" to people see what we drew.
 
-Para finalizar o comando `sleep` da biblioteca `time` faz o programa esperar 5 segundos antes de finalizar. Caso contrário o programa fecharia antes que você possa ver o resultado.
+And then, to finish the command `sleep` from the library `time` makes the program to wait 5 seconds before finish the execution. Otherwise, the program would close before we see the result.
 
-## Concluindo
+## Conclusion
 
-Com isso, chegamos ao final deste primeiro capítulo apresentando a biblioteca e escrevendo nosso primeiro programa. O código deste capítulo encontra-se disponível neste repositório: [desbravando-pygame](https://github.com/humrochagf/desbravando-pygame/tree/master/01-introducao).
+Now we finish our first chapter by presenting the library and writing our first program. The code of it can be checked at this repositóry: [desbravando-pygame](https://github.com/humrochagf/desbravando-pygame/tree/master/01-introducao).
 
-Fique de olho nos próximos capítulos onde iremos descrever conceitos do desenvolvimento de jogos e sua aplicação dentro do pygame.
+***Note**: The original post is in Portuguese, that's why the name of the repository.
+
+We meet again at the nexts chapters were we will describe the base concepts of game development inside pygame.
 ---
 pub_date: 2017-01-15
 ---
-share_image: hello.png
+share_image: /blog/desbravando-o-pygame-1-conhecendo-a-biblioteca/hello.png
 ---
-summary: Um pouco sobre o que é o pygame, como instalar usar e escrever seu primeiro programa com esta biblioteca
+summary: Make your kick start at pygame, learn how to install, use and write your first program with the pygame library
 ---
-title: Desbravando o pygame 1 - Conhecendo a Biblioteca
+title: Exploring pygame 1 - Discovering the library
+---
+_slug: exploring-pygame-1-discovering-the-library
