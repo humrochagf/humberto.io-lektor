@@ -37,3 +37,8 @@ share_image: django.png
 summary: Poupe muitas horas de debug em seu código com esta dica de como definir o valor default de um campo no Model do Django.
 ---
 title: TLDR: Configurando corretamente o default de um Model Field do Django
+---
+tags:
+
+django
+tldr

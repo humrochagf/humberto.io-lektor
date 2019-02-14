@@ -243,3 +243,7 @@ share_image: rule-one.png
 summary: Demonstrando a implementação do game of life, feita para o dojo.
 ---
 title: Desbravando o pygame 4 - Game of Life
+---
+tags:
+
+pygame

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% from "macros/blog.html" import render_blog_post %}
+
+{% block title %}Blog{% endblock %}
+
+{% block json_ld %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Blog",
+      "author": {
+        "@type": "Person",
+        "name": "{{ config.PROJECT.author }}",
+        "url": "{{ '/sobre'|url(external=True, alt=this.alt) }}"
+      },
+      "blogPost": [
+        {% for child in this.items %}
+          {
+            "@type": "BlogPosting",
+            "headline": "{{ child.title }}",
+            "url": "{{ child|url(external=true, alt=this.alt) }}",
+            "datePublished": "{{ child.pub_date }}",
+          }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="text-center">#{{ this.tag }}</h1>
+
+  {% for child in this.items %}
+    {{ render_blog_post(child, from_index=true) }}
+    <hr>
+  {% endfor %}
+{% endblock %}

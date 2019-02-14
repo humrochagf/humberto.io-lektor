@@ -116,3 +116,7 @@ pub_date: 2016-04-29
 summary: Dicas de como resolver este problema com o django
 ---
 share_image: django.png
+---
+tags:
+
+django

@@ -114,3 +114,7 @@ share_image: game-loop.png
 summary: Saiba mais sobre como funciona o game loop e como implementa-lo no pygame
 ---
 title: Desbravando o pygame 3 - Game Loop
+---
+tags:
+
+pygame

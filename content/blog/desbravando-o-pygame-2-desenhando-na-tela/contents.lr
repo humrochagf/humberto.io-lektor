@@ -94,3 +94,7 @@ pub_date: 2017-02-03
 summary: Aprenda como funciona o plano de desenho no pygame e como desenhar na tela.
 ---
 share_image: plano-de-desenho.jpg
+---
+tags:
+
+pygame

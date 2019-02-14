@@ -51,3 +51,7 @@ pub_date: 2018-08-23
 summary: Leia e escreva caracteres Unicode em arquivos com um código que roda tanto em Python 2 quanto em Python 3
 ---
 share_image: encode-decode.png
+---
+tags:
+
+tldr

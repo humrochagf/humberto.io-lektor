@@ -147,3 +147,7 @@ share_image: pypi.png
 summary: Publique seu primeiro pacote no Python Package Index (PyPi)
 ---
 title: TLDR: Publicando no PyPI
+---
+tags:
+
+tldr

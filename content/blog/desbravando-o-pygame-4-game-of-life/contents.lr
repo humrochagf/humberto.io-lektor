@@ -241,3 +241,7 @@ pub_date: 2017-08-27
 summary: Demonstrando a implementação do game of life, feita para o dojo.
 ---
 share_image: rule-one.png
+---
+tags:
+
+pygame

@@ -117,3 +117,7 @@ summary: Tip on how to solve the issue of dealing with generic many to many rela
 title: Django Generic ManyToMany Relations
 ---
 _slug: django-generic-manytomany-relations
+---
+tags:
+
+django

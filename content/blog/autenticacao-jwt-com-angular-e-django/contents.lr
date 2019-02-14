@@ -512,3 +512,8 @@ pub_date: 2018-04-15
 summary: Implemente um modelo de autenticação JWT com frontend em Angular 6 e um backend de api em Django 2
 ---
 share_image: jwt.jpg
+---
+tags:
+
+django
+angular

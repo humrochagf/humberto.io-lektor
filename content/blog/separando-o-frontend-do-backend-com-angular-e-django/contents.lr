@@ -433,3 +433,8 @@ pub_date: 2018-02-13
 summary: Descubra como separar suas stacks para ganhar independência entre o frontend e o backend utilizando Angular 6 e Django 2
 ---
 share_image: django-startproject.gif
+---
+tags:
+
+django
+angular

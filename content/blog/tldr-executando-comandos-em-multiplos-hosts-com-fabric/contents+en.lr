@@ -99,3 +99,7 @@ share_image: fabric.png
 summary: Descubra utilizar o Fabric para automatizar tarefas repetitivas
 ---
 title: TLDR: Executando comandos em multiplos hosts com Fabric
+---
+tags:
+
+tldr

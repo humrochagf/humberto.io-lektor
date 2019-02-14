@@ -130,3 +130,7 @@ share_image: python-ubuntu.jpg
 summary: Configure as principais dependencias externas de um ambiente de desenvolvimento python no Ubuntu
 ---
 title: TLDR: Dependências Dev Python no Ubuntu
+---
+tags:
+
+tldr
