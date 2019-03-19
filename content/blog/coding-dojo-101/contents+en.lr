@@ -97,7 +97,7 @@ The example above creates a test that tests a function called `increment` checki
 
 To run de tests with **nose** we call:
 
-```
+```console
 $ nosetests file.py
 ```
 
@@ -113,7 +113,7 @@ It works with python and another languages too.
 
 To run our tests with **nose** just call:
 
-```
+```console
 $ dose nosetests file.py
 ```
 

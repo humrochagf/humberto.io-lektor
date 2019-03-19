@@ -228,7 +228,7 @@ Para demonstrar o simulador em funcionamento utilizei o [glider](https://goo.gl/
 
 ![glider](glider.gif)
 
-!!!  Obs.: Note que existem alguns padrões comentados no código do simulador, você pode remover o comentário de qualquer um deles para ver padrões diferentes em ação.
+!  Obs.: Note que existem alguns padrões comentados no código do simulador, você pode remover o comentário de qualquer um deles para ver padrões diferentes em ação.
 
 ## Conclusão
 

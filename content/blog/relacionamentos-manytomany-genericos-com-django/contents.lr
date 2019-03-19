@@ -39,7 +39,7 @@ class Texto(models.Model):
 
 Para instalar o django-gm2m rode em sua virtualenv ou ambiente do seu projeto:
 
-```
+```console
 $ pip install django-gm2m
 ```
 
@@ -68,9 +68,9 @@ class Usuario(models.Model):
     )
 ```
 
-!!! O parâmetro `related_name` é o nome com o qual você vai acessar a relação inversa, ou seja, acessar os usuários através da mídia. Se você não usar este atributo ele assume o nome padrão que é `<model>_set`.
+! O parâmetro `related_name` é o nome com o qual você vai acessar a relação inversa, ou seja, acessar os usuários através da mídia. Se você não usar este atributo ele assume o nome padrão que é `<model>_set`.
 
-!!! Outro ponto importante são os parâmetros posicionais do `GM2MField`, que são os models no qual você quer que o django monte o relacionamento inverso automaticamente,  caso não seja informado a vinculação funciona da mesma forma, porém, o acesso aos usuários através da mídia não será montado.
+! Outro ponto importante são os parâmetros posicionais do `GM2MField`, que são os models no qual você quer que o django monte o relacionamento inverso automaticamente,  caso não seja informado a vinculação funciona da mesma forma, porém, o acesso aos usuários através da mídia não será montado.
 
 Feito isso já estaria pronto e você adicionaria uma mídia a um usuário através de `usuario.midias.add(video)`.
 

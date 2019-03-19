@@ -95,7 +95,7 @@ O exemplo acima implementa um método em `MeuTeste` que verifica se a função `
 
 Rodando os testes com o **nose**:
 
-```
+```console
 $ nosetests arquivo.py
 ```
 
@@ -111,7 +111,7 @@ O semáforo que eu gosto de utilizar é o [dose](https://github.com/danilobellin
 
 Ele funciona tanto com python quanto com outras linguagens além de integrar bem com o **nose**, basta rodar o comando:
 
-```
+```console
 $ dose nosetests arquivo.py
 ```
 

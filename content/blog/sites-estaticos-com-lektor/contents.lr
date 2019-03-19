@@ -4,7 +4,7 @@ body:
 
 Faz pelo menos 4 anos que eu ensaio montar um blog, e neste período já criei alguns para a comunidade,  mas quando chegava a hora de criar o meu nunca conseguia chegar ao ponto de publicar.
 
-Usando ferramentas como o WordPress o problema era a dificuldade de customização e a quantidade de ferramentas e padrões que eu nunca iria usar, além é claro, de não ser **Python**. 
+Usando ferramentas como o WordPress o problema era a dificuldade de customização e a quantidade de ferramentas e padrões que eu nunca iria usar, além é claro, de não ser **Python**.
 
 Em seguida com o [GitHub Pages](https://pages.github.com) eu descobri o [Pelican](http://blog.getpelican.com) por indicação do [Magnun Leno](http://mindbending.org/pt) e comecei a fazer muita coisa com ele, mas da mesma forma com que eu ganhei em liberdade de customização, o processo autoral era o mesmo do desenvolvimento o que em um primeiro momento parece legal não é mesmo? Pois é, mas com o tempo você percebe que isso acaba virando um problema quando você para a escrita de uma postagem para arrumar um **bug** ou melhorar alguma coisa no layout e lá vamos nós novamente...
 
@@ -29,21 +29,21 @@ Como descrito no próprio [site](https://www.getlektor.com/docs/what) ele bebeu 
 
 O Lektor roda em Python 2.7 ou superior e depende das bibliotecas `python-dev`, `libssl-dev`, `libffi-dev` e `imagemagick` que você pode facilmente instalar rodando:
 
-```
+```console
 $ sudo apt-get install python-dev libssl-dev libffi-dev imagemagick
 ```
 
-!!! No Mac você pode dar uma olhada nos pacotes do **brew**, no Windows o **chocolatey** en os outros gerenciadores de pacotes das outras distribuições Linux, ambos possuem suas versões das bibliotecas citadas
+! No Mac você pode dar uma olhada nos pacotes do **brew**, no Windows o **chocolatey** en os outros gerenciadores de pacotes das outras distribuições Linux, ambos possuem suas versões das bibliotecas citadas
 
 A instalação do Lektor é bem direta:
 
-```
+```console
 $ curl -sf https://www.getlektor.com/install.sh | sh
 ```
 
 Este comando instala diretamente no sistema, se você prefere instalar em sua virtualenv:
 
-```
+```console
 $ virtualenv venv
 $ . venv/bin/activate
 $ pip install Lektor
@@ -51,7 +51,7 @@ $ pip install Lektor
 
 Esta forma é desencorajada pelos desenvolvedores pois o lektor gerencia virtualenvs internamente para instalação de seus plugins, portanto caso seja desenvolvedor e quer ter mais controle sobre o lektor instale a versão de desenvolvimento e esteja pronto para sujar as mãos quando for preciso, e quem sabe até contribuir com o desenvolvimento do lektor:
 
-```
+```console
 $ git clone https://github.com/lektor/lektor
 $ cd lektor
 $ make build-js
@@ -66,7 +66,7 @@ $ pip install --editable .
 
 Após a instalação para criar o seu site basta utilizar o comando de criação de projeto:
 
-```
+```console
 $ lektor quickstart
 ```
 
@@ -76,7 +76,7 @@ Ele irá te fazer algumas perguntas e criar um projeto com o nome que você info
 
 Esta é a estrutura básica de um site gerado pelo lektor:
 
-```
+```console
 meusite
 ├── assets/
 ├── content/
@@ -95,7 +95,7 @@ meusite
 
 Para rodar o site em sua máquina basta entrar no diretório criado e iniciar o servidor local:
 
-```
+```console
 $ cd meusite
 $ lektor server
 ```
@@ -114,7 +114,7 @@ Para acessar o admin clique na imagem de lápis no canto superior direito da pá
 
 Exitem duas maneiras de se fazer o deploy do site construído com o lektor, a manual, que é basicamente rodar o comando `build` e copiar manualmente os arquivos para o servidor:
 
-```
+```console
 $ lektor build --output-path destino
 ```
 
@@ -125,7 +125,7 @@ E a forma automática, que pode ser feita (neste caso para o GitHub Pages) adici
 target = ghpages://usuario/repositorio
 ```
 
-!!!! O deploy faz um force push na branch `master` ou `gh-pages` dependendo do tipo de repositório, portanto, cuidado para não sobrescrever os dados de seu repositório. Mantenha o código fonte em uma branch separada, você pode dar uma conferida no [meu repositório](https://github.com/humrochagf/humrochagf.github.io) para ter uma ideia.
+!!! O deploy faz um force push na branch `master` ou `gh-pages` dependendo do tipo de repositório, portanto, cuidado para não sobrescrever os dados de seu repositório. Mantenha o código fonte em uma branch separada, você pode dar uma conferida no [meu repositório](https://github.com/humrochagf/humrochagf.github.io) para ter uma ideia.
 
 No caso de hospedagem cloud:
 
@@ -137,7 +137,7 @@ target = rsync://usuario@servidor.dominio.com.br/srv/meusite/www
 
 E rodando em seguida o comando:
 
-```
+```console
 $ lektor deploy
 ```
 

@@ -44,19 +44,19 @@ Os `classifiers` servem para ajudar usuários a encontrar seu pacote na busca e 
 
 Antes de publicar o pacote é preciso empacotá-lo e a forma mais simples é fazendo o empacotamento do código fonte rodando:
 
-```shell
+```console
 $ python setup.py sdist
 ```
 
-!!! Este modelo de empacotamento requer que o pip rode uma etapa de montagem após a instalação
+! Este modelo de empacotamento requer que o pip rode uma etapa de montagem após a instalação
 
 Para já empacotar o código montado rode:
 
-```shell
+```console
 $ python setup.py bdist_wheel
 ```
 
-!!! Este comando empacota a versão montada para a versão do python em que você rodou o comando, para montar para python 2 e 3 rode duas vezes o comando (uma para cada versão do python)
+! Este comando empacota a versão montada para a versão do python em que você rodou o comando, para montar para python 2 e 3 rode duas vezes o comando (uma para cada versão do python)
 
 Com isso você terá tudo empacotado e pronto para a publicação na pasta `dist/`.
 
@@ -64,13 +64,13 @@ Com isso você terá tudo empacotado e pronto para a publicação na pasta `dist
 
 Para publicar é preciso instalar o [twine](https://github.com/pypa/twine) que é uma ferramenta para publicar pacotes no PyPI:
 
-```shell
+```console
 $ pip install twine
 ```
 
 Em seguida basta rodar o seguinte comando:
 
-```shell
+```console
 $ twine upload --username usuario-no-pypi dist/meu-pacote-1.0.0.tar.gz dist/meu-pacote-1.0.0-py2-none-any.whl dist/meu-pacote-1.0.0-py3-none-any.whl
 ```
 
@@ -116,11 +116,11 @@ Quem publica código no [github](https://github.com) costuma escrever o arquivo 
 
 Para converter sua documentação para a publicação você pode usar o pacote [pandoc](https://pandoc.org/).
 
-```shell
+```console
 $ pip install pypandoc
 ```
 
-!!! O pandoc precisa estar instalado no sistema para ser usado com pypandoc. Veja a [documentação](https://pandoc.org/installing.html)
+!! O pandoc precisa estar instalado no sistema para ser usado com pypandoc. Veja a [documentação](https://pandoc.org/installing.html)
 
 Adicione este código no seu `setup.py` para realizar a conversão:
 
@@ -138,7 +138,7 @@ setup(
 )
 ```
 
-!!! É importante colocar a conversão dentro do **readme** dentro de um bloco `try ... except` para não demandar a instalação do pypandoc nos usuários que vão usar o seu pacote.
+!! É importante colocar a conversão dentro do **readme** dentro de um bloco `try ... except` para não demandar a instalação do pypandoc nos usuários que vão usar o seu pacote.
 ---
 pub_date: 2018-03-05
 ---

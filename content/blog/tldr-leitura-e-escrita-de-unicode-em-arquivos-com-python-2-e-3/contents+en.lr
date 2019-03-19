@@ -6,13 +6,13 @@ Conversando no Telegram com o [Mário Sérgio](https://twitter.com/queirozMario2
 
 No Python 2 não existe uma distinção entre **byte** e **string**, o que faz com que códigos que lidam com entrada e saída sem o devido cuidado com codificação e decodificação funcionem sem nenhum erro aparente. Mas quando ele acontece deixa muita gente perdida com mensagens deste tipo:
 
-```
+```console
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 1: ordinal not in range(128)
 ```
 
 Mudando para Python 3, onde **byte** e **string** são tipos distintos, o código normalmente para de funcionar ou funciona de forma estranha, misturando o texto com a representação textual da codificação:
 
-```
+```python
 'ol\xc3\xa1'
 ```
 
@@ -44,7 +44,7 @@ O resultado é um código que roda tanto em Python 2 quanto em Python 3:
 
 ![rodando o código](unicode-file.png)
 
-!!! Esta dica também funciona para outros padrões de codificação como `latin-1` por exemplo
+!! Esta dica também funciona para outros padrões de codificação como `latin-1` por exemplo
 ---
 pub_date: 2018-08-23
 ---

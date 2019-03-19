@@ -34,7 +34,7 @@ target = rsync://humrochagf@webapp710.ip-50-116-32-253.cloudezapp.io/srv/humbert
 
 [packages]
 lektor-disqus-comments = 0.4
-lektor-markdown-highlighter = 0.3
+lektor-markdown-highlighter = 0.3.1
 lektor-atom = 0.3
 lektor-markdown-admonition = 0.3
 lektor-creative-commons = 0.6.0

@@ -1,5 +1,7 @@
 _hidden: yes
 ---
+title: Autenticação JWT com Angular e Django
+---
 body:
 
 Quase todo sistema que opera na internet e armazena dados de usuário hoje em dia depende de uma camada de autenticação. E com o crescimento do modelo de API`s e separação do **frontend** do **backend** a implementação desta camada cresceu em complexidade.
@@ -11,7 +13,7 @@ Os repositórios com o código desta postagem são:
 - **Backend**: [https://github.com/humrochagf/post-jwt-backend](https://github.com/humrochagf/post-jwt-backend)
 - **Frontend**: [https://github.com/humrochagf/post-jwt-frontend](https://github.com/humrochagf/post-jwt-frontend)
 
-!!! **UPDATE (18/09/2018)** Postagem atualizada e testada para utilizar Angular 6
+!! **UPDATE (18/09/2018)** Postagem atualizada e testada para utilizar Angular 6
 
 ## Autenticação
 
@@ -27,7 +29,7 @@ Para nos auxiliar com estes problemas utilizaremos o **JWT**.
 
 **JWT** ou **JSON Web Token** nada mais é que um objeto **JSON** definido na [RFC 7519](https://tools.ietf.org/html/rfc7519) para realizar transferência informação de permissões de acesso entre duas pontas. Ele é codificado e assinado e possuí o seguinte formato:
 
-```
+```text
 header.payload.signature
 ```
 
@@ -52,7 +54,7 @@ No **payload** (carga) ficam os dados do usuário e alguns metadados como a expi
 
 Finalmente na **signature** (assinatura) os dados de **header** e **payload** codificados em **base 64** e unidos por `.` (ponto) para serem assinados usando o algoritmo definido no **header**:
 
-```
+```text
 HMACSHA256(
   base64UrlEncode(header) + "." +
   base64UrlEncode(payload),
@@ -64,13 +66,13 @@ Com a assinatura é possível verificar se o **token** não foi alterado no cami
 
 Estes três blocos unidos por `.` (ponto) cada um codificado em **base 64** compõem o **JWT Token**:
 
-```
+```text
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.PcmVIPbcZl9j7qFzXRAeSyhtuBnHQNMuLHsaG5l804A
 ```
 
 Após confirmar os dados de usuário e receber o **JWT** ele deve ser armazenado, normalmente em **local storage** para ser utilizado nas requisições autenticadas usando o esquema de cabeçalho `JWT`:
 
-```
+```text
 Authorization: JWT <token>
 ```
 
@@ -86,7 +88,7 @@ E para isso, utilizaremos como base a aplicação desenvolvida na postagem anter
 
 A primeira coisa que faremos é instalar o pacote `djangorestframework-jwt`:
 
-```shell
+```console
 $ pip install djangorestframework-jwt
 ```
 Em seguida iremos adicionar suas configurações no `settings.py`:
@@ -294,7 +296,7 @@ export class AppModule { }
 
 Para auxiliar na implementação do **frontend** utilizaremos duas bibliotecas:
 
-```shell
+```console
 $ npm install -s moment
 $ npm install -s jwt-decode
 $ npm install -s @types/jwt-decode
@@ -509,11 +511,9 @@ Já existem bibliotecas no Angular que implementam a autenticação usando **JWT
 ---
 pub_date: 2018-04-15
 ---
-share_image: jwt.jpg
----
 summary: Implemente um modelo de autenticação JWT com frontend em Angular 6 e um backend de api em Django 2
 ---
-title: Autenticação JWT com Angular e Django
+share_image: jwt.jpg
 ---
 tags:
 

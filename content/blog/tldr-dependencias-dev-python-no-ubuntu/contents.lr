@@ -10,7 +10,7 @@ Algumas bibliotecas do python como a que usamos para conversar um banco **SQLite
 
 Quando isso acontece, recebemos erros como este:
 
-```shell
+```console
 ImproperlyConfigured: Error loading either pysqlite2 or sqlite3 modules (tried in that order): No module named _sqlite3
 ```
 
@@ -20,7 +20,7 @@ Para resolver estes problemas basta instalar esta dependência externa que norma
 
 Para não sofrer com este problema, após instalar o sistema operacional e antes de preparar o ambiente de desenvolvimento eu já instalo as principais dependências que costumo utilizar:
 
-```shell
+```console
 $ sudo apt-get install dpkg-dev \
                        build-essential \
                        python-dev \
@@ -48,67 +48,67 @@ $ sudo apt-get install dpkg-dev \
                        libxtst-dev
 ```
 
-!!!! Este comando foi testado no **Ubuntu 18.04**, os nomes dos pacotes podem mudar de uma versão para outra.
+!! Este comando foi testado no **Ubuntu 18.04**, os nomes dos pacotes podem mudar de uma versão para outra.
 
 ## Bônus
 
 Para quem tiver curiosidade ou quer instalar somente alguns dos itens da lista quebrei o comando acima descrevendo cada um:
 
-```shell
+```console
 $ sudo apt-get install dpkg-dev build-essential
 ```
 
 Instala os compiladores de C e C++ bem como o comando make essenciais para compilar as dependências em cpython.
 
-```shell
+```console
 $ sudo apt-get install python-dev python3-dev
 ```
 
 Instala os headers e bibliotecas estáticas do python 2 e 3 que são usadas para montar extensões  compiladas da linguagem.
 
-```shell
+```console
 $ sudo apt-get install libncursesw5-dev
 ```
 
 Biblioteca usada em pacotes que lidam com interface de terminal como por exemplo o [visidata](https://github.com/saulpw/visidata).
 
-```shell
+```console
 $ sudo apt-get install libsqlite3-dev libreadline-dev libbz2-dev
 ```
 
 Bibliotecas usadas para trabalhar com bancos de dados [SQLite](https://www.sqlite.org/index.html).
 
-```shell
+```console
 $ sudo apt-get install libffi-dev libssl-dev
 ```
 
 Bibliotecas usadas em pacotes que implementam **OpenSSL**.
 
-```shell
+```console
 $ sudo apt-get install libgdbm-dev
 ```
 
 Base para boa parte dos pacotes que lidam com **banco de dados**.
 
-```shell
+```console
 $ sudo apt-get install zlib1g-dev libjpeg-dev libtiff-dev
 ```
 
 Dependências externas de pacotes que tratam imagem como o [Pillow](https://github.com/python-pillow/Pillow)
 
-```shell
+```console
 $ sudo apt-get install libpq-dev
 ```
 
 Dependência do [psycopg2](https://github.com/psycopg/psycopg2) para lidar com bancos **PostgreSQL**.
 
-```shell
+```console
 $ sudo apt-get install libxml2-dev libxslt1-dev
 ```
 
 Bibliotecas usadas para tratar xml como o pacote [lxml](https://github.com/lxml/lxml)
 
-```shell
+```console
 $ sudo apt-get install dpkg-dev \
                        build-essential \
                        libjpeg-dev \
@@ -123,7 +123,7 @@ $ sudo apt-get install dpkg-dev \
                        libxtst-dev
 ```
 
-Este conjunto em específico é utilizado para instalar pacotes de gerenciamento de janelas em interface gráfica como o [wxPhoenix](https://github.com/wxWidgets/Phoenix). Em uma postagem anterior em que eu falei sobre [como organizar um dojo](/blog/coding-dojo-101/) foi citado um semáforo para TDD chamado [dose](https://github.com/danilobellini/dose) que depende do wxPhoenix para rodar em ambientes python 3. 
+Este conjunto em específico é utilizado para instalar pacotes de gerenciamento de janelas em interface gráfica como o [wxPhoenix](https://github.com/wxWidgets/Phoenix). Em uma postagem anterior em que eu falei sobre [como organizar um dojo](/blog/coding-dojo-101/) foi citado um semáforo para TDD chamado [dose](https://github.com/danilobellini/dose) que depende do wxPhoenix para rodar em ambientes python 3.
 
 Instalando estas dependências é possível realizar sua instalação sem problemas.
 ---

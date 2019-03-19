@@ -10,13 +10,13 @@ Pois bem, para automatizar tarefas repetitivas tal como o tão falado processo d
 
 Para instalar o Fabric em python 2 rode:
 
-```shell
+```console
 $ pip install Fabric
 ```
 
 Ou para python 3:
 
-```shell
+```console
 $ pip install Fabric3
 ```
 
@@ -32,13 +32,13 @@ def disk_usage():
     run('df -h')
 ```
 
-!!! O arquivo deve se chamar `fabfile.py` pois o Fabric busca automaticamente por este arquivo quando rodamos o comando
+!! O arquivo deve se chamar `fabfile.py` pois o Fabric busca automaticamente por este arquivo quando rodamos o comando
 
-!! O Fabric faz uma conexão ssh com os servidores, portanto tenha uma chave ssh configurada  em sua máquina e liberada no allowed_hosts dos usuários dos servidores de destino
+!!! O Fabric faz uma conexão ssh com os servidores, portanto tenha uma chave ssh configurada  em sua máquina e liberada no allowed_hosts dos usuários dos servidores de destino
 
 Com o arquivo pronto é só rodar o comando definido no aquivo:
 
-```shell
+```console
 $ fab disk_usage
 [user1@server1] Executing task 'disk_usage'
 [user1@server1] run: df -h
@@ -70,11 +70,11 @@ Done.
 
 O Fabric roda a tarefa em sequência na lista de hosts informada. Caso queira rodar os comandos em paralelo é só passar a flag `-P` para o comando:
 
-```shell
+```console
 $ fab disk_usage -P
 ```
 
-!! Lembrando que ao rodar a tarefa em paralelo você perde o controle da ordem de execução da sua lista de servidores
+!!! Lembrando que ao rodar a tarefa em paralelo você perde o controle da ordem de execução da sua lista de servidores
 
 ## Bônus
 
@@ -82,13 +82,13 @@ Dica do [@luizirber](https://twitter.com/luizirber) no twitter.
 
 O Fabric possuí um padrão de comando muito legal que nos permite executar o exemplo acima totalmente da linha de comando que é:
 
-```shell
+```console
 $ fab [options] -- [shell command]
 ```
 
 O comando ficaria desta forma:
 
-```shell
+```console
 $ fab -H 'user1@server1, user2@server2' -- df -h
 ```
 ---

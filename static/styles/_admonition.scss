@@ -7,7 +7,7 @@
 }
 
 @each $type, $theme in (
-  "note": "success",
+  "note": "primary",
   "info": "info",
   "tip": "warning",
   "warning": "danger",

@@ -8,7 +8,7 @@ I'm making this post to help everyone who want to create their first website at 
 
 This guide assumes that the reader have an account at  [GitHub](http://github.com) and Travis-CI and have familiarity with the Python environment. The version of Pelican used at this post was 3.6.
 
-!!! The images have a little of Portuguese due to the original language publication
+!! The images have a little of Portuguese due to the original language publication
 
 ## GitHub Pages
 
@@ -40,13 +40,13 @@ Pelican is a static website generator for blog creation. Here I will demonstrate
 
 To install pelican run the command:
 
-```
+```console
 $ pip install pelican==3.6
 ```
 
 To create a pelican project run the command:
 
-```
+```console
 $ mkdir humrochagf.github.io
 $ cd humrochagf.github.io
 $ pelican-quickstart
@@ -80,7 +80,7 @@ Done. Your new project is available at /path/to/humrochagf.github.io
 
 Start a repository at this directory and push the data to the **pelican branch**:
 
-```
+```console
 $ git init
 $ git remote add origin git@github.com:humrochagf/humrochagf.github.io.git
 $ git checkout -b pelican
@@ -91,7 +91,7 @@ $ git push origin pelican
 
 To publish the content at the **master bransh** we need the `ghp-import` module:
 
-```
+```console
 $ pip install ghp-import
 $ echo 'pelican==3.6\nghp-import' > requirements.txt
 $ git add requirements.txt
@@ -101,13 +101,13 @@ $ git push origin pelican
 
 Publishing the blog:
 
-```
+```console
 $ make github
 ```
 
 ![First post at pelican blog](/blog/github-pages-com-pelican-e-travis-ci/blog.png)
 
-!!! At the project page case change the content of the variable `GITHUB_PAGES_BRANCH` on the makefile from `master` to `gh-pages`.
+! At the project page case change the content of the variable `GITHUB_PAGES_BRANCH` on the makefile from `master` to `gh-pages`.
 
 Now that we have the blog up and running at gh pages lets automate the task of static pages generation to update the blog content with new posts without needing to be on a machine with the pelican environment installed.
 
@@ -125,7 +125,7 @@ After that go to the repository settings at Travis-CI and disable the **Build pu
 
 The next step is to create a **Deploy Key** to enable Travis-CI to publish the content at GitHub after finishing the build and to do that you must create a **ssh key** at the root of your local repository:
 
-```
+```console
 $ ssh-keygen -f publish-key
 Generating public/private rsa key pair.
 Enter passphrase (empty for no passphrase):
@@ -136,7 +136,7 @@ Your public key has been saved in publish-key.pub.
 
 With the key let's cipher it using a tool called [Travis-CLI](https://github.com/travis-ci/travis.rb) (certifique-se de que esteja instalada em sua máquina)  to publish safely at the repository without exposing the content of the **private key**:
 
-```
+```console
 $ travis encrypt-file publish-key
 Detected repository as humrochagf/humrochagf.github.io, is this correct? |yes| yes
 encrypting publish-key for humrochagf/humrochagf.github.io
@@ -158,13 +158,13 @@ Like sad before at the command output we can add an option `--add` to add the co
 
 In our case we will create the file:
 
-```
+```console
 $ touch .travis.yml
 ```
 
 And add the following content:
 
-```yaml    
+```yaml
 sudo: false
 branches:
   only:
@@ -173,7 +173,7 @@ language: python
 before_install:
 # change the line bellow with the output of the command:
 # travis encrypt-file publish-key
-# but keep the final part: 
+# but keep the final part:
 # -out ~/.ssh/publish-key -d
 - openssl aes-256-cbc -K $encrypted_591fe46d4973_key -iv $encrypted_591fe46d4973_iv -in publish-key.enc -out ~/.ssh/publish-key -d
 - chmod u=rw,og= ~/.ssh/publish-key
@@ -194,7 +194,7 @@ script:
 
 Remove the non encrypted private key to prevent us from publishing it at the repo:
 
-```
+```console
 $ rm publish-key
 ```
 
@@ -202,7 +202,7 @@ $ rm publish-key
 
 Now we add the files to the repo:
 
-```    
+```console
 $ git add .travis.yml publish-key.enc
 $ git commit -m 'Adding Travis-CI files'
 $ git push origin pelican

@@ -4,14 +4,14 @@ body:
 
 Esses dias tive a oportunidade de encarar um desafio de frontend lá na [Configr](https://configr.com/?utm_source=humberto&utm_campaign=post-utm&utm_content=link-intro) que consistiu em melhorar a rastreabilidade dos usuários novos (os famosos leads da galera do marketing) que entram no no sistema. Mais especificamente a rastreabilidade dos [parâmetros de utm](https://en.wikipedia.org/wiki/UTM_parameters) das campanhas de marketing da empresa.
 
-!!! **TLDR**: Eu criei uma biblioteca **javascript** chamada **utmkeeper** que faz a mágica para você e está disponível em [https://github.com/humrochagf/utmkeeper](https://github.com/humrochagf/utmkeeper)
+!! **TLDR**: Eu criei uma biblioteca **javascript** chamada **utmkeeper** que faz a mágica para você e está disponível em [https://github.com/humrochagf/utmkeeper](https://github.com/humrochagf/utmkeeper)
 
-!!! **UPDATE (21/09/2018)** Postagem atualizada para a cobrir a versão **0.3** do **utmkeeper**
+!! **UPDATE (21/09/2018)** Postagem atualizada para a cobrir a versão **0.3** do **utmkeeper**
 
 ## UTM
 
 O termo **UTM** surgiu do **Urchin** que era um software de Analytics feito para analisar a efetividade de campanhas de marketing e utilizava os parâmetros do **U**rchin **T**raffic **M**odule para realizar esta tarefa. Com o tempo o **Google** passou a dar suporte a estes parâmetros, em seguida o **Facebook** e atualmente estes parâmetros são comumente utilizados para rastrear a efetividade de campanhas de marketing na internet popularmente conhecidos como **as utm tags**, ou simplesmente, **as utms**.
- 
+
 Elas funcionam com uma mecânica simples, você as codifica como parâmetro de **url** (aquelas coisas que vem depois do ponto de interrogação no link) utilizando o prefixo `utm_` seguido do tipo, que por padrão são cinco:
 
 - `utm_source`: indica a origem de onde veio o lead
@@ -43,7 +43,7 @@ Com ele eu consigo propagar as **utms** na navegação do usuário mesmo que ela
 
 Para usar o **utmkeeper** basta baixar o pacote pelo repositório [https://github.com/humrochagf/utmkeeper/releases](https://github.com/humrochagf/utmkeeper/releases)  ou instalar através do npm:
 
-```bash
+```console
 npm install utmkeeper
 ```
 
@@ -95,7 +95,7 @@ A facilidade de aplicação do **utmkeeper** ajudou bastante no processo de impl
 
 ## Jabá
 
-Vou aproveitar o contexto desta postagem para falar um pouquinho da [Configr](https://configr.com/?utm_source=humberto&utm_campaign=post-utm&utm_content=link-jaba). Nós trabalhamos diariamente para trazer o poder da hospedagem em Cloud para todos aqueles que utilizam a internet como ferramenta de trabalho e não necessariamente possuem conhecimento técnico ou uma equipe que gerencie sua infraestrutura. 
+Vou aproveitar o contexto desta postagem para falar um pouquinho da [Configr](https://configr.com/?utm_source=humberto&utm_campaign=post-utm&utm_content=link-jaba). Nós trabalhamos diariamente para trazer o poder da hospedagem em Cloud para todos aqueles que utilizam a internet como ferramenta de trabalho e não necessariamente possuem conhecimento técnico ou uma equipe que gerencie sua infraestrutura.
 
 Por isso estamos sempre em busca de profissionais competentes e apaixonados pelo que fazem para integrar a nossa equipe. Se você mora em Brasília e tem interesse em fazer parte do nosso time mande seu currículo para a gente em **jobs@configr.com**
 

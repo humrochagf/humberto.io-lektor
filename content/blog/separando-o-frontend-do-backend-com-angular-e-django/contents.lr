@@ -17,7 +17,7 @@ Os repositórios com o código desta postagem são:
 - **Backend**: [https://github.com/humrochagf/post-back-do-front-backend](https://github.com/humrochagf/post-back-do-front-backend)
 - **Frontend**: [https://github.com/humrochagf/post-back-do-front-frontend](https://github.com/humrochagf/post-back-do-front-frontend)
 
-!!! **UPDATE (22/08/2018)** Postagem atualizada e testada para utilizar Angular 6
+!! **UPDATE (22/08/2018)** Postagem atualizada e testada para utilizar Angular 6
 
 ## Separando as Responsabilidades
 
@@ -39,7 +39,7 @@ Definidas as responsabilidades vamos implementar nossa aplicação, partindo do 
 
 Começamos com a instalação do django seguido da criação do projeto:
 
-```shell
+```console
 $ pip install django
 $ django-admin startproject backend
 $ cd backend
@@ -53,7 +53,7 @@ Ao iniciar o navegador em [localhost:8000](http://localhost:8000) veremos a nova
 
 O próximo passo é instalar o Django Rest Framework, para montar a api do nosso backend:
 
-```shell
+```console
 $ pip install djangorestframework
 ```
 
@@ -83,7 +83,7 @@ Agora podemos visualizar a tela de login acessando [localhost:8000/api-auth/logi
 
 Com isso, daremos inicio a nossa aplicação de lista de compras:
 
-```shell
+```console
 python manage.py startapp shopping
 ```
 
@@ -155,7 +155,7 @@ urlpatterns = [
 
 Para finalizar criamos o arquivo de migração do banco de dados seguido da migração do mesmo:
 
-```shell
+```console
 $ python manage.py makemigrations
 $ python manage.py migrate
 ```
@@ -169,7 +169,7 @@ E voilá, nosso backend está funcionando:
 
 Para iniciar a implementação do frontend vamos instalar a ferramenta de linha de comando do **Angular** e criar um novo projeto:
 
-```shell
+```console
 $ npm install -g @angular/cli
 $ ng new frontend
 $ cd frontend
@@ -300,7 +300,7 @@ O mecanismo opera adicionando novos cabeçalhos **HTTP** que permitem que o serv
 
 O navegador (por consequência nosso frontend também) já está pronto para lidar com este mecanismo, nos resta agora implementá-lo em no backend.
 
-```shell
+```console
 $ pip install django-cors-headers
 ```
 

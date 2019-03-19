@@ -39,7 +39,7 @@ class Text(models.Model):
 
 To install `django-gm2m` run at your **virtualenv** or environment of choice:
 
-```
+```console
 $ pip install django-gm2m
 ```
 
@@ -66,9 +66,9 @@ class Profile(models.Model):
     medias = GM2MField('Video', 'Audio', 'Text', related_name='profiles')
 ```
 
-!!! The parameter `related_name` will create the reverse relation at the other models so you can access the profiles trough any media instance. If you don't set it to anything it will follow the pattern `<model>_set`. 
+! The parameter `related_name` will create the reverse relation at the other models so you can access the profiles trough any media instance. If you don't set it to anything it will follow the pattern `<model>_set`.
 
-!!! Another important point are the positional parameters of  `GM2MField` that are the models that you want Django mount the reverse relations automatically. In case of not setting the classes there the field will work but the reverse relation will not be mounted.
+! Another important point are the positional parameters of  `GM2MField` that are the models that you want Django mount the reverse relations automatically. In case of not setting the classes there the field will work but the reverse relation will not be mounted.
 
 Now you are ready to add a media to a profile through `profile.medias.add(video)`.
 

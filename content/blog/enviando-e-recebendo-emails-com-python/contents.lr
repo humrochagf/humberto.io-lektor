@@ -10,7 +10,7 @@ Um dia na terça do Python no [Calango Hacker Clube](https://calango.club/) surg
 
 ![python email](python-mail.png)
 
-!!! Esta postagem tem como alvo o público iniciante mas também pode ser útil para quem já possuí experiência na linguagem mas nunca tinha trabalhado diretamente com envio e recebimento de emails. A versão do Python utilizada para publicar esta postagem foi a 3.6.x.
+!! Esta postagem tem como alvo o público iniciante mas também pode ser útil para quem já possuí experiência na linguagem mas nunca tinha trabalhado diretamente com envio e recebimento de emails. A versão do Python utilizada para publicar esta postagem foi a 3.6.x.
 
 ## Os Protocolos de email
 
@@ -47,7 +47,7 @@ server.sendmail(mail_from, mail_to, mail_subject, mail_message)
 server.quit()
 ```
 
-!!!! ATENÇÃO: Para enviar emails como **localhost** você precisa ter um servidor de emails instalado na máquina em que o código está rodando
+!!! ATENÇÃO: Para enviar emails como **localhost** você precisa ter um servidor de emails instalado na máquina em que o código está rodando
 
 O código acima é a versão mais crua de um envido de email. Nele nós construímos a mensagem "na mão" com uma string, porém o Python possuí uma biblioteca para facilitar o nosso trabalho.
 

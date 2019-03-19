@@ -22,19 +22,19 @@ The **pygame** installation itself can be different from an **OS** and can be ch
 
 But, to install it into a **Debian** based system such as **Ubuntu** you must first make sure its dependencies are installed:
 
-```
+```console
 $ sudo apt-get build-dep python-pygame
 ```
 
 After that install **pygame** at your **virtualenv**:
 
-```
+```console
 $ pip install pygame
 ```
 
 Or system wide:
 
-```
+```console
 $ sudo pip install pygame
 ```
 
@@ -66,7 +66,7 @@ time.sleep(5)
 
 Then we just need to run it:
 
-```
+```console
 $ python hello.py
 ```
 
