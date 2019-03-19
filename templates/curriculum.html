@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ this.title }}{% endblock %}
+
+{% block body %}
+  <div class="container curriculum">
+    <div class="row">
+      <div class="col-12">
+        <header>
+          <a class="header-photo" href="{{ '/'|url(alt=this.alt) }}">
+            <img class="rounded-circle" src="{{ config.PROJECT.logo_100|url }}" alt="Humberto Rocha">
+          </a>
+
+          <h1>
+            <a href="{{ '/'|url(alt=this.alt) }}">{{ this.name }}</a>
+          </h1>
+
+          <p>
+            {{ this.job }} | <a href="{{ this.location_link }}">{{ this.location_name }}</a>
+          </p>
+        </header>
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-3 text-right border-right">
+        <h2>{{ bag('translation', this.alt, 'profile') }}</h2>
+      </div>
+
+      <div class="col-9">
+        {{ this.profile }}
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-3 text-right border-right">
+        <h2>{{ bag('translation', this.alt, 'contact') }}</h2>
+      </div>
+
+      <div class="col-9">
+        <p>
+          <i class="fas fa-envelope"></i>
+          <a href="mailto:{{ config.PROJECT.email }}">{{ config.PROJECT.email }}</a>
+        </p>
+
+        <p>
+          <i class="fas fa-globe-americas"></i>
+          <a href="{{ '/'|url(alt=this.alt, external=true) }}">humberto.io</a>
+        </p>
+
+        <p>
+          <i class="fab fa-github"></i>
+          <a href="https://github.com/{{ config.PROJECT.github }}/">{{ config.PROJECT.github }}</a>
+        </p>
+
+        <p>
+          <i class="fab fa-linkedin-in"></i>
+          <a href="https://linkedin.com/in/{{ config.PROJECT.linkedin }}/">{{ config.PROJECT.linkedin }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
