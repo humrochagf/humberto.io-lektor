@@ -47,7 +47,7 @@ server.sendmail(mail_from, mail_to, mail_subject, mail_message)
 server.quit()
 ```
 
-!!! ATENÇÃO: Para enviar emails como **localhost** você precisa ter um servidor de emails instalado na máquina em que o código está rodando
+!!! Para enviar emails como **localhost** você precisa ter um servidor de emails instalado na máquina em que o código está rodando
 
 O código acima é a versão mais crua de um envido de email. Nele nós construímos a mensagem "na mão" com uma string, porém o Python possuí uma biblioteca para facilitar o nosso trabalho.
 
@@ -87,7 +87,15 @@ server.sendmail(from_addr, to_addrs, message.as_string())
 server.quit()
 ```
 
-Com isso utilizamos o google como nosso intermediário (**gateway**) para enviar as mensagens de emails. Mas tenha em mente que mesmo com o google como seu **gateway** existe uma política de envio de mensagens de email, cuidado com os **SPAMS**.
+Caso esteja enfrentando problemas para se conectar ao google será preciso liberar o "Acesso a app menos seguro".
+
+O google bloqueia acessos de aplicações que ele julgar como não seguindo os padrões de segurança, o problema é que não fica muito claro quais os padrões requisitados além de não ser uma tarefa muito trivial para quem está realizando seus primeiros testes de comunicação com um servidor de emails. 
+
+Entretanto, para que isso não seja um empecilho em seus primeiros passos no mundo do envio e recebimento de emails, você pode liberar o acesso de apps mesmos seguros através das configurações de segurança da sua conta em [https://myaccount.google.com/u/0/security?hl=pt](https://myaccount.google.com/u/0/security?hl=pt):
+
+![Acesso a app menos seguro](menos-seguro.png)
+
+Com isso passaremos a utilizar o google como nosso intermediário (**gateway**) para enviar as mensagens de emails. Mas tenha em mente que mesmo com o google como seu **gateway** existe uma política de envio de mensagens de email, cuidado com os **SPAMS**.
 
 ![SPAM](spam.jpg)
 
@@ -112,6 +120,8 @@ SERVER = 'imap.gmail.com'
 # logando e navegando para a inbox
 mail = imaplib.IMAP4_SSL(SERVER)
 mail.login(EMAIL, PASSWORD)
+# selecionamos a caixa de entrada neste caso
+# mas qualquer outra caixa pode ser selecionada
 mail.select('inbox')
 
 # faremos uma busca com o critério ALL para pegar
@@ -185,6 +195,63 @@ for i in mail_ids:
 
 Neste código extraímos somente o conteúdo em texto puro do email, porém há muito mais coisas que podem ser tratadas como conteúdo em **html** e extração de anexos mas estes casos ficaram para uma próxima postagem.
 
+## BONUS: Limpando Caixas de Email Lotadas
 
+Recentemente minha caixa de emails lotou e eu precisei dar uma faxina para liberar espaço, mas o volume era tão grande que a interface do gmail não estava dando conta do recado.
+
+Para isso é possível utilizar o Python para nos ajudar com esta questão:
+
+```python
+import imaplib
+
+# caso sua caixa de emails esteja muito cheia
+# use esta variável para aumentar o limite do
+# tamanho da resposta
+imaplib._MAXLINE = 1000000
+
+EMAIL = 'calangotestedeemail@gmail.com'
+PASSWORD = '@Calango123'
+SERVER = 'imap.gmail.com'
+
+mail = imaplib.IMAP4_SSL(SERVER)
+mail.login(EMAIL, PASSWORD)
+# selecionando a caixa que desejamos limpar
+mail.select('caixa_lotada')
+
+status, search_data = mail.search(None, 'ALL')
+
+mail_ids = []
+
+for block in search_data:
+    mail_ids += block.split()
+
+# definindo o range da operação
+start = mail_ids[0].decode()
+end = mail_ids[-1].decode()
+
+# movendo os emails para a lixeira
+# este passo é específico do gmail
+# que não permite a exclusão direta
+mail.store(f'{start}:{end}'.encode(), '+X-GM-LABELS', '\\Trash')
+
+# acessando a lixeira do gmail
+mail.select('[Gmail]/Trash')
+# marcando todos os emails da lixeira para remoção
+mail.store("1:*", '+FLAGS', '\\Deleted')
+
+# removendo permanentemente os emails
+mail.expunge()
+
+# fechando as caixas de email
+mail.close()
+# encerrando a conexão
+mail.logout()
+``` 
+
+Caso o volume de emails seja muito grande é possível também fazer um loop agrupando a remoção em blocos de remoção menores.
+
+Para buscas mais elaboradas com o comando `search` você pode acessar a [RFC 3501](https://tools.ietf.org/html/rfc3501) que define o protocolo **IMAP** e contém a descrição detalhada de todos os parâmetros de busca possíveis bem como mais detalhes para todos os outros comandos de manipulação de emails.
+
+!!!! **ATENÇÃO**: Teste bastante as buscas antes de realizar a remoção efetivamente pois esta remoção não tem volta.
 ---
 share_image: python-mail.png
