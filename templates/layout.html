@@ -135,11 +135,11 @@
                 <div class="row">
                   <div class="col-12">
                     <span class="icons">
-                      <a href="https://github.com/{{ config.PROJECT.github }}/"><i class="fa fa-github"></i></a>
-                      <a href="https://twitter.com/{{ config.PROJECT.twitter }}/"><i class="fa fa-twitter"></i></a>
-                      <a href="https://br.linkedin.com/in/{{ config.PROJECT.linkedin }}/"><i class="fa fa-linkedin"></i></a>
-                      <a href="{% if this.alt == 'en' %}{{ '/en/feed.xml'|url(external=true) }}{% else %}{{ '/feed.xml'|url(external=true) }}{% endif %}" target="_blank"><i class="fa fa-feed"></i></a>
-                      <a href="mailto:{{ config.PROJECT.email }}"><i class="fa fa-envelope"></i></a>
+                      <a href="https://github.com/{{ config.PROJECT.github }}/"><i class="fab fa-github"></i></a>
+                      <a href="https://twitter.com/{{ config.PROJECT.twitter }}/"><i class="fab fa-twitter"></i></a>
+                      <a href="https://br.linkedin.com/in/{{ config.PROJECT.linkedin }}/"><i class="fab fa-linkedin-in"></i></a>
+                      <a href="{% if this.alt == 'en' %}{{ '/en/feed.xml'|url(external=true) }}{% else %}{{ '/feed.xml'|url(external=true) }}{% endif %}" target="_blank"><i class="fas fa-rss"></i></a>
+                      <a href="mailto:{{ config.PROJECT.email }}"><i class="fas fa-envelope"></i></a>
                     </span>
                   </div>
 
@@ -154,8 +154,13 @@
       </div>
     {% endblock %}
 
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{{ '/scripts/jquery.slim.min.js'|url }}"></script>
+    <script src="{{ '/scripts/popper.min.js'|url }}"></script>
+    <script src="{{ '/scripts/bootstrap.min.js'|url }}"></script>
+
     <!-- app code -->
-    <script src="{{ '/scripts/main.min.js'|url }}" async></script>
+    <script src="{{ '/scripts/redirect.js'|url }}" async></script>
 
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ad8f2e22f59cc18" async></script>

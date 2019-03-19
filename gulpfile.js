@@ -1,36 +1,39 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var babel = require('gulp-babel');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var cleanCSS = require('gulp-clean-css');
-var imagemin = require('gulp-imagemin');
-var del = require('del');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const rename = require('gulp-rename');
+const cleanCSS = require('gulp-clean-css');
+const imagemin = require('gulp-imagemin');
+const del = require('del');
 
-var paths = {
+const paths = {
   styles: {
     src: 'static/styles/main.scss',
+    watchSrc: 'static/styles/*',
     includes: [
       'node_modules/bootstrap/scss',
-      'node_modules/font-awesome/scss'
+      'node_modules/@fortawesome/fontawesome-free/scss',
     ],
-    dest: 'assets/styles/'
+    dest: 'assets/styles/',
   },
   scripts: {
     src: [
-      'node_modules/jquery/dist/jquery.min.js',
-      'static/scripts/**/*.js'
+      'node_modules/jquery/dist/jquery.slim.min.js',
+      'node_modules/popper.js/dist/umd/popper.min.js',
+      'node_modules/bootstrap/dist/js/bootstrap.min.js',
+      'static/scripts/**/*.js',
     ],
-    dest: 'assets/scripts/'
+    dest: 'assets/scripts/',
   },
   images: {
     src: 'static/images/*',
-    dest: 'assets/images/'
+    dest: 'assets/images/',
   },
   fonts: {
-    src: ['node_modules/font-awesome/fonts/*', 'static/fonts/*.ttf'],
-    dest: 'assets/fonts/'
+    src: [
+      'node_modules/@fortawesome/fontawesome-free/webfonts/*',
+      'static/fonts/*.ttf',
+    ],
+    dest: 'assets/fonts/',
   }
 };
 
@@ -56,9 +59,6 @@ function styles() {
 
 function scripts() {
   return gulp.src(paths.scripts.src, { sourcemaps: true })
-    .pipe(babel())
-    .pipe(uglify())
-    .pipe(concat('main.min.js'))
     .pipe(gulp.dest(paths.scripts.dest));
 }
 
@@ -75,27 +75,20 @@ function fonts() {
 
 function watch() {
   gulp.watch(paths.scripts.src, scripts);
-  gulp.watch(paths.styles.src, styles);
+  gulp.watch(paths.styles.watchSrc, styles);
+  gulp.watch(paths.images.src, images);
+  gulp.watch(paths.fonts.src, fonts);
 }
-
-/*
- * You can use CommonJS `exports` module notation to declare tasks
- */
-exports.clean = clean;
-exports.styles = styles;
-exports.scripts = scripts;
-exports.images = images;
-exports.fonts = fonts;
-exports.watch = watch;
 
 /*
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  */
-var build = gulp.series(clean, gulp.parallel(styles, scripts, images, fonts));
+const build = gulp.series(clean, gulp.parallel(styles, scripts, images, fonts));
 
 /*
  * You can still use `gulp.task` to expose tasks
  */
+gulp.task('clean', clean);
 gulp.task('build', build);
 gulp.task('watch', watch);
 

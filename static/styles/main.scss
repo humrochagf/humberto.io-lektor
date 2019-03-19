@@ -5,12 +5,15 @@
 
 /* thirdparty imports */
 
-@import "font-awesome";
 @import "bootstrap";
+@import "fontawesome";
+@import "solid";
+@import "brands";
 
 /* my styles imports */
 
 @import "globals";
+@import "code";
 @import "header";
 @import "admonition";
 @import "license";

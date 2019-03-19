@@ -6,58 +6,23 @@
   }
 }
 
-.admonition-note {
-  @extend .alert-success;
+@each $type, $theme in (
+  "note": "success",
+  "info": "info",
+  "tip": "warning",
+  "warning": "danger",
+) {
+  .admonition-#{$type} {
+    @extend .alert-#{$theme};
 
-  a {
-    color: theme-color("success");
-    border: 1px solid lighten(theme-color("success"), 30%);
+    a {
+      color: theme-color($theme);
+      border: 1px solid lighten(theme-color($theme), 30%);
 
-    &:hover, &:focus, &:active {
-      color: theme-color("success");
-      border: 1px solid theme-color("success");
-    }
-  }
-}
-
-.admonition-info {
-  @extend .alert-warning;
-
-  a {
-    color: theme-color("warning");
-    border: 1px solid lighten(theme-color("warning"), 30%);
-
-    &:hover, &:focus, &:active {
-      color: theme-color("warning");
-      border: 1px solid theme-color("warning");
-    }
-  }
-}
-
-.admonition-tip {
-  @extend .alert-info;
-
-  a {
-    color: theme-color("info");
-    border-bottom: 1px solid lighten(theme-color("info"), 30%);
-
-    &:hover, &:focus, &:active {
-      color: theme-color("info");
-      border-bottom: 1px solid theme-color("info");
-    }
-  }
-}
-
-.admonition-warning {
-  @extend .alert-danger;
-
-  a {
-    color: theme-color("danger");
-    border-bottom: 1px solid lighten(theme-color("danger"), 30%);
-
-    &:hover, &:focus, &:active {
-      color: theme-color("danger");
-      border-bottom: 1px solid theme-color("danger");
+      &:hover, &:focus, &:active {
+        color: theme-color($theme);
+        border: 1px solid theme-color($theme);
+      }
     }
   }
 }

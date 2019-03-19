@@ -6,14 +6,12 @@ $font-family-sans-serif: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe U
 $font-family-monospace: Inconsolata, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-family-base: $font-family-sans-serif;
 
-$font-weight-light: 300;
-$font-weight-normal: $font-weight-light;
+$font-weight-normal: 300;
 $font-weight-bold: bold;
 
-$font-weight-base: $font-weight-normal;
 $headings-font-weight: 600;
 
-$font-size-base: 0.9rem; // Assumes the browser default, typically `16px`
+$font-size-base: 0.9rem;
 
 $h1-font-size: 2rem;
 $h2-font-size: 1.8rem;
@@ -22,38 +20,6 @@ $h4-font-size: 1.4rem;
 $h5-font-size: 1.2rem;
 $h6-font-size: 1.0rem;
 
-/* set colors */
+$primary: #000;
 
-$white:    #fff;
-$gray-100: #f8f9fa;
-$gray-200: #e9ecef;
-$gray-300: #dee2e6;
-$gray-400: #ced4da;
-$gray-500: #adb5bd;
-$gray-600: #868e96;
-$gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
-$black:    #000;
-
-$blue:    #007bff;
-$indigo:  #6610f2;
-$purple:  #6f42c1;
-$pink:    #e83e8c;
-$red:     #dc3545;
-$orange:  #fd7e14;
-$yellow:  #ffc107;
-$green:   #28a745;
-$teal:    #20c997;
-$cyan:    #17a2b8;
-
-$theme-colors: (
-  primary: $black,
-  secondary: $gray-600,
-  success: $green,
-  info: $cyan,
-  warning: $yellow,
-  danger: $red,
-  light: $gray-100,
-  dark: $gray-800
-);
+$pre-color: inherit;
