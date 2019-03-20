@@ -29,3 +29,21 @@ Minhas ferramentas prediletas são a linha de comando e o editor **VIM** e meu s
 Você pode me encontrar como **@humrochagf** no [github](https://github.com/humrochagf), [twitter](https://twitter.com/humrochagf), [instagram](https://www.instagram.com/humrochagf) e [telegram](https://t.me/humrochagf).
 ---
 job: Programador
+---
+employment: Teste
+---
+languages:
+
+- Português (Nativo)
+- Inglês (Avançado)
+- Francês (Básico)
+---
+tech_skills:
+
+- Python
+- Django
+- Nginx
+- Postgresql
+- Angular
+- Javascript
+- Typescript

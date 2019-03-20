@@ -22,41 +22,99 @@
       </div>
     </div>
 
-    <div class="row section">
-      <div class="col-3 text-right border-right">
-        <h2>{{ bag('translation', this.alt, 'profile') }}</h2>
+    <div class="row">
+      <div class="col-3 offset-1">
+        <div class="row">
+          <div class="col-12 section">
+            <h2>{{ bag('translation', this.alt, 'contact') }}</h2>
+
+            <p>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:{{ config.PROJECT.email }}">{{ config.PROJECT.email }}</a>
+            </p>
+
+            <p>
+              <i class="fas fa-globe-americas"></i>
+              <a href="{{ '/'|url(alt=this.alt, external=true) }}">humberto.io</a>
+            </p>
+
+            <p>
+              <i class="fab fa-github"></i>
+              <a href="https://github.com/{{ config.PROJECT.github }}/">{{ config.PROJECT.github }}</a>
+            </p>
+
+            <p>
+              <i class="fab fa-linkedin-in"></i>
+              <a href="https://linkedin.com/in/{{ config.PROJECT.linkedin }}/">{{ config.PROJECT.linkedin }}</a>
+            </p>
+          </div>
+
+          <div class="col-12 section">
+            <h2>{{ bag('translation', this.alt, 'languages') }}</h2>
+
+            {{ this.languages }}
+          </div>
+
+          <div class="col-12 section">
+            <h2>{{ bag('translation', this.alt, 'tech_skills') }}</h2>
+
+            {{ this.tech_skills }}
+          </div>
+
+          <div class="col-12 section">
+            <h2>{{ bag('translation', this.alt, 'soft_skills') }}</h2>
+
+            {{ this.soft_skills }}
+          </div>
+
+          <div class="col-12 section">
+            <h2>{{ bag('translation', this.alt, 'open_source') }}</h2>
+
+            {{ this.open_source }}
+          </div>
+        </div>
       </div>
 
-      <div class="col-9">
-        {{ this.profile }}
-      </div>
-    </div>
+      <div class="col-6 offset-1">
+        <div class="row">
+          <div class="col-12 border-left section">
+            <h2>{{ bag('translation', this.alt, 'profile') }}</h2>
 
-    <div class="row section">
-      <div class="col-3 text-right border-right">
-        <h2>{{ bag('translation', this.alt, 'contact') }}</h2>
-      </div>
+            {{ this.profile }}
+          </div>
+        </div>
 
-      <div class="col-9">
-        <p>
-          <i class="fas fa-envelope"></i>
-          <a href="mailto:{{ config.PROJECT.email }}">{{ config.PROJECT.email }}</a>
-        </p>
+        <div class="row section">
+          <div class="col-12 border-left section">
+            <h2>{{ bag('translation', this.alt, 'employment') }}</h2>
 
-        <p>
-          <i class="fas fa-globe-americas"></i>
-          <a href="{{ '/'|url(alt=this.alt, external=true) }}">humberto.io</a>
-        </p>
+            {{ this.employment }}
+          </div>
+        </div>
 
-        <p>
-          <i class="fab fa-github"></i>
-          <a href="https://github.com/{{ config.PROJECT.github }}/">{{ config.PROJECT.github }}</a>
-        </p>
+        <div class="row section">
+          <div class="col-12 border-left section">
+            <h2>{{ bag('translation', this.alt, 'education') }}</h2>
 
-        <p>
-          <i class="fab fa-linkedin-in"></i>
-          <a href="https://linkedin.com/in/{{ config.PROJECT.linkedin }}/">{{ config.PROJECT.linkedin }}</a>
-        </p>
+            {{ this.education }}
+          </div>
+        </div>
+
+        <div class="row section">
+          <div class="col-12 border-left section">
+            <h2>{{ bag('translation', this.alt, 'community') }}</h2>
+
+            {{ this.community }}
+          </div>
+        </div>
+
+        <div class="row section">
+          <div class="col-12 border-left section">
+            <h2>{{ bag('translation', this.alt, 'tech_texts') }}</h2>
+
+            {{ this.tech_texts }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
