@@ -31,9 +31,20 @@ job: Developer
 employment:
 
 ### Configr.com
-CTO & FullStack Developer | Feb 2015 to present
+*CTO & FullStack Developer | Feb 2015 to present*
 
-At Configr I started as FullStack Developer working with Django a Backend and Django Template Engine 
+At Configr I started as FullStack Developer working with Django as Backend and Django Template Engine and Bootstrap for the Frontend of the main product. My first task was to build ground up the company DNS manager by parsing the [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt) into a user-friendly and automated tool that talks with the other products and builds the right DNS rules without the user having to understand DNS.
+
+Also as a cloud computing company focused on automation I worked with the cloud automation building, maintaining and fixing the automation and deployment processes, working with Puppet, Fabric, Nginx, Bind, Uwsgi, PHP-FPM, Upstart, Systemd and so fouth.
+
+About September 2017 a became CTO to be encharged of all the company's tech stack and manage the team. I lead the process of migrating the main product the newer version of Django and to transform its architecture into an API architecture with Django Rest Framework and Angular as Frontend.
+
+I also designed the new, billing system and the white-label system to the reseller's business model. Right now I ahead of the splitting of the main product intro independent services.
+
+### Caixa Econômica Federal
+*Intern |  Aug 2013 to Aug 2014*
+
+At Brazil's federal bank I started as intern
 ---
 languages:
 
