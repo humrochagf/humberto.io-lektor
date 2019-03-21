@@ -43,4 +43,16 @@
       }
     }
   }
+
+  @media print {
+    p a, li a, .page li a, .nav a, header h1 a {
+      border-bottom: none;
+      text-decoration: none;
+
+      &:hover, &:focus, &:active, &.active {
+        border-bottom: none;
+        text-decoration: none;
+      }
+    }
+  }
 }
