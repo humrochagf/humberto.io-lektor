@@ -47,6 +47,11 @@ header {
       padding: 0 10px 5px;
       color: $white;
       font-weight: 800;
+      border-bottom: none;
+
+      &:hover, &:focus, &:active {
+        border-bottom: none;
+      }
     }
   }
 }
