@@ -5,7 +5,7 @@
 {% block body %}
   <div class="container curriculum">
     <div class="row">
-      <div class="mx-auto col-md-8 col-sm-12">
+      <div class="mx-auto col-md-8 col-sm-12 d-print-none">
         <ul class="nav justify-content-end alternatives">
           {% for alt in get_alts(this) %}
             {% if alt != this.alt %}
