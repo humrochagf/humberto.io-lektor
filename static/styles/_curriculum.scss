@@ -3,31 +3,44 @@
     h1 {
       font-size: 4rem;
     }
-  }
-
-  .section {
-    margin-top: 60px;
-
-    h2 {
-      margin-top: 0;
-      line-height: 1;
-    }
-
-    h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0;
-
-      & + p {
-        margin-bottom: 5px;
-      }
-    }
 
     p {
-      line-height: 1.8rem;
-    }
+      font-size: 1.4rem;
+      color: $gray-700;
 
-    ul {
-      padding-left: 18px;
+      a {
+        color: $gray-700;
+      }
+    }
+  }
+
+  .content {
+    margin-bottom: 40px;
+
+    .section {
+      margin-top: 60px;
+
+      h2 {
+        margin-top: 0;
+        line-height: 1;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0;
+
+        & + p {
+          margin-bottom: 5px;
+        }
+      }
+
+      p {
+        line-height: 1.8rem;
+      }
+
+      ul {
+        padding-left: 18px;
+      }
     }
   }
 }
