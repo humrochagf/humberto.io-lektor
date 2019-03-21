@@ -24,4 +24,6 @@
   <h2 class='title-me'>{{ this.title }}</h2>
 
   {{ this.body }}
+
+  <p class="text-center mt-5"><a href="{{ '/curriculum'|url(alt=this.alt) }}"><i class="fas fa-file-alt"></i> {{ bag('translation', this.alt, 'curriculum') }}</a></p>
 {% endblock %}
