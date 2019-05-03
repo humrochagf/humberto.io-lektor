@@ -15,9 +15,9 @@
       "image": {
         "@type": "ImageObject",
         {% if this.share_image %}
-          "url": "{{ this.share_image|url(external=True, alt='pt-br') }}",
+          "url": "{{ this.share_image|url(external=True, alt='pt-br') }}"
         {% else %}
-          "url": "{{ config.PROJECT.logo|url(external=True) }}",
+          "url": "{{ config.PROJECT.logo|url(external=True) }}"
         {% endif %}
       },
       "author": {

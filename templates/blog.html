@@ -21,7 +21,7 @@
             "@type": "BlogPosting",
             "headline": "{{ child.title }}",
             "url": "{{ child|url(external=true, alt=this.alt) }}",
-            "datePublished": "{{ child.pub_date }}",
+            "datePublished": "{{ child.pub_date }}"
           }{% if not loop.last %},{% endif %}
         {% endfor %}
       ]
