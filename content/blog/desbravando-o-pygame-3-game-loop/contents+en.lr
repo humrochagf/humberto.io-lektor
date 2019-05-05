@@ -10,7 +10,7 @@ The concept of loop is something very common at computing, it is nothing but a s
 
 The loop used at game development is called **Game Loop** and is a key component at the structure of a game. On a simplified manner, we have the following structure:
 
-![basic loop](/blog/desbravando-o-pygame-2-desenhando-na-tela/game-loop-en.png)
+![basic loop](/blog/desbravando-o-pygame-3-game-loop/game-loop-en.png)
 
 During the execution the game is always:
 
@@ -109,7 +109,7 @@ With that, we finish the brief ride into the **game loop**. Don't forget that al
 ---
 pub_date: 2017-08-24
 ---
-share_image: /blog/desbravando-o-pygame-2-desenhando-na-tela/game-loop-en.png
+share_image: /blog/desbravando-o-pygame-3-game-loop/game-loop-en.png
 ---
 summary: Learn more about how the game loop works and how to implement it at pygame
 ---
