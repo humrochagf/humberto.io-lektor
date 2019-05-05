@@ -226,7 +226,7 @@ pub_date: 2016-05-05
 ---
 share_image: /blog/github-pages-com-pelican-e-travis-ci/primeira-postagem2.png
 ---
-summary: Create your first static website using Pelican and hosting at GitHub Pages using Travis-CI to automate the deploy process.
+summary: Create your first static website using Pelican and hosting at GitHub Pages using Travis-CI to automate the deploy process
 ---
 title: Publishing at GitHub Pages with Pelican and Travis-CI
 ---
