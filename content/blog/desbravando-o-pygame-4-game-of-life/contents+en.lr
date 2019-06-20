@@ -1,122 +1,122 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-A um tempo atrás eu fiz uma postagem sobre [como organizar um coding dojo](/blog/coding-dojo-101/) publicada logo após um dojo de aniversário da comunidade python aqui do DF no qual eu preparei o desafio de implementar o [jogo da vida](https://pt.wikipedia.org/wiki/Jogo_da_vida) (game of life) do matemático John Horton Conway. 
+A while ago, I made a post on [how to organize a coding dojo](/blog/en/coding-dojo-101/) that was published right after the Python DF community anniversary dojo where I prepared a challenge to create the [game of life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) from John Horton Conway.
 
-Para deixar este desafio mais interativo preparei um simulador visual com pygame para testar nossa implementação. Este simulador utiliza de todos os conceitos que vimos até agora nesta série e aproveitando o interesse que ressurgiu no Grupy-DF sobre o assunto decidi reforçar os tópicos até então apresentados com a demonstração desta implementação.
+To let the challenge more dynamic, I prepared a graphic simulator using pygame so everyone could see the code running visually. The simulator uses all the concepts that we saw on the last posts of this series.
 
-## O Jogo
+## The Game
 
-O jogo da vida é um jogo sem jogadores, que representa a a dinâmica de interação entre um grupo de seres vivos em um plano bidimensional, partindo de uma configuração inicial e seguindo um conjunto de quatro regras simples.
+Game of Life is a game without players. It represents the dynamic of interaction between a group of living beings at a bidimensional plane starting from an initial state and following 4 simple interaction rules.
 
-Este plano possuí um formato tabular dividido em células, sendo que cada célula deste plano pode assumir dois estados, vivo ou morto. Além disso este plano tem dimensões infinitas, porém, limitaremos nosso plano a um recorte finito para simplificar nossa implementação.
+This plane looks like a table divided into cells, and each cell can be in one of these two states, dead or alive. Besides that, the plane has an infinite dimension but, on our implementation, we going to have a limited space to simplify things.
 
-A  configuração inicial é chamada de semente (seed) e pode ser pré-definida ou aleatória sendo ela alterada a cada ciclo (geração) pelas regras de interação que são as seguintes:
+The starting state we call seed and can you can define it manually or randomly.
 
-1. Toda célula com menos de dois vizinhos vivos morre por baixa população;
+The interaction cycle we call generation, and it is the result of the 4 interaction rules applied.
 
-    ![regra um](rule-one.png)
+1. Every cell with less than two live neighbors dies by underpopulation;
 
-2. Toda célula com dois ou três vizinhos vivos sobrevive para a próxima geração;
+    ![rule one](rule-one.png)
 
-    ![regra dois](rule-two.png)
+2. Every live cell with two or three live neighbors survives to the next generation;
 
-3. Toda célula com mais de três vizinhos vivos morre por superpopulação;
+    ![rule two](rule-two.png)
 
-    ![regra tres](rule-three.png)
+3. Every live cell with more than three neighbors dies of overpopulation;
 
-4. Toda célula morta com exatamente três vizinhos vivos se torna uma célula viva por reprodução. 
+    ![rule three](rule-three.png)
 
-    ![regra quatro](rule-four.png)
+4. Every dead cell with exactly three neighbors turns alive by reproduction.
 
-Não há interação entre gerações, ou seja, se por exemplo uma célula nasce, ao se calcular a célula vizinha ela não é levada em conta pois ela não existia na geração vigente.
+    ![rule four](rule-four.png)
 
-## Implementação
+There's no interaction between generations, so if a new cell is born when you go to compute the next cell, it won't count since it wasn't alive on this generation.
 
-O simulador foi feito para testar a lógica do jogo e se encontra no arquivo `simulator.py` enquanto no arquivo `game.py` fica o código responsável pela implementação do game of life. Sendo assim, analisaremos primeiramente o arquivo `game.py`, que não é o que implementamos no dia do dojo pois não concluímos toda a implementação a tempo, mas é uma versão que eu tinha criado previamente para testar o simulador e demonstrar ao final do dojo caso não chegássemos a implementação completa.
+## Implementation
 
-O desafio foi o seguinte, criar uma função `game_of_life` que recebesse uma seed em forma de uma matriz 50x50 e devolvesse a geração seguinte desta matriz como resultado:
+The simulator was made to test the game logic, and it was placed at the `simulator.py` file while the `game.py` file has the game of life logic.
+
+The dojo challenge was the following, write a function `game_of_life` that receives a seed as a 50x50 matrix and return a matrix with the next generation computed:
 
 ```python
 # -*- coding: utf-8 -*-
 
 def cell_check(section):
     '''
-    Executa as regras do game of life em um recorte 3x3 para
-    saber o estado da célula central
+    Run the game of life rules at a 3x3 section to compute
+    the middle cell
     '''
-    # contador de vizinhos
-    neighbours = 0
-    # referência para o centro do recorte
+    # neighbor counter
+    neighbors = 0
+    # reference to the center of the section
     center = section[1][1]
 
-    # somando todos os elementos do grupo
+    # sums all elements of the section
     for row in section:
         for cell in row:
-            neighbours += cell
+            neighbors += cell
 
-    # removendo o valor da célula central para que sobre somente
-    # a soma dos vizinhos
-    neighbours -= center
+    # remove the center cell value to get only the
+    # neighbor count
+    neighbors -= center
 
-    # aplicando as regras do game of life
-    # note que a regra dois não precisa ser ativamente aplicada, pois
-    # ela não altera o estado da célula avaliada
-    if neighbours <= 1:
-        # menos de dois vizinhos a célula central morre por baixa população
+    # applying the game of life rules
+    # see that rule number two isn't effectively
+    # applied since it doesn't change the state of the center cell
+    if neighbors <= 1:
+        # less than two neighbors, the cell dies of underpopulation
         center = 0
-    elif neighbours == 3:
-        # exatamente três a célula nasce por reprodução
+    elif neighbors == 3:
+        # exactly three neighbors, the cell is born by reproduction
         center = 1
-    elif neighbours >= 4:
-        # mais que três a célula morre de super população
+    elif neighbors >= 4:
+        # more than three neighbors, the cell dies of overpopulation
         center = 0
 
-    # retorna o valor da célula central
+    # returns the center cell value
     return center
 
 
 def get_section(matrix, row, col):
     '''
-    Extrai um recorte 3x3 em um plano tratando as extremidades do plano
-    como células sempre mortas
+    Extracts a 3x3 section from the plane given 
+    the center cell coordinate
     '''
-    # monta um plano 3x3 somente com células mortas para fazer uma cópia
-    # da área a ser analizada
+    # builds an empty 3x3 section to make the plane section copy
     section = [[0 for _ in range(3)] for _ in range(3)]
 
-    # percorre as redondezas da célula de posição row x col copiando seu
-    # valor para section exceto quando ultrapassa a borda
+    # runs through the plane section copying its values
     for sec_r, r in enumerate(range(row-1, row+2)):
         for sec_c, c in enumerate(range(col-1, col+2)):
             if r >= 0 and c >= 0 and r < 50 and c < 50:
                 section[sec_r][sec_c] = matrix[r][c]
 
-    # devolve o recorte 3x3 do plano
+    # returns the copied 3x3 section
     return section
 
 
 def game_of_life(seed):
     '''
-    Recebe uma seed de um plano 50x50 executa o game of life e devolve
-    a geração seguinte
+    Receives the 50x50 plane seed, runs the game of life rules
+    and returns the next generation
     '''
-    # cria um plano vazio para armazenar a nova geração pois não podemos
-    # operar diretamente na geração corrente para não gerar efeito colateral
+    # creates an empty plane to store the new generation
+    # we don't mutate the seed to prevent side effects
     next_gen = [[0 for _ in range(50)] for _ in range(50)]
 
-    # percorre o plano tirando recortes 3x3 da vizinhança da célula central
-    # e os avaliando para descobrir a geração seguinte de cada célula
+    # walks through the plane computing the next generation
+    # of each cell
     for r, row in enumerate(seed):
         for c, col in enumerate(row):
             next_gen[r][c] = cell_check(get_section(seed, r, c))
 
-    # devolve a geração seguinte
+    # returns the next generation
     return next_gen
 ```
 
-Como visto na implementação o código de `game.py` executa somente uma geração do game of life, o que é excelente para o nosso `simulador.py`, pois ele utilizará do nosso conceito de loop de jogo e a cada ciclo atualiza o jogo com a geração seguinte e desenha seu estado na tela:
+As you can see the `game.py` code computes only the next generation of the seed which is perfect to use at the `simulator.py` because we can compute the next generation to display on the screen and then feed the computed generation as a seed to the next one and so forth: 
 
 ```python
 # -*- coding: utf-8 -*-
@@ -128,7 +128,7 @@ import pygame
 
 from game import game_of_life
 
-# plano vazio
+# empty plane
 SEED = [[0 for _ in range(50)] for _ in range(50)]
 
 # Glider
@@ -167,83 +167,83 @@ screen = pygame.display.set_mode((550, 550))
 
 def draw_matrix(matrix):
     '''
-    Função para desenhar o plano
+    Function to draw the plane given the matrix
     '''
 
-    # preenche a tela de preto
+    # fills the screen with black
     screen.fill([0, 0, 0])
 
-    # percorre o plano desenhando as células com seus valores
+    # walks through the plane drawing its cells
     for r, row in enumerate(matrix):
         for c, cell in enumerate(row):
             if cell:
-                # caso a célula esteja viva, a pinte de branco
-                pygame.draw.rect(screen, (255, 255, 255),
-                                 (11*c, 11*r, 10, 10))
+                # if the cell is alive draw it as a white square
+                pygame.draw.rect(
+                    screen, (255, 255, 255), (11*c, 11*r, 10, 10)
+                )
 
 
-# define a seed como um dos valores de exemplo do começo
+# sets the seed as one of the preset values at the top
 seed = SEED
 
-# desenha o estado inicial de nossa seed
+# draws the initial state of the seed
 draw_matrix(seed)
 
 pygame.display.flip()
 
-# espera por 1 segundo para podermos contemplar o estado de partida
+# waits one second so we can see the initial state before
+# starting the interaction loop
 time.sleep(1)
 
 while True:
-    # PROCESSAMENTO DE ENTRADA
+    # INPUT PROCESSING
     event = pygame.event.poll()
 
     if event.type == pygame.QUIT:
-        # finaliza o programa caso clique em fechar
+        # quits the program if clicked to close the window
         break
     elif (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
-        # finaliza o programa caso pressione a tecla ESC
+        # quits the program on pressing ESC
         break
 
-    # ATUALIZAÇÃO DO JOGO
+    # GAME UPDATE
 
-    # aplica o game of life para processar a geração seguinte
+    # runs the game of life to get the next generation
     seed = game_of_life(seed)
 
-    # DESENHO
+    # DRAWING
 
-    # desenha a nova geração na tela
+    # draws the new generation at the screen
     draw_matrix(seed)
 
     pygame.display.flip()
 
-    # espera um breve momento antes de partir para o próximo ciclo
+    # waits a brief moment until going to the next generation
     time.sleep(0.05)
 ```
 
-Desenhamos uma vez a seed na tela antes de iniciar o loop para dar tempo do usuário ver o estado inicial na tela. Em seguida damos início ao loop de jogo checando por eventos como feito anteriormente mas com a adição da condição de parada utilizando a tecla `ESC` para finalizar o programa. Na etapa de atualização do jogo rodamos a função `game_of_life` do arquivo `game.py` para processar a geração seguinte e finalizamos com a etapa de desenho, agora com um tempo de espera menor entre os ciclos para ter uma visão mais dinâmica da evolução da nossa seed.
+The first drawing is separate from the game loop so the user can see the starting state before running the interactions on a faster pace. Entering inside the game loop we have the input processing step where quit conditions are checked so, moving to the game update step, the next generation is computed, and then, on the drawing step, the new generation is displayed at the screen.
 
-## Exemplos
+## Examples
 
-Para demonstrar o simulador em funcionamento utilizei o [glider](https://goo.gl/jzm5UZ) que é o padrão mais famoso dentro do game of life e foi absorvido pela comunidade hacker como seu emblema. Ele é o menor padrão cíclico que realiza deslocamento pelo, plano:
+To demonstrate the simulator working, I choose the [glider](https://goo.gl/jzm5UZ) there is the most famous pattern inside the game of life. The hacker community absorbed it as their emblem, and it is the smaller cyclic pattern that moves on the plane:
 
 ![glider](glider.gif)
 
-!  Obs.: Note que existem alguns padrões comentados no código do simulador, você pode remover o comentário de qualquer um deles para ver padrões diferentes em ação.
+! Note there are some commented patterns at the simulator code, you can uncomment them to see different patterns in action.
 
-## Conclusão
+## Conclusion
 
-O game of life é um conceito muito bom para se aprender conceitos da computação, recomendo assistir as entrevistas com seu criador pelo canal [Numberphile](https://www.youtube.com/playlist?list=PLt5AfwLFPxWIL8XA1npoNAHseS-j1y-7V) no youtube.
-
-E como sempre o código está disponível no [repositório](https://github.com/humrochagf/desbravando-pygame) para todos. 
+The Game of Life is a great topic to learn programming concepts, and I recommend you to watch the [interview with its creator by the Numberphile](https://www.youtube.com/playlist?list=PLt5AfwLFPxWIL8XA1npoNAHseS-j1y-7V) youtube channel.
 ---
 pub_date: 2017-08-27
 ---
 share_image: rule-one.png
 ---
-summary: Demonstrando a implementação do game of life, feita para o dojo.
+summary: Learn how to create a game of life implementation made for coding dojos
 ---
-title: Desbravando o pygame 4 - Game of Life
+title: Exploring pygame 4 - Game of Life
 ---
-tags:
-
-pygame
+tags: pygame
+---
+_slug: exploring-pygame-4-game-of-life
