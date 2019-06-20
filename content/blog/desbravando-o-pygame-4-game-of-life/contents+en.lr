@@ -18,19 +18,19 @@ The interaction cycle we call generation, and it is the result of the 4 interact
 
 1. Every cell with less than two live neighbors dies by underpopulation;
 
-    ![rule one](rule-one.png)
+    ![rule one](/blog/desbravando-o-pygame-4-game-of-life/rule-one.png)
 
 2. Every live cell with two or three live neighbors survives to the next generation;
 
-    ![rule two](rule-two.png)
+    ![rule two](/blog/desbravando-o-pygame-4-game-of-life/rule-two.png)
 
 3. Every live cell with more than three neighbors dies of overpopulation;
 
-    ![rule three](rule-three.png)
+    ![rule three](/blog/desbravando-o-pygame-4-game-of-life/rule-three.png)
 
 4. Every dead cell with exactly three neighbors turns alive by reproduction.
 
-    ![rule four](rule-four.png)
+    ![rule four](/blog/desbravando-o-pygame-4-game-of-life/rule-four.png)
 
 There's no interaction between generations, so if a new cell is born when you go to compute the next cell, it won't count since it wasn't alive on this generation.
 
@@ -81,7 +81,7 @@ def cell_check(section):
 
 def get_section(matrix, row, col):
     '''
-    Extracts a 3x3 section from the plane given 
+    Extracts a 3x3 section from the plane given
     the center cell coordinate
     '''
     # builds an empty 3x3 section to make the plane section copy
@@ -116,7 +116,7 @@ def game_of_life(seed):
     return next_gen
 ```
 
-As you can see the `game.py` code computes only the next generation of the seed which is perfect to use at the `simulator.py` because we can compute the next generation to display on the screen and then feed the computed generation as a seed to the next one and so forth: 
+As you can see the `game.py` code computes only the next generation of the seed which is perfect to use at the `simulator.py` because we can compute the next generation to display on the screen and then feed the computed generation as a seed to the next one and so forth:
 
 ```python
 # -*- coding: utf-8 -*-
@@ -228,7 +228,7 @@ The first drawing is separate from the game loop so the user can see the startin
 
 To demonstrate the simulator working, I choose the [glider](https://goo.gl/jzm5UZ) there is the most famous pattern inside the game of life. The hacker community absorbed it as their emblem, and it is the smaller cyclic pattern that moves on the plane:
 
-![glider](glider.gif)
+![glider](/blog/desbravando-o-pygame-4-game-of-life/glider.gif)
 
 ! Note there are some commented patterns at the simulator code, you can uncomment them to see different patterns in action.
 
@@ -238,7 +238,7 @@ The Game of Life is a great topic to learn programming concepts, and I recommend
 ---
 pub_date: 2017-08-27
 ---
-share_image: rule-one.png
+share_image: /blog/desbravando-o-pygame-4-game-of-life/rule-one.png
 ---
 summary: Learn how to create a game of life implementation made for coding dojos
 ---
