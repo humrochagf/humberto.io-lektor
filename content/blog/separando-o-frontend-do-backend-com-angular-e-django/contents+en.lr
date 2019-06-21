@@ -1,33 +1,33 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-No mundo do desenvolvimento web as coisas vem evoluindo muito rápido e crescendo em complexidade em um ritmo intenso. Aquele modelo antigo de criação de sites onde tinamos o webmaster que dominava o html e logava no servidor para atualiza uma página é algo cada vez mais raro de se ver. Até para criar sites estáticos estamos utilizando ferramentas para agilizar nosso trabalho.
+At web development, things evolve and grow in complexity faster than we can follow. That old way of creating websites where the pages were built only with HTML and if you had to change something you had to go through many pages changing the same thing is something rare nowadays. Now, even to create static websites, we use tools to optimize our work.
 
-Nos últimos anos tivemos um crescimento expressivo dos frameworks javascript e uma grande evolução do frontend como um todo, e estas novas tecnologias possuem ferramentas e fluxos de desenvolvimento próprios, o que vem tornando mais oneroso para um sistema só entregar o backend e o frontend.
+On the last years, we had an increase in javascript frameworks and an excellent evolution on the frontend as a whole. These new technologies have their tools and pipelines that makes harder to a single system to deliver both frontend and backend.
 
-Ao mesmo tempo vem se popularizando e ficando mais interessante o uso de API`s e a separação do frontend do backend em diferentes projetos, o que trás a proposta de dar  mais autonomia aos times de desenvolvimento além de tornar a aplicação mais escalável.
+At the same time, the API architecture is becoming more popular, bringing the idea of giving more autonomy to the teams and making the applications more scalable. 
 
-Contudo, ao deparar com esta realidade muita gente (eu incluso em minha primeira tentativa de implementação) fica perdida em como botar em prática esta forma de se implementar sistemas web.
+However, the first try to implement this architecture can be hard, and many questions around that can pop out. 
 
-Nesta postagem veremos um exemplo simplificado de como botar em prática esta arquitetura. Criaremos uma aplicação de lista de compras onde poderemos adicionar visualizar e excluir itens da lista. Para isso utilizaremos Django 2 para o backend e Angular 6 para o frontend.
+On this post, we'll see a simplified example to help us to put this concept in practice. We'll create an application of shopping list where we can add, retrieve, and exclude the items on the list. To do that we'll use Django 2 for the backend and Angular 6 for the frontend.
 
-Os repositórios com o código desta postagem são:
+The repositories with the code for this are:
 
 - **Backend**: [https://github.com/humrochagf/post-back-do-front-backend](https://github.com/humrochagf/post-back-do-front-backend)
 - **Frontend**: [https://github.com/humrochagf/post-back-do-front-frontend](https://github.com/humrochagf/post-back-do-front-frontend)
 
-!! **UPDATE (22/08/2018)** Postagem atualizada e testada para utilizar Angular 6
+!! **UPDATE (08/22/2018)** Post updated and tested to use Angular 6
 
-## Separando as Responsabilidades
+## Splitting the Responsibilities
 
-Para começar vamos falar um pouco sobre esta separação de responsabilidades dentro do projeto.
+To start, let's talk a little about the responsibilities divided through the project.
 
-Existem duas grandes responsabilidades dentro de uma aplicação web interativa. A gestão e a visualização dos dados.
+There are two significant responsibilities inside an interactive web application: the management and the visualization of the data.
 
 ## Backend
 
-Em uma arquitetura web de cliente e servidor, nos referimos ao backend como a camada de acesso aos dados que é processada totalmente pelo servidor responsável pelo serviço. É dele a responsabilidade de acessar, processar, armazenar e controlar o acesso os dados requisitados pelo cliente. Seu modelo de implementação mais famoso e encontrado na internet são as API`s REST.
+On a client/server architecture, we call as the backend, the layer responsible for managing the access on the data, and its processing happens entirely on the server that is responsible for the service. The backend is responsible for accessing, processing, storing, and controlling the access to the data requested by the client. The most famous implementations of it are the REST API's.
 
 ## Frontend
 
@@ -430,14 +430,16 @@ Separar o frontend do backend em projetos distintos gera um pouco mais de trabal
 ---
 pub_date: 2018-02-13
 ---
-share_image: django-startproject.gif
+share_image: /blog/separando-o-frontend-do-backend-com-angular-e-django/django-startproject.gif
 ---
-summary: Descubra como separar suas stacks para ganhar independência entre o frontend e o backend utilizando Angular 6 e Django 2
+summary: Discover how to separate your stacks to get autonomy between frontend and backend using Angular 6 and Django 3
 ---
-title: Separando o Frontend do Backend com Angular e Django
+title: Separating Frontend from Backend with Angular and Django
 ---
 tags:
 
 django
 angular
 api
+---
+_slug: separating-frontend-from-backend-with-angular-and-django
