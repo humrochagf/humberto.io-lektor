@@ -12,6 +12,7 @@ Os repositórios com o código desta postagem são:
 - **Frontend**: [https://github.com/humrochagf/post-jwt-frontend](https://github.com/humrochagf/post-jwt-frontend)
 
 !! **UPDATE (18/09/2018)** Postagem atualizada e testada para utilizar Angular 6
+!! **UPDATE (05/07/2019)** Postagem atualizada com o processo de cadastro
 
 ## Autenticação
 
@@ -124,8 +125,8 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 urlpatterns = [
     ...
 
-    path('login/', obtain_jwt_token),
-    path('refresh-token/', refresh_jwt_token),
+    path('auth/login/', obtain_jwt_token),
+    path('auth/refresh-token/', refresh_jwt_token),
 ]
 ```
 
@@ -165,7 +166,10 @@ import { ShoppingItem } from './shopping-item.interface';
   <input #itemQuantity type='text' placeholder='Qtd'>
   <input #itemName type='text' placeholder='Name'>
   <button (click)="add(itemName.value, itemQuantity.value)">Add</button>
-  {{ error?.message }}
+  <p>{{ error?.message }}</p>
+  <p *ngIf="error">{{ error?.error | json }}</p>
+
+  <button (click)="logout()">deslogar</button>
   `
 })
 export class ListComponent implements OnInit {
@@ -184,7 +188,8 @@ export class ListComponent implements OnInit {
 
   add(itemName: string, itemQuantity: number) {
     this.api.createShoppingItem(itemName, itemQuantity).subscribe(
-      (item: ShoppingItem) => this.items.push(item)
+      (item: ShoppingItem) => this.items.push(item),
+      (error: any) => this.error = error
     );
   }
 
@@ -192,7 +197,8 @@ export class ListComponent implements OnInit {
     this.api.deleteShoppingItem(id).subscribe(
       (success: any) => this.items.splice(
         this.items.findIndex(item => item.id === id)
-      )
+      ),
+      (error: any) => this.error = error
     );
   }
 }
@@ -231,7 +237,8 @@ import { Component, OnInit } from '@angular/core';
   <input #username type='text' placeholder='username'>
   <input #password type='password' placeholder='password'>
   <button (click)="login(username.value, password.value)">login</button>
-  {{ error?.message }}
+  <p>{{ error?.message }}</p>
+  <p *ngIf="error">{{ error?.error | json }}</p>
   `
 })
 export class LoginComponent implements OnInit {
@@ -248,17 +255,55 @@ export class LoginComponent implements OnInit {
   }
 }
 
+// signup.component.ts
+
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-signup',
+  template: `
+  <div style="text-align:center">
+    <h1>
+      Cadastrar
+    </h1>
+  </div>
+
+  <input #username type='text' placeholder='username'>
+  <input #email type='text' placeholder='email'>
+  <input #password1 type='password' placeholder='password1'>
+  <input #password2 type='password' placeholder='password2'>
+  <button (click)="signup(username.value, email.value, password1.value, password2.value)">cadastrar</button>
+  <p>{{ error?.message }}</p>
+  <p *ngIf="error">{{ error?.error | json }}</p>
+  `
+})
+export class SignupComponent implements OnInit {
+
+  error: any;
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  signup(username: string, email: string, password1: string, password2: string) {
+    // TODO: call signup
+  }
+}
+
 // app-routing.module.ts
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login.component';
 import { ListComponent } from './list.component';
+import { LoginComponent } from './login.component';
+import { SignupComponent } from './signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'list', component: ListComponent },
 ];
 
@@ -274,6 +319,7 @@ export class AppRoutingModule { }
 import { AppRoutingModule } from './app-routing.module';
 import { ListComponent } from './list.component';
 import { LoginComponent } from './login.component';
+import { SignupComponent } from './signup.component';
 ...
 
 @NgModule({
@@ -281,6 +327,7 @@ import { LoginComponent } from './login.component';
     AppComponent,
     ListComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     ...
@@ -322,7 +369,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class AuthService {
 
-  private apiRoot = 'http://localhost:8000/';
+  private apiRoot = 'http://localhost:8000/auth/';
 
   constructor(private http: HttpClient) { }
 
@@ -347,6 +394,10 @@ export class AuthService {
       tap(response => this.setSession(response)),
       shareReplay(),
     );
+  }
+
+  signup(username: string, email: string, password1: string, password2: string) {
+    // TODO: implement signup
   }
 
   logout() {
@@ -502,6 +553,106 @@ Com a aplicação rodando agora podemos visualizar processo de login funcionando
 ![auth](auth.gif)
 
 ![it works](it-works.jpg)
+
+## Processo de Cadastro
+
+Uma outra operação bastante comum ao lidar com autenticação é o processo de cadastro de novas contas no sistema. A biblioteca `djangorestframework-jwt` não nos fornece esta funcionalidade pronta, para isso será preciso criar a própria view de cadastro. Porém existem duas bibliotecas que usadas em conjunto nos fornecem não somente esta funcionalidade como também suporte a validação de conta por email e cadastro e login com outros métodos como cadastro com contas de redes sociais (Github, Google entre outros).
+
+Estas bibliotecas são [django-rest-auth](https://django-rest-auth.readthedocs.io/en/latest/) responsável por disponibilizar as de views de autênticação e cadastro. E [django-allauth](https://django-allauth.readthedocs.io/en/latest/) responsável pela estrutura de cadastro, validação de conta e autênticação social.
+
+Para incluir o processo de cadastro em nossa aplicação vamos instalar as bibliotecas no backend:
+
+```console
+$ pip install django-rest-auth django-allauth
+```
+
+Em seguida adicionamos as seguintes configurações no `settings.py`:
+
+```python
+INSTALLED_APPS = [
+    ...,
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth',
+    'rest_auth.registration',
+]
+
+# allauth
+
+SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# JWT settings
+
+REST_USE_JWT = True
+```
+
+Desabilitamos o `ACCOUNT_EMAIL_VERIFICATION` nesta postagem pois estamos focados nos fluxos que envolvem a manipulação do JWT Token no processo de autenticação, em aplicações no "mundo real" processos de verificação de conta são importantes para mitigar abusos em seu sistema.
+
+A variável `REST_USE_JWT` informa ao `rest_auth` que utilizaremos o JWT ao invés do Token padrão.
+
+Adicionadas as configurações é hora de configurar as rotas do backend em `urls.py`:
+
+```python
+urlpatterns = [
+    ...,
+    path('auth/login/', obtain_jwt_token), #  remova esta linha
+    path('auth/', include('rest_auth.urls')),
+    path('auth/signup/', include('rest_auth.registration.urls')),
+    path('auth/refresh-token/', refresh_jwt_token),
+]
+```
+
+Nesta configuração removemos a rota `auth/login/` pois ela já existe nas rotas do `rest_auth`.
+
+Um outro ponto interesante é que tanto o login quanto o cadastro no `rest_auth` retornam junto com o JWT Token uma instância do usuário logado, o que pode lhe poupar uma requisição a sua api para recuperar os dados de usuário após essas operações.
+
+Agora que temos a funcionalidade de cadastro pronta no backend, vamos às alterações de frontend:
+
+```typescript
+// auth.service.ts
+
+...
+  signup(username: string, email: string, password1: string, password2: string) {
+    return this.http.post(
+      this.apiRoot.concat('signup/'),
+      { username, email, password1, password2 }
+    ).pipe(
+      tap(response => this.setSession(response)),
+      shareReplay(),
+    );
+  }
+...
+
+// signup.component.ts
+
+import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
+
+...
+export class SignupComponent implements OnInit {
+
+  error: any;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) { }
+
+  ngOnInit() {
+  }
+
+  signup(username: string, email: string, password1: string, password2: string) {
+    this.authService.signup(username, email, password1, password2).subscribe(
+      success => this.router.navigate(['list']),
+      error => this.error = error
+    );
+  }
+}
+```
+
+Com essa pequena alteração agora é possível realizar cadastros no sistema acessando o `/signup` do seu frontend.
 
 ## Conclusão
 
