@@ -27,17 +27,17 @@ There are two significant responsibilities inside an interactive web application
 
 ## Backend
 
-On a client/server architecture, we call as the backend, the layer responsible for managing the access on the data, and its processing happens entirely on the server that is responsible for the service. The backend is responsible for accessing, processing, storing, and controlling the access to the data requested by the client. The most famous implementations of it are the REST API's.
+Looking to the client/server architecture, we call as the backend, the layer responsible for managing the access on the data, and its processing happens entirely on the server that is responsible for the service. The backend is responsible for accessing, processing, storing, and controlling the access to the data requested by the client. The most famous implementations of it are the REST API's.
 
 ## Frontend
 
-No modelo citado acima, o frontend é responsável pela camada de apresentação dos dados e seu processamento acontece em sua maioria no cliente, mas em alguns casos parte deste processamento pode ser feito pelo servidor.
+On the other hand, the frontend is responsible for the presentation layer of your application, and most of the work usually happens on the client-side.
 
-## Implementando o backend
+## Backend Implementation
 
-Definidas as responsabilidades vamos implementar nossa aplicação, partindo do backend.
+Now that we have the responsibilities divided, let's start by writing the backend.
 
-Começamos com a instalação do django seguido da criação do projeto:
+First, install Django and create a new project:
 
 ```console
 $ pip install django
@@ -47,17 +47,17 @@ $ python manage.py migrate
 $ python manage.py runserver
 ```
 
-Ao iniciar o navegador em [localhost:8000](http://localhost:8000) veremos a nova tela de sucesso de criação de aplicação do Django 2 mostrando que a inicialização da sua nova aplicação foi um sucesso (muito bonita a nova tela né?!).
+Then we start the browser at [localhost:8000](http://localhost:8000) to see the Django new application success screen.
 
-![novo projeto](django-startproject.gif)
+![new project screen](/blog/separando-o-frontend-do-backend-com-angular-e-django/django-startproject.gif)
 
-O próximo passo é instalar o Django Rest Framework, para montar a api do nosso backend:
+The next step is to install the Django Rest Framework:
 
 ```console
 $ pip install djangorestframework
 ```
 
-Em seguida editamos o `settings.py` para habilitá-lo:
+After that we edit the `settings.py` file to plug it:
 
 ```python
 INSTALLED_APPS = (
@@ -66,7 +66,7 @@ INSTALLED_APPS = (
 )
 ```
 
-No `urls.py` registramos as urls de autenticação para acessar a interface de navegação de api
+At `urls.py` we add the framework authentication URLs to get access to the API interactive navigation.
 
 ```python
 from django.urls import include, path
@@ -77,17 +77,17 @@ urlpatterns = [
 ]
 ```
 
-Agora podemos visualizar a tela de login acessando [localhost:8000/api-auth/login/](http://localhost:8000/api-auth/login/)
+Now it is possible to log in by accessing [localhost:8000/api-auth/login/](http://localhost:8000/api-auth/login/).
 
-![rest login](djangorestframework-login.png)
+![rest login](/blog/separando-o-frontend-do-backend-com-angular-e-django/djangorestframework-login.png)
 
-Com isso, daremos inicio a nossa aplicação de lista de compras:
+With the authentication ready, let's start the shopping list app:
 
 ```console
 python manage.py startapp shopping
 ```
 
-A aplicação será bem direta ao ponto com um único **model** que é quem representa a lista de compras no banco de dados, um **serializer** que transforma os dados de objeto para **json** e vice versa, além de e validar os dados da requisição e uma **view** que recebe, encaminha e responde a estas requisições:
+The application will be pretty straight forward with a single **model** that will represent the shopping list at the database, a **serializer** that will transform the data from the Python object into **JSON** and handle validation, and a **view** that will receive parse and answer the incoming requests:
 
 ```python
 # settings .py
@@ -153,21 +153,21 @@ urlpatterns = [
 ]
 ```
 
-Para finalizar criamos o arquivo de migração do banco de dados seguido da migração do mesmo:
+Now, we need to create the database migrations and apply that to our database:
 
 ```console
 $ python manage.py makemigrations
 $ python manage.py migrate
 ```
 
-E voilá, nosso backend está funcionando:
+And voilá, our backend is working:
 
-![shopping list](djangorestframework-shopping-list.png)
+![shopping list](/blog/separando-o-frontend-do-backend-com-angular-e-django/djangorestframework-shopping-list.png)
 
 
-## Implementando o frontend
+## Frontend Implementation
 
-Para iniciar a implementação do frontend vamos instalar a ferramenta de linha de comando do **Angular** e criar um novo projeto:
+To start the frontend, let's install the CLI tools to create an **Angular** project:
 
 ```console
 $ npm install -g @angular/cli
@@ -176,11 +176,11 @@ $ cd frontend
 $ ng serve
 ```
 
-Se tudo tiver corrido como esperado ao acessar [localhost:4200](http://localhost:4200) veremos a página inicial de um novo projeto Angular.
+Now we can access the frontend at [localhost:4200](http://localhost:4200) to see the Angular new project page.
 
-![home angular](angular-startproject.png)
+![angular home](/blog/separando-o-frontend-do-backend-com-angular-e-django/angular-startproject.png)
 
-Agora criaremos um **service** para acessar nossa api e uma **view** para listar os itens da nossa lista de compras:
+Then we create a **service** to access the API and a **view** to list the items at the shopping list:
 
 ```typescript
 // shopping-item.interface.ts
@@ -222,7 +222,7 @@ import { ShoppingItem } from './shopping-item.interface';
   template: `
   <div style="text-align:center">
     <h1>
-      Lista de compras
+      Shopping list
     </h1>
   </div>
   <ul>
@@ -276,35 +276,35 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-Acessando [localhost:4200](http://localhost:4200) veremos nossa belíssima lista de comp...
+Accessing [localhost:4200](http://localhost:4200) we can see our beautiful shopping lis...
 
-![ops](ops.png)
+![ops](/blog/separando-o-frontend-do-backend-com-angular-e-django/ops.png)
 
-![wtf](wtf.png)
+![wtf](/blog/separando-o-frontend-do-backend-com-angular-e-django/wtf.png)
 
-Algo está errado com nossa aplicação, vamos dar uma olhada no console do browser:
+There is something wrong with our application, let's check the browser console:
 
-![cors error](cors-error.png)
+![cors error](/blog/separando-o-frontend-do-backend-com-angular-e-django/cors-error.png)
 
-Ding! ding! ding! parece que encontramos o problema!
+Ding! Ding! Ding! It seems we found our problem!
 
-![xeroque holmes](xeroque-holmes.png)
+![xeroque holmes](/blog/separando-o-frontend-do-backend-com-angular-e-django/sherlock-holmes.png)
 
 # Cross-Origin Resource Sharing (CORS)
 
-Por questões de segurança navegadores implementam a [política de mesma origem](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy), que impede que scripts executem requisições HTTP de origem cruzada, ou seja, requisições que possuam protocolo, domínio ou porta diferentes de seu host de origem.
+For security reasons browsers implement the [same origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy), that blocks scripts that make HTTP requests with cross-origin, which is the requests that have protocol, domain, or port that differs from its origin.
 
-Para habilitar requisições de origem cruzada de forma segura foi criado o [Mecanismo de Compartilhamento de Recursos entre Origens (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) que serve para permitir a comunicação entre um frontend e backend em domínios distintos, e também para requisições de fontes, imagens dentre outros recursos armazenados em uma CDN.
+To enable cross-origin requests safely the [Cross-origin resource sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) was created, and it allows the communication between the frontend and the backend at different sources. It is also helpful to enable requests for resources stored at a CDN.
 
-O mecanismo opera adicionando novos cabeçalhos **HTTP** que permitem que o servidor descreva o conjunto de origens que podem ler a informação através do navegador. Além de requerer que os navegadores "pré-enviem" requisições que podem causar efeitos colaterais ao servidor (como **POST**, **PUT** e **DELETE**) com uma requisição **OPTIONS** que depois de aprovada libera o envio da requisição verdadeira.
+The mechanism operates by adding new **HTTP** headers on the request to describe the group of origins allowed to access that resource through the browser. It also requires that the browsers "preflight" the requests that can cause collateral effects on the server (like **POST**, **PUT**, and **DELETE**) with the **OPTIONS** request who needs approval before sending the real action.
 
-O navegador (por consequência nosso frontend também) já está pronto para lidar com este mecanismo, nos resta agora implementá-lo em no backend.
+The browser (by consequence our frontend too) is ready to deal with CORS. We only need to implement the backend part.
 
 ```console
 $ pip install django-cors-headers
 ```
 
-Após instalado, basta adicionar as configurações no `settings.py`:
+After the installation we need to add its configuration at the `settings.py`:
 
 ```python
 INSTALLED_APPS = (
@@ -322,15 +322,15 @@ CORS_ORIGIN_WHITELIST = (
 )
 ```
 
-!!! Lembre-se de colocar o `CorsMiddleware` o mais a cima o possível na lista de middlewares para que ele consiga adicionar o cabeçalho na requisição antes que ela seja tratada pelo backend.
+!!! Remember to place the `CorsMiddleware` the higher as possible at the middleware list so it can add the header before the backend parses it.
 
-Em `CORS_ORIGIN_WHITELIST` colocamos somente a origem que queremos liberar o acesso que no nosso caso é `localhost:4200`, mas em ambiente de produção seria algo como `api.backend.com`.
+At `CORS_ORIGIN_WHITELIST` we put only the origin that we want to allow access. On our case is `localhost:4200`, but on the production environment, it will be something like `api.backend.com`.
 
-Feito isso agora podemos ver que a comunicação entre frontend e backend está funcionando \o/.
+With that done, we can go to the browser and see the communication between the frontend and the backend working \o/.
 
-![funcionou](it-works.png)
+![it works](/blog/separando-o-frontend-do-backend-com-angular-e-django/it-works.png)
 
-Agora para finalizar vamos adicionar um pouco de interatividade em nossa lista de compras:
+Then, to make it even cooler, let's add some interactivity to our shopping list:
 
 ```typescript
 // api.service.ts
@@ -420,13 +420,13 @@ export class AppComponent implements OnInit {
 }
 ```
 
-E agora sim, temos a lista de compras completa e funcionando:
+Now we have our shopping list done:
 
-![lista de compras](frontend-done.gif)
+![shopping list](/blog/separando-o-frontend-do-backend-com-angular-e-django/frontend-done.gif)
 
-## Conclusão
+## Conclusion
 
-Separar o frontend do backend em projetos distintos gera um pouco mais de trabalho em relação a manter tudo em um único projeto monolítico. Porém, depois de acostumar com as particularidades desta separação é que começam a surgir seus frutos como poder dar mais flexibilidade e liberdade aos times de desenvolvimento para utilizarem suas ferramentas e fluxos de desenvolvimento da forma que bem entenderem, além de retirar a carga de processamento de template de seu servidor de backend deixando-o focado na gestão e processamento dos seus dados e, talvez uma das maiores vantagens caso você tenha uma empresa, a possibilidade de poder contratar profissionais especializados em frontend e em backend para evoluir seu produto sem demandar de todos um conhecimento de fullstack.
+To split the frontend to the backend into different projects generates more work when you compare it to a monolith. But, after you get used to it, you will start to see the benefits that come from this separation like the flexibility, the liberty across the teams to use their own set of tools and pipelines, and the performance improvement by delegating some of the processing to the client-side. Also, if you are a company, you get the possibility to hire specialized to evolve your platform without requiring that everyone has a full-stack knowledge upfront.
 ---
 pub_date: 2018-02-13
 ---
