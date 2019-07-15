@@ -8,17 +8,13 @@ A resposta me veio rápido na mente, e junto com ela a ideia de documentar estas
 
 Pois bem, para automatizar tarefas repetitivas tal como o tão falado processo de [deploy (implantação de software)](https://pt.wikipedia.org/wiki/Implanta%C3%A7%C3%A3o_de_software) ou a execução de um único comando em múltiplos servidores existe uma ferramenta muito legal e prática chamada [Fabric](http://www.fabfile.org/) que utilizaremos para automatizar a questão levantada no início da postagem.
 
-Para instalar o Fabric em python 2 rode:
-
-```console
-$ pip install Fabric
-```
-
-Ou para python 3:
+Para instalar o Fabric rode:
 
 ```console
 $ pip install Fabric3
 ```
+
+!!! O Fabric original está na versão 2 porém sua API mudou completamente em relação a atual e muitas coisas precisam ser implementadas ainda, Fabric 3 é um fork que possuí compatibilidade com a versão 1 e suporta Python 3
 
 Agora vamos escrever o código para rodar o `df -h` nos servidores e salvar em um arquivo chamado `fabfile.py`:
 
@@ -98,6 +94,4 @@ summary: Descubra utilizar o Fabric para automatizar tarefas repetitivas
 ---
 share_image: fabric.png
 ---
-tags:
-
-tldr
+tags: tldr

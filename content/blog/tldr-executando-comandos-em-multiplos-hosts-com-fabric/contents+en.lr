@@ -1,26 +1,22 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-Me perguntaram como realizar uma conexão ssh em um servidor para rodar o comando `df -h` que mostra o uso de disco da máquina. Logo depois descobri que a dúvida se estendia a como fazer isso em vários servidores.
+Recently someones asked me how to perform a connection to a server to run the command `df -h` using ssh to display the disk usage of the machine. After a quick chat, I discovered that the question was more than just a single check to a server. It was to extend that to multiple servers.
 
-A resposta me veio rápido na mente, e junto com ela a ideia de documentar estas coisas, o que me trouxe ao começo desta série de postagens curtas carinhosamente batizada de **TLDR**, que é a abreviação de **T**oo **L**ong **D**idn`t **R**ead ou, em português, Muito longo, não li.
+The answer to the question was quick and came with a "click". How about to document these quick tips at the blog? It can help someone and also help me to remind me how to do something if I need it in the future. With that in mind, I created this series of posts that I kindly baptized as **TLDR** the abbreviation for **T**oo **L**ong ** D**idn't **R**ead.
 
-Pois bem, para automatizar tarefas repetitivas tal como o tão falado processo de [deploy (implantação de software)](https://pt.wikipedia.org/wiki/Implanta%C3%A7%C3%A3o_de_software) ou a execução de um único comando em múltiplos servidores existe uma ferramenta muito legal e prática chamada [Fabric](http://www.fabfile.org/) que utilizaremos para automatizar a questão levantada no início da postagem.
+Now moving to the actual tip, to automate repetitive tasks like at the question above or on more complex processes like on [software deployment](https://en.wikipedia.org/wiki/Software_deployment) there is a handy python library called [Fabric](http://www.fabfile.org/) that we are going to use to help us on that.
 
-Para instalar o Fabric em python 2 rode:
-
-```console
-$ pip install Fabric
-```
-
-Ou para python 3:
+To install Fabric you can use pip:
 
 ```console
 $ pip install Fabric3
 ```
 
-Agora vamos escrever o código para rodar o `df -h` nos servidores e salvar em um arquivo chamado `fabfile.py`:
+!!! The original Fabric is at version 2, but your API changed utterly, and there is thing still to be implemented. Fabric 3 is a fork that has compatibility with the first version of Fabric.
+
+Then we create the `fabfile.py` with the following content:
 
 ```python
 from fabric.api import env, run
@@ -32,11 +28,11 @@ def disk_usage():
     run('df -h')
 ```
 
-!! O arquivo deve se chamar `fabfile.py` pois o Fabric busca automaticamente por este arquivo quando rodamos o comando
+!! The file must be called `fabfile.py` so Fabric can automatically discover him when we run the command.
 
-!!! O Fabric faz uma conexão ssh com os servidores, portanto tenha uma chave ssh configurada  em sua máquina e liberada no allowed_hosts dos usuários dos servidores de destino
+!!! Fabric makes the ssh connection with the servers so that you will need an ssh key configured at your machine and its access allowed at the `allowed_hosts` file of the target servers.
 
-Com o arquivo pronto é só rodar o comando definido no aquivo:
+With the file ready, you need to run this command:
 
 ```console
 $ fab disk_usage
@@ -68,25 +64,25 @@ $ fab disk_usage
 Done.
 ```
 
-O Fabric roda a tarefa em sequência na lista de hosts informada. Caso queira rodar os comandos em paralelo é só passar a flag `-P` para o comando:
+Fabric will run the task in sequence at the host list informed. If you want to run it in parallel use the `-P` flag:
 
 ```console
 $ fab disk_usage -P
 ```
 
-!!! Lembrando que ao rodar a tarefa em paralelo você perde o controle da ordem de execução da sua lista de servidores
+!!! Just remind that running things in parallel you don't have control of the server order.
 
 ## Bônus
 
-Dica do [@luizirber](https://twitter.com/luizirber) no twitter.
+Tip from [@luizirber](https://twitter.com/luizirber) at twitter.
 
-O Fabric possuí um padrão de comando muito legal que nos permite executar o exemplo acima totalmente da linha de comando que é:
+Fabric has a pattern to run its commands at the CLI without needing to write code:
 
 ```console
 $ fab [options] -- [shell command]
 ```
 
-O comando ficaria desta forma:
+The disk usage command woud be:
 
 ```console
 $ fab -H 'user1@server1, user2@server2' -- df -h
@@ -94,12 +90,12 @@ $ fab -H 'user1@server1, user2@server2' -- df -h
 ---
 pub_date: 2018-02-17
 ---
-share_image: fabric.png
+share_image: /blog/tldr-executando-comandos-em-multiplos-hosts-com-fabric/fabric.png
 ---
-summary: Descubra utilizar o Fabric para automatizar tarefas repetitivas
+summary: Discover how to use Fabric to automate repetitive tasks at your servers
 ---
-title: TLDR: Executando comandos em multiplos hosts com Fabric
+title: TLDR: Running commands at multiple hosts with Fabric
 ---
-tags:
-
-tldr
+tags: tldr
+---
+_slug: tldr-running-commands-at-multiple-hosts-with-fabric
