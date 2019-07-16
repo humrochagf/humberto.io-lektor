@@ -72,7 +72,7 @@ $ fab disk_usage -P
 
 !!! Just remind that running things in parallel you don't have control of the server order.
 
-## Bônus
+## Bonus
 
 Tip from [@luizirber](https://twitter.com/luizirber) at twitter.
 

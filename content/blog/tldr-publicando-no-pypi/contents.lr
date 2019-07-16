@@ -24,7 +24,7 @@ setup(
     author_email='meu@email.com',
     url='https://github.com/usuario/meu-pacote-python',
     install_requires=['dependencia1', 'dependencia2'],
-    license="MIT",
+    license='MIT',
     keywords=['dev', 'web'],
     classifiers=[
         'Intended Audience :: Developers',
@@ -48,7 +48,7 @@ Antes de publicar o pacote é preciso empacotá-lo e a forma mais simples é faz
 $ python setup.py sdist
 ```
 
-! Este modelo de empacotamento requer que o pip rode uma etapa de montagem após a instalação
+!! Este modelo de empacotamento requer que o pip rode uma etapa de montagem após a instalação
 
 Para já empacotar o código montado rode:
 
@@ -56,7 +56,7 @@ Para já empacotar o código montado rode:
 $ python setup.py bdist_wheel
 ```
 
-! Este comando empacota a versão montada para a versão do python em que você rodou o comando, para montar para python 2 e 3 rode duas vezes o comando (uma para cada versão do python)
+!! Este comando empacota a versão montada para a versão do python em que você rodou o comando, para montar para python 2 e 3 rode duas vezes o comando (uma para cada versão do python)
 
 Com isso você terá tudo empacotado e pronto para a publicação na pasta `dist/`.
 
@@ -73,6 +73,8 @@ Em seguida basta rodar o seguinte comando:
 ```console
 $ twine upload --username usuario-no-pypi dist/meu-pacote-1.0.0.tar.gz dist/meu-pacote-1.0.0-py2-none-any.whl dist/meu-pacote-1.0.0-py3-none-any.whl
 ```
+
+!!! Não se esqueça de trocar o username e os nomes de arquivo para os seus.
 
 O comando vai pedir a senha e em seguida fazer o upload para o PyPI.
 
@@ -93,13 +95,19 @@ import os
 import re
 
 package = 'meu_pacote'
-init_py = open(os.path.join(package, '__init__.py')).read()
+
+with open(os.path.join(package, '__init__.py'), 'rb') as f:
+    init_py = f.read().decode('utf-8')
+
 version = re.search(
-    "^__version__ = ['\"]([^'\"]+)['\"]", init_py, re.MULTILINE).group(1)
+    '^__version__ = [\'\"]([^\'\"]+)[\'\"]', init_py, re.MULTILINE
+).group(1)
 author = re.search(
-    "^__author__ = ['\"]([^'\"]+)['\"]", init_py, re.MULTILINE).group(1)
+    '^__author__ = [\'\"]([^\'\"]+)[\'\"]', init_py, re.MULTILINE
+).group(1)
 email = re.search(
-        "^__email__ = ['\"]([^'\"]+)['\"]", init_py, re.MULTILINE).group(1)
+    '^__email__ = [\'\"]([^\'\"]+)[\'\"]', init_py, re.MULTILINE
+).group(1)
 ...
 setup(
     ...
@@ -110,35 +118,21 @@ setup(
 )
 ```
 
-## Bônus - README.md para rst
+## Bônus - README.md como long_description
 
-Quem publica código no [github](https://github.com) costuma escrever o arquivo **readme** em **markdown**, mas a sintaxe de documentação do PyPI é em **reStructured Text**.
-
-Para converter sua documentação para a publicação você pode usar o pacote [pandoc](https://pandoc.org/).
-
-```console
-$ pip install pypandoc
-```
-
-!! O pandoc precisa estar instalado no sistema para ser usado com pypandoc. Veja a [documentação](https://pandoc.org/installing.html)
-
-Adicione este código no seu `setup.py` para realizar a conversão:
+Quem publica código no [github](https://github.com) costuma escrever um arquivo **readme** com a descrição do projeto. Você pode usá-lo para não se repetir na `long_description`:
 
 ```python
-try:
-    import pypandoc
-    readme = pypandoc.convert('README.md', 'rst')
-except (IOError, ImportError):
-    readme = ''
+with open('README.md', 'rb') as f:
+    readme = f.read().decode('utf-8')
 
 setup(
     ...
     long_description=readme,
+    long_description_content_type="text/markdown",
     ...
 )
 ```
-
-!! É importante colocar a conversão dentro do **readme** dentro de um bloco `try ... except` para não demandar a instalação do pypandoc nos usuários que vão usar o seu pacote.
 ---
 pub_date: 2018-03-05
 ---
@@ -146,6 +140,4 @@ summary: Publique seu primeiro pacote no Python Package Index (PyPi)
 ---
 share_image: pypi.png
 ---
-tags:
-
-tldr
+tags: tldr
