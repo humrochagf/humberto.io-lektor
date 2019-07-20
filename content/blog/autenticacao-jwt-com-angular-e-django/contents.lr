@@ -12,6 +12,7 @@ Os repositórios com o código desta postagem são:
 - **Frontend**: [https://github.com/humrochagf/post-jwt-frontend](https://github.com/humrochagf/post-jwt-frontend)
 
 !! **UPDATE (18/09/2018)** Postagem atualizada e testada para utilizar Angular 6
+
 !! **UPDATE (05/07/2019)** Postagem atualizada com o processo de cadastro
 
 ## Autenticação
@@ -75,7 +76,7 @@ Após confirmar os dados de usuário e receber o **JWT** ele deve ser armazenado
 Authorization: JWT <token>
 ```
 
-Este é um mecanismo de autenticação que não guarda estado e por não dependerem de **token de sessão**, não há necessidade de se preocupar com **CORS**.
+Este é um mecanismo de autenticação que não guarda estado, ou seja, não requer armazenamento de dados de sessão no banco de dados do servidor.
 
 Agora, com todo este conhecimento é hora da implementação!!!
 
