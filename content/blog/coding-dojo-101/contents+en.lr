@@ -117,6 +117,8 @@ To run our tests with **nose** just call:
 $ dose nosetests file.py
 ```
 
+!!! If you have any problem with the installation process check out this post that I made about [Python dev dependencies](/en/blog/tldr-python-dev-dependencies-on-ubuntu/).
+
 ## Conclusion
 
 At the dojo the most important thing is to learn and have fun learning, this was just some tips by my experience at Coding Dojos. Feel free to adapt, create and subvert everything that was written here and go back to tell me what was your experience, things that worked, things that not much and so forth at the comments bellow.

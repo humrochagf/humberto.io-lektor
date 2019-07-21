@@ -1,20 +1,20 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-Algumas bibliotecas do python como a que usamos para conversar um banco **SQLite** são na prática um **encapsulamento de um binário externo**. Nestes casos precisamos que eles estejam instalados em nosso sistema operacional para que determinado pacote python funcione.
+Some libraries aren't 100% packaged Python code, some of them are **bindings** to external libraries. They offer a Python interface so you can call them inside your code. On these cases, we need to install them previously at the system so the python package can work.
 
-Quando isso acontece, recebemos erros como este:
+When that happens, we get this kind of error:
 
 ```console
 ImproperlyConfigured: Error loading either pysqlite2 or sqlite3 modules (tried in that order): No module named _sqlite3
 ```
 
-Para resolver estes problemas basta instalar esta dependência externa que normalmente o sistema já reconfigura tudo para você, mas para quem trabalha múltiplas versões do python e com [pyenv](https://github.com/pyenv/pyenv) é preciso recompilar todas as versões do python toda vez que lembra de uma dependência externa.
+To solve errors like that, you need to install the external library, and the system configures everything to you. However, if you work with multiple Python versions managed by [pyenv](https://github.com/pyenv/pyenv), you have to rebuild all python versions every time that you remember to install a new dependency.
 
-![e lá vamos nós](e-la-vamos-nos.gif)
+![and here we go](/blog/tldr-dependencias-dev-python-no-ubuntu/e-la-vamos-nos.gif)
 
-Para não sofrer com este problema, após instalar o sistema operacional e antes de preparar o ambiente de desenvolvimento eu já instalo as principais dependências que costumo utilizar:
+To avoid suffering from that, after installing the OS, and before mounting your Python environment, I like to install all the main external dependencies that I'm used to using:
 
 ```console
 $ sudo apt-get install dpkg-dev \
@@ -44,65 +44,65 @@ $ sudo apt-get install dpkg-dev \
                        libxtst-dev
 ```
 
-!! Este comando foi testado no **Ubuntu 18.04**, os nomes dos pacotes podem mudar de uma versão para outra.
+!! This command was tested at **Ubuntu 18.04**, the names of the packages can change from one version to another.
 
-## Bônus
+## Bonus
 
-Para quem tiver curiosidade ou quer instalar somente alguns dos itens da lista quebrei o comando acima descrevendo cada um:
+For everyone that wants to know the use cases of each dependency, I made a breakdown describing them:
 
 ```console
 $ sudo apt-get install dpkg-dev build-essential
 ```
 
-Instala os compiladores de C e C++ bem como o comando make essenciais para compilar as dependências em cpython.
+Installs the C and C++ compilers, also the make command used to compile the CPython dependencies.
 
 ```console
 $ sudo apt-get install python-dev python3-dev
 ```
 
-Instala os headers e bibliotecas estáticas do python 2 e 3 que são usadas para montar extensões  compiladas da linguagem.
+Installs the headers and static libraries of python 2 and 3 that are used to compile and mount the language extensions.
 
 ```console
 $ sudo apt-get install libncursesw5-dev
 ```
 
-Biblioteca usada em pacotes que lidam com interface de terminal como por exemplo o [visidata](https://github.com/saulpw/visidata).
+Library used on packages that deal with the terminal interface, like [visidata](https://github.com/saulpw/visidata) for example.
 
 ```console
 $ sudo apt-get install libsqlite3-dev libreadline-dev libbz2-dev
 ```
 
-Bibliotecas usadas para trabalhar com bancos de dados [SQLite](https://www.sqlite.org/index.html).
+Libraries used to work with [SQLite](https://www.sqlite.org/index.html) databases.
 
 ```console
 $ sudo apt-get install libffi-dev libssl-dev
 ```
 
-Bibliotecas usadas em pacotes que implementam **OpenSSL**.
+Libraries used on packages which implement **OpenSSL**.
 
 ```console
 $ sudo apt-get install libgdbm-dev
 ```
 
-Base para boa parte dos pacotes que lidam com **banco de dados**.
+The base of the most of packages that handle **databases**.
 
 ```console
 $ sudo apt-get install zlib1g-dev libjpeg-dev libtiff-dev
 ```
 
-Dependências externas de pacotes que tratam imagem como o [Pillow](https://github.com/python-pillow/Pillow)
+These are external dependencies of packages used for image processing like [Pillow](https://github.com/python-pillow/Pillow).
 
 ```console
 $ sudo apt-get install libpq-dev
 ```
 
-Dependência do [psycopg2](https://github.com/psycopg/psycopg2) para lidar com bancos **PostgreSQL**.
+It is the dependency of [psycopg2](https://github.com/psycopg/psycopg2) to work with **PostgreSQL** databases.
 
 ```console
 $ sudo apt-get install libxml2-dev libxslt1-dev
 ```
 
-Bibliotecas usadas para tratar xml como o pacote [lxml](https://github.com/lxml/lxml)
+Libraries used to handle XML on packages like [lxml](https://github.com/lxml/lxml).
 
 ```console
 $ sudo apt-get install dpkg-dev \
@@ -119,18 +119,18 @@ $ sudo apt-get install dpkg-dev \
                        libxtst-dev
 ```
 
-Este conjunto em específico é utilizado para instalar pacotes de gerenciamento de janelas em interface gráfica como o [wxPhoenix](https://github.com/wxWidgets/Phoenix). Em uma postagem anterior em que eu falei sobre [como organizar um dojo](/blog/coding-dojo-101/) foi citado um semáforo para TDD chamado [dose](https://github.com/danilobellini/dose) que depende do wxPhoenix para rodar em ambientes python 3. 
+This group is used to install packages that work with window management and graphical interfaces like [wxPhoenix](https://github.com/wxWidgets/Phoenix). On a previous post, I taught [how to organize a coding dojo](/en/blog/coding-dojo-101/), and I told about a TDD semaphore called [dose](https://github.com/danilobellini/dose) that uses wxPhoenix to run at Python 3 environments.
 
-Instalando estas dependências é possível realizar sua instalação sem problemas.
+Installing these dependencies you'll be able to install it without problems.
 ---
 pub_date: 2018-06-19
 ---
-share_image: python-ubuntu.jpg
+share_image: /blog/tldr-dependencias-dev-python-no-ubuntu/python-ubuntu.jpg
 ---
-summary: Configure as principais dependencias externas de um ambiente de desenvolvimento python no Ubuntu
+summary: Discover the external dependencies to use at your Python development environment  on Ubuntu
 ---
-title: TLDR: Dependências Dev Python no Ubuntu
+title: TLDR: Python Dev Dependencies on Ubuntu
 ---
-tags:
-
-tldr
+tags: tldr
+---
+_slug: tldr-python-dev-dependencies-on-ubuntu
