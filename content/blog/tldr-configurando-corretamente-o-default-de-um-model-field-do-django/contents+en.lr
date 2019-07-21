@@ -1,44 +1,46 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-Esta postagem é o resultado de um **bug** que me assombrou por uns três meses até conseguir isolar totalmente o erro e, por acontecer em condições muito específicas de temperatura e pressão, tomou muito tempo quebrando cabeça até perceber que o problema era este.
+This post it the result of a **bug** that haunted me for three months until I finally could isolate the error properly, and get to the root of the issue.
 
-!! **Disclaimer:** essa informação existe na documentação do [Django](https://docs.djangoproject.com/en/2.0/ref/models/fields/#default), porém reforçá-la pode lhe poupar um belo tempo de **debugging**.
+!!! **Disclaimer:** this information exists at the [Django](https://docs.djangoproject.com/en/2.2/ref/models/fields/#default) docs, however strengthening the importance of this info is vital to prevent people to spend a lot of time with this kind of bug.
 
-Um dos atributos básicos de um **Model field** do Django é o **default** que determina o valor padrão de um campo quando criamos uma instância do **Model**. Você pode atribuir um **valor** a ele ou um **callable** que nada mais é que uma função ou uma classe que implemente o método `__call__`.
+One of the core parameters of a Django **Model field** is the **default**. It sets the value of the **Field** when you don't pass a value to it at the **Model** instance creation. The default parameter can receive a **value** or a **callable**, and callable are functions or any object that implements the `__call__` method.
 
-Agora vem a dica importante:
+That said, let's go to the tip:
 
-Nunca atribua um valor **mutável** a este campo. Pois isso irá fazer com que todas as instâncias deste **model** que foram criadas em uma mesma execução do seu código compartilhem aquela mesma instância do objeto mutável. Isso vale para dicionários, listas, sets e qualquer outro objeto mutável.
+**Never** use a **mutable object** as default. Because if you do that, every instance of the model will share the same object during the code execution.
 
-Quando quiser atribuir um deles como **default** passe o **callable** como parâmetro:
+If you want to use them as default, use the callable instead:
 
 ```python
-# Errado
+# Wrong
 class SomeClass(models.Model):
     custom_data = JSONField(default={})
 
-# Certo
+# Right
 class SomeClass(models.Model):
     custom_data = JSONField(default=dict)
 ```
 
-O maior problema deste erro é que ele muitas vezes é silencioso e só aparece em alguma sequência de criações e pode te deixar muito confuso.
+The bigger problem with this kind of mistake is that it causes at most cases a silent bug that will come back to haunt you when you least expect. So check your default parameters!
 
-## Bônus
+## Bonus
 
-Funções **lambda** não podem ser usadas como **default** pois elas não conseguem ser serializadas na hora de gerar suas **migrations**, se precisar de um valor mais elaborado crie uma função e passe ela como argumento. Mas, lembre-se de passar a função como argumento (ex.: `default=create_default`), não o resultado dela (ex.: `default=create_default()`).
+You can't use **lambda** functions as the default because they are not serializable during the creation of the **migrations**. If you need to use a more elaborated value as default consider creating a function to use as an argument. But, remember to pass the function as the argument (ex.: `default=create_default`), not its result (ex.: `default=create_default()`).
 ---
 pub_date: 2018-04-25
 ---
-share_image: django.png
+share_image: /blog/tldr-configurando-corretamente-o-default-de-um-model-field-do-django/django.png
 ---
-summary: Poupe muitas horas de debug em seu código com esta dica de como definir o valor default de um campo no Model do Django.
+summary: Learn how to set mutable objects as default on Django Model Fields properly, and save you a lot of time with debugging
 ---
-title: TLDR: Configurando corretamente o default de um Model Field do Django
+title: TLDR: Setting mutable objects at Django Model Field default
 ---
 tags:
 
 django
 tldr
+---
+_slug: tldr-setting-mutable-objects-at-django-model-field-default
