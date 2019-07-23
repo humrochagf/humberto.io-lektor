@@ -209,8 +209,8 @@ import imaplib
 # tamanho da resposta
 imaplib._MAXLINE = 1000000
 
-EMAIL = 'calangotestedeemail@gmail.com'
-PASSWORD = '@Calango123'
+EMAIL = 'mymail@gmail.com'
+PASSWORD = 'password'
 SERVER = 'imap.gmail.com'
 
 mail = imaplib.IMAP4_SSL(SERVER)

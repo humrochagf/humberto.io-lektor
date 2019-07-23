@@ -1,24 +1,25 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-Um dia na terça do Python no [Calango Hacker Clube](https://calango.club/) surgiu uma dúvida de como ler emails do Gmail para poder categorizar as mensagens e automatizar o processo de leitura dos emails usando Python. Esta dúvida motivou esta postagem que tem o objetivo de ajudar a todos que tiverem dúvidas de como começar a interagir com sistemas de troca de emails utilizando Python.
+Someday, during the Python Tuesdays event at [Calango Hacker Club](https://calango.club/), one of the participants came with a question on how to automate its email reading process at Gmail categorizing their messages into something that could be important and something that is not. That question motivated me looking after how to that, and then into this post that maybe can help someone that is trying to do something similar with Python.
 
-![python email](python-mail.png)
+![python email](/blog/enviando-e-recebendo-emails-com-python/python-mail.png)
 
-!! Esta postagem tem como alvo o público iniciante mas também pode ser útil para quem já possuí experiência na linguagem mas nunca tinha trabalhado diretamente com envio e recebimento de emails. A versão do Python utilizada para publicar esta postagem foi a 3.6.x.
+!! This post aims to someone that is starting with Python but also can be useful to knowledgeable users who haven't worked with email before. The version of Python used to make this post was 3.6.x.
 
-## Os Protocolos de email
+## The email Protocols
 
-Sistemas de email são muito robustos pois são construídos em cima de protocolos muito bem estabelecidos e usados por todas as plataformas de email da internet. Estes protocolos são definidos e publicados através de documentos chamados de [RFC](https://en.wikipedia.org/wiki/Request_for_Comments) que é uma sigla para Request for Comments que lembram um pouco as [PEPs](https://www.python.org/dev/peps/) do Python só que para os protocolos que definem a base do funcionamento das comunicações entre sistemas como a internet.
+Email systems are robust because they rely upon well-established protocols used by all email platforms across the internet. These protocols are defined and published by documents called [RFC](https://en.wikipedia.org/wiki/Request_for_Comments) that stands for Request for Comments and resemble the [PEPs](https://www.python.org/dev/peps/) from Python, but for protocols and patterns that define the operation of communication systems through the internet.
 
-Para enviar emails utilizamos o protocolo [SMTP](https://pt.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol) (RFCs [821](https://tools.ietf.org/html/rfc821) e [5321](https://tools.ietf.org/html/rfc5321)) e para receber emails temos os protocolos [IMAP](https://pt.wikipedia.org/wiki/Internet_Message_Access_Protocol) (RFC [3501](https://tools.ietf.org/html/rfc3501)) e [POP](https://pt.wikipedia.org/wiki/Post_Office_Protocol) (RFCs [918](https://tools.ietf.org/html/rfc918) e [1081](https://tools.ietf.org/html/rfc1081)).
+To send emails, we use the [SMTP](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol) protocol  (RFCs [821](https://tools.ietf.org/html/rfc821) e [5321](https://tools.ietf.org/html/rfc5321)), and to receive them, we use [IMAP](https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol) (RFC [3501](https://tools.ietf.org/html/rfc3501)) or [POP](https://en.wikipedia.org/wiki/Post_Office_Protocol) (RFCs [918](https://tools.ietf.org/html/rfc918) e [1081](https://tools.ietf.org/html/rfc1081)) protocols.
 
-## Enviando emails
+## Sending emails
 
-Simple Mail Transfer Protocol ou **SMTP** é um protocolo da camada de aplicação usado para o envio de emails. Ele opera sobre [TCP/IP](https://pt.wikipedia.org/wiki/TCP/IP) e sua comunicação é realizada por padrão pela porta 25 ou 587 para conexões não cifradas e 465 para conexões cifradas com [TLS/SSL](https://pt.wikipedia.org/wiki/Transport_Layer_Security).
+Simple Mail Transfer Protocol or **SMTP** is a protocol from the application layer used to send emails. It operates over [TCP/IP](https://en.wikipedia.org/wiki/Internet_protocol_suite), and your communication is often made using the port 25 or 587 for unencrypted connections and 465 for [TLS/SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security)
+ encrypted connections.
 
-Python já vem com baterias, por isso não precisaremos instalar nenhum pacote para fazer o envio de mensagens **SMTP**, para isso utilizaremos uma biblioteca interna do python chamada `smtplib`:
+Python comes with batteries included, so we don't need to install any external package to deal with **SMTP**. We use a library called `smtplib`:
 
 ```python
 import smtplib
@@ -43,57 +44,65 @@ server.sendmail(mail_from, mail_to, mail_subject, mail_message)
 server.quit()
 ```
 
-!!! ATENÇÃO: Para enviar emails como **localhost** você precisa ter um servidor de emails instalado na máquina em que o código está rodando
+!!! To send emails as **localhost**, you need to have an email server installed at the machine where the code is running.
 
-O código acima é a versão mais crua de um envido de email. Nele nós construímos a mensagem "na mão" com uma string, porém o Python possuí uma biblioteca para facilitar o nosso trabalho.
+The code above is a raw version of an email sent. We built the message from the text so you can see the basic structure of an email message, but Python has a library to create more complex emails.
 
-Uma outra questão do código acima é que estamos enviando o email de um servidor local e isso pode vir a ser um problema pois a rede de envios de emails funciona através de uma **rede de confiança**. Se seu servidor local não segue as práticas recomendadas de envio de email ou seu **ip** não é muito conhecido nesta rede de confiança seus emails podem cair em caixa de **spam** e em alguns casos simplesmente ser recusado pelo destinatário.
+We are sending the email from a **local server**, and it can be an issue because the email network works as a **chain of trust**. If your local server doesn't follow the best practices of email sending, or if the chain doesn't know your **IP**, your messages can be marked as **SPAM**, or be dropped by the receiver.
 
-Para resolver estas questões e garantir que nossa mensagem chegue corretamente vamos mudar um pouco o código e usar o gmail para facilitar a garantia da entrega da nossa mensagem:
+To solve these questions, and to grant its delivery, let's change the code a little to use Gmail as our gateway:
 
 ```python
 import smtplib
 from email.mime.text import MIMEText
 
-# conexão com os servidores do google
+# connect with Google's servers
 smtp_ssl_host = 'smtp.gmail.com'
 smtp_ssl_port = 465
-# username ou email para logar no servidor
+# use username or email to log in
 username = 'origin@gmail.com'
 password = 'password'
 
 from_addr = 'origin@gmail.com'
 to_addrs = ['destiny@gmail.com']
 
-# a biblioteca email possuí vários templates
-# para diferentes formatos de mensagem
-# neste caso usaremos MIMEText para enviar
-# somente texto
+# the email lib has a lot of templates
+# for different message formats,
+# on our case we will use MIMEText
+# to send only text
 message = MIMEText('Hello World')
 message['subject'] = 'Hello'
 message['from'] = from_addr
 message['to'] = ', '.join(to_addrs)
 
-# conectaremos de forma segura usando SSL
+# we'll connect using SSL
 server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
-# para interagir com um servidor externo precisaremos
-# fazer login nele
+# to interact with the server, first we log in
+# and then we send the message
 server.login(username, password)
 server.sendmail(from_addr, to_addrs, message.as_string())
 server.quit()
 ```
 
-Com isso utilizamos o google como nosso intermediário (**gateway**) para enviar as mensagens de emails. Mas tenha em mente que mesmo com o google como seu **gateway** existe uma política de envio de mensagens de email, cuidado com os **SPAMS**.
+In case you have problems to connect at Google, you need to enable the "Less secure app access".
 
-![SPAM](spam.jpg)
+Google blocks access from apps that it judges as not following its security standards, the problem is they don't have a clear explanation of what these standards are, besides that it's not a trivial task for whom is starting and doing the first test to struggle with that.
 
-## Recebendo emails
+That said if you are facing this issue, you can enable access to make your tests by accessing  [https://myaccount.google.com/u/0/security?hl=en](https://myaccount.google.com/u/0/security?hl=en): 
 
-O protocolo **IMAP** Internet Message Access Protocol é usado para receber emails e assim como o **SMTP**, opera na camada de aplicação sobre **TCP/IP**, porém utiliza as portas 143 para conexão não cifrada e 993 para conexão cifrada com **SSL**.
+![Less secure access](/blog/enviando-e-recebendo-emails-com-python/less-secure.png)
 
-Além do **IMAP**, podemos também receber emails através do protocolo **POP** Post Office Protocol, mas atualmente o protocolo **IMAP** é o mais indicado para esta tarefa pois com ele é possível manter todos os seus clientes de email sincronizados e organizados, além da possibilidade de acessar mais do que somente a caixa de entradas do seu email.
+Now we can use Google as our **gateway** to send the messages, but keep in mind that even with Google as your **gateway** there is a policy of email sending, so be careful with **SPAMS**.
 
-O processo de recebimento é mais complexo que o envio, pois dentro dele está incluso a busca pela mensagem que você deseja ler e sua decodificação. No código a seguir tentarei comentar todas estas etapas:
+![SPAM](/blog/enviando-e-recebendo-emails-com-python/spam.jpg)
+
+## Receiving emails
+
+The **IMAP** Internet Message Access Protocol is used to receive emails, and as on **SMTP** it operates at the application layer over **TCP/IP**. The port used for its connections is 143 for unencrypted and 993 for encrypted.
+
+Another protocol that works for this task is **POP** Post Office Protocol, but **IMAP** is better due to its synchronization between the client and the server and also the ability to access more than the email inbox.
+
+The process of receiving emails is more complicated than sending because you also have to search for the message and decode it:
 
 ```python
 import email
@@ -103,90 +112,146 @@ EMAIL = 'mymail@mail.com'
 PASSWORD = 'password'
 SERVER = 'imap.gmail.com'
 
-
-# abriremos uma conexão com SSL com o servidor de emails
-# logando e navegando para a inbox
+# connect to the server and go to its inbox
 mail = imaplib.IMAP4_SSL(SERVER)
 mail.login(EMAIL, PASSWORD)
+# we choose the inbox but you can select others
 mail.select('inbox')
 
-# faremos uma busca com o critério ALL para pegar
-# todos os emails da inbox, esta busca retorna
-# o status da operação e uma lista com
-# os ids dos emails
+# we'll search using the ALL criteria to retrieve
+# every message inside the inbox
+# it will return with its status and a list of ids
 status, data = mail.search(None, 'ALL')
-# data é uma lista com ids em blocos de bytes separados
-# por espaço neste formato: [b'1 2 3', b'4 5 6']
-# então para separar os ids primeiramente criaremos
-# uma lista vazia
+# the list returned is a list of bytes separated
+# by white spaces on this format: [b'1 2 3', b'4 5 6']
+# so, to separate it first we create an empty list
 mail_ids = []
-# e em seguida iteramos pelo data separando os blocos
-# de bytes e concatenando a lista resultante com nossa
-# lista inicial
+# then we go through the list splitting its blocks
+# of bytes and appending to the mail_ids list
 for block in data:
-    # a função split chamada sem nenhum parâmetro
-    # transforma texto ou bytes em listas usando como
-    # ponto de divisão o espaço em branco:
+    # the split function called without parameter
+    # transforms the text or bytes into a list using 
+    # as separator the white spaces:
     # b'1 2 3'.split() => [b'1', b'2', b'3']
     mail_ids += block.split()
 
-# agora para cada id baixaremos o email
-# e extrairemos seu conteúdo
+# now for every id we'll fetch the email
+# to extract its content
 for i in mail_ids:
-    # a função fetch baixa o email passando id e o formato
-    # em que você deseja que a mensagem venha
+    # the fetch function fetch the email given its id
+    # and format that you want the message to be
     status, data = mail.fetch(i, '(RFC822)')
 
-    # data no formato '(RFC822)' vem em uma lista com a
-    # tupla onde o conteúdo está e o byte de fechamento b')'
-    # por isso vamos iterar pelo data extraindo a tupla
+    # the content data at the '(RFC822)' format comes on
+    # a list with a tuple with header, content, and the closing
+    # byte b')'
     for response_part in data:
-        # se for a tupla a extraímos o conteúdo
+        # so if its a tuple...
         if isinstance(response_part, tuple):
-            # o primeiro elemento da tupla é o cabeçalho
-            # de formatação e o segundo elemento possuí o
-            # conteúdo que queremos extrair
+            # we go for the content at its second element
+            # skipping the header at the first and the closing
+            # at the third
             message = email.message_from_bytes(response_part[1])
 
-            # com o resultado conseguimos pegar as
-            # informações de quem enviou o email e o assunto
+            # with the content we can extract the info about 
+            # who sent the message and its subject
             mail_from = message['from']
             mail_subject = message['subject']
 
-            # agora para o texto do email precisamos de um
-            # pouco mais de trabalho pois ele pode vir em texto puro
-            # ou em multipart, se for texto puro é só ir para o
-            # else e extraí-lo do payload, caso contrário temos que
-            # separar o que é anexo e extrair somente o texto
+            # then for the text we have a little more work to do
+            # because it can be in plain text or multipart
+            # if its not plain text we need to separate the message
+            # from its annexes to get the text
             if message.is_multipart():
                 mail_content = ''
 
-                # no caso do multipart vem junto com o email
-                # anexos e outras versões do mesmo email em
-                # diferentes formatos como texto imagem e html
-                # para isso vamos andar pelo payload do email
+                # on multipart we have the text message and
+                # another things like annex, and html version
+                # of the message, in that case we loop through
+                # the email payload
                 for part in message.get_payload():
-                    # se o conteúdo for texto text/plain que é o
-                    # texto puro nós extraímos
+                    # if the content type is text/plain
+                    # we extract it
                     if part.get_content_type() == 'text/plain':
                         mail_content += part.get_payload()
             else:
+                # if the message isn't multipart, just extract it
                 mail_content = message.get_payload()
 
-            # por fim vamos mostrar na tela o resultado da extração
+            # and then let's show its result
             print(f'From: {mail_from}')
             print(f'Subject: {mail_subject}')
             print(f'Content: {mail_content}')
 ```
 
-Neste código extraímos somente o conteúdo em texto puro do email, porém há muito mais coisas que podem ser tratadas como conteúdo em **html** e extração de anexos mas estes casos ficaram para uma próxima postagem.
+On this code, we extracted only the plain text of the email, but there's much more you can extract, like the **HTML** content and the annexed files, but this can be a topic for a next post.
 
+## BONUS: Automate the cleaning of bloated mailboxes
 
+Recently, my mailbox got bloated, and I had to do a clean up to get some space, but the high amount of messages overloaded the Gmail interface.
+
+So, to solve that, and also for automating this tedious manual task, I wrote this:
+
+```python
+import imaplib
+
+# caso sua caixa de emails esteja muito cheia
+# use esta variável para aumentar o limite do
+# tamanho da resposta
+imaplib._MAXLINE = 1000000
+
+EMAIL = 'mymail@gmail.com'
+PASSWORD = 'password'
+SERVER = 'imap.gmail.com'
+
+mail = imaplib.IMAP4_SSL(SERVER)
+mail.login(EMAIL, PASSWORD)
+# select the box you want to clean
+mail.select('bloated_box')
+
+status, search_data = mail.search(None, 'ALL')
+
+mail_ids = []
+
+for block in search_data:
+    mail_ids += block.split()
+
+# define the range for the operation
+start = mail_ids[0].decode()
+end = mail_ids[-1].decode()
+
+# move the emails to the trash
+# this step is Gmail specific because
+# it doesn't allow excluding messages
+# outside the trash
+mail.store(f'{start}:{end}'.encode(), '+X-GM-LABELS', '\\Trash')
+
+# access the Gmail trash
+mail.select('[Gmail]/Trash')
+# mark the emails to be deleted
+mail.store("1:*", '+FLAGS', '\\Deleted')
+
+# remove permanently the emails
+mail.expunge()
+
+# close the mailboxes
+mail.close()
+# close the connection
+mail.logout()
+``` 
+
+In case the number of messages is too big, you can make a loop to group it into smaller chunks to remove.
+
+For more elaborated searches using the search `search` command, you can look at the [RFC 3501](https://tools.ietf.org/html/rfc3501) that defines the **IMAP** protocol and describes all possible search parameters, and other commands with details.
+
+!!!! **WARNING:** Double-check your searches before doing any destructive operation like removal because you can't go back.
 ---
 pub_date: 2018-08-10
 ---
-share_image: python-mail.png
+share_image: /blog/enviando-e-recebendo-emails-com-python/python-mail.png
 ---
-summary: Aprenda como começar a enviar e ler emails automaticamente com ajuda da linguagem Python
+summary: Learn how to send, receive, and automate your email tasks using Python
 ---
-title: Enviando e recebendo emails com Python
+title: Sending and receiving emails with Python
+---
+_slug: sending-and-receiving-emails-with-python
