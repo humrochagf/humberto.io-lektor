@@ -1,12 +1,12 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-Levante a mão quem nunca versionou a `SECRET_KEY` do Django no início de um projeto e precisou gerar uma nova na hora de subir pra produção?
+Raise your hand if you never versioned the Django's `SECRET_KEY` at the beginning of a project and needed to generate a new one before going to production.
 
-Este **TLDR** é um lembrete rápido de como você pode regerar uma secret key localmente, sem recorrer a sites na internet para gera-la para você.
+This **TLDR** is a quick reminder of how to generate a secret key locally, without going to some website on the internet to generate it for you.
 
-Como o Django gera a secret key no início de um projeto, já existe esta função implementada em seu código e você pode acessá-la desta forma:
+Django generates a secret key every time that you create a new project, sou this function already exists at its code, and you can access it in this way:
 
 ```python
 from django.core.management.utils import get_random_secret_key
@@ -14,23 +14,25 @@ from django.core.management.utils import get_random_secret_key
 print(get_random_secret_key())
 ```
 
-Se não quiser nem ter o trabalho de abrir o shell do Python você pode executar direto do terminal:
+If you don't even want to have the work of stating the Python shell, you can execute this command on the terminal:
 
 ```console
 python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
 
-!! Não se esqueça que é preciso ter o Django instalado no ambiente em que você for rodar o comando.
+!! Remember that you need Django installed at the environment to run this command.
 ---
 pub_date: 2019-07-12
 ---
-share_image: secret-key.png
+share_image: /blog/tldr-gerando-secret-key-para-o-django/secret-key.png
 ---
-summary: Gere a Secret Key do Django direto do terminal sem precisar recorrer a um site na internet
+summary: Generate Django's secret key right from your terminal without needing to risk yourself on any website
 ---
 tags:
 
 tldr
 django
 ---
-title: TLDR: Gerando Secret Key para o Django
+title: TLDR: Generate Django Secret Key
+---
+_slug: tldr-generate-django-secret-key

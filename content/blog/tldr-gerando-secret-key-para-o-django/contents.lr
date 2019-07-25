@@ -2,7 +2,7 @@ title: TLDR: Gerando Secret Key para o Django
 ---
 body:
 
-Levante a mão quem nunca versionou a `SECRET_KEY` do Django no início de um projeto e precisou gerar uma nova na hora de subir pra produção?
+Levante a mão quem nunca versionou a `SECRET_KEY` do Django no início de um projeto e precisou gerar uma nova na hora de subir pra produção.
 
 Este **TLDR** é um lembrete rápido de como você pode regerar uma secret key localmente, sem recorrer a sites na internet para gera-la para você.
 
