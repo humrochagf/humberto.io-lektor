@@ -1,53 +1,55 @@
-_hidden: yes
+_hidden: no
 ---
 body:
 
-Esses dias tive a oportunidade de encarar um desafio de frontend lá na [Configr](https://configr.com/?utm_source=humberto&utm_campaign=post-utm&utm_content=link-intro) que consistiu em melhorar a rastreabilidade dos usuários novos (os famosos leads da galera do marketing) que entram no no sistema. Mais especificamente a rastreabilidade dos [parâmetros de utm](https://en.wikipedia.org/wiki/UTM_parameters) das campanhas de marketing da empresa.
+Recently, I had the opportunity to face a frontend challenge at [Configr](https://configr.com/?utm_source=humberto&utm_campaign=post-utm&utm_content=link-intro). It consists of improving the tracking rate of the new users who come to the system (a.k.a. leads). More specifically, the tracking rate from the [UTM parameters](https://en.wikipedia.org/wiki/UTM_parameters) of the marketing campaigns.
 
-!! **TLDR**: Eu criei uma biblioteca **javascript** chamada **utmkeeper** que faz a mágica para você e está disponível em [https://github.com/humrochagf/utmkeeper](https://github.com/humrochagf/utmkeeper)
+!! **TLDR**: I created a **javascript** library called **utmkeeper** that do the job for you, and it's available at  [https://github.com/humrochagf/utmkeeper](https://github.com/humrochagf/utmkeeper).
 
-!! **UPDATE (21/09/2018)** Postagem atualizada para a cobrir a versão **0.3** do **utmkeeper**
+!! **UPDATE (September 21, 2018)** Post updated to cover the  **0.3** version of **utmkeeper**.
 
 ## UTM
 
-O termo **UTM** surgiu do **Urchin** que era um software de Analytics feito para analisar a efetividade de campanhas de marketing e utilizava os parâmetros do **U**rchin **T**raffic **M**odule para realizar esta tarefa. Com o tempo o **Google** passou a dar suporte a estes parâmetros, em seguida o **Facebook** e atualmente estes parâmetros são comumente utilizados para rastrear a efetividade de campanhas de marketing na internet popularmente conhecidos como **as utm tags**, ou simplesmente, **as utms**.
+The acronym **UTM** came from **Urchin** which was an analytics software made to measure how effective a marketing campaign was, by using the parameters of the **U**rchin **T**raffic **M**odule to accomplish that. Later, **Google** started to support these parameters, and right after **Facebook**, and eventually, these parameters became famous as a standard tool to measure the effectiveness of marketing campaigns across the internet.
 
-Elas funcionam com uma mecânica simples, você as codifica como parâmetro de **url** (aquelas coisas que vem depois do ponto de interrogação no link) utilizando o prefixo `utm_` seguido do tipo, que por padrão são cinco:
+It works with a simple mechanic, you add them as **URL** parameters (these variables that comes after the "?" on a link) using the `utm_` prefix followed by its type, that by default are five:
 
-- `utm_source`: indica a origem de onde veio o lead
-- `utm_medium`: indica o tipo do link, como por exemplo cpc no caso de vir de uma campanha de custo por clique
-- `utm_campaign`: indica de qual campanha ele veio
-- `utm_term`: indica o termo de busca utilizado para chegar na página
-- `utm_content`: indica qual conteúdo da página foi clicado, se foi um link ou um banner por exemplo
+- `utm_source`: indicates the lead origin
+- `utm_medium`: indicates the type of the link, like "cpc" in case it comes from a "cost per click" campaign
+- `utm_campaign`: indicates from which campaign it came
+- `utm_term`: indicates the search term used to get to the page
+- `utm_content`: indicates which element of the page the lead clicked, a banner for example
 
-Estes parâmetros foram definidos como o suficiente para rastrear a efetividade de uma campanha de marketing e atualmente são suportados pelas ferramentas de analytics, mas nada impede você de criar o seu `utm_algumacoisa`. Porém, para considerar estas customizações em métricas diferentes das fornecidas por estas ferramentas a implementação fica por sua conta dentro do seu sistema, foi daí que surgiu este desafio.
+These UTM parameters measure the effectiveness of a marketing campaign, and you can use it on every famous analytic tool, but if you have your tracking implementation, you can create another `utm_something` parameter.
 
-## O desafio
+The fact that we had an internal tracking system and an implementation to catch new UTM parameters was the reason that motivated this challenge.
 
-As **utms** chegam em sua landing page no primeiro acesso vindo de um anúncio ou link que as contém. Neste momento as ferramentas de analytics executam seu rastreio e, durante a navegação do usuário, as tags se perdem deixando as métricas limitadas apenas ao que estas ferramentas lhe oferecem. Análises mais aprofundadas e customizadas sobre o comportamento dos usuários não podem ser realizadas pois as **utms** se perderam no caminho e não chegaram até o cadastro, onde seriam salvas no seu sistema.
+## The challenge
 
-Pensando em alguma forma de resolver esta questão levei em consideração algumas coisas:
+The **UTMs** arrives at the landing page on the first access coming from a campaign link. At this moment, the analytics tools track them, and they are lost during the user navigation leaving the metrics only for the third party analytics tool. Unfortunately, that's not good for our internal tracking system, a good part of the data doesn't propagate until login/signup and do not persist at the system.
 
-- Era preciso garantir a propagação da **utm** do acesso inicial, passando pela navegação entre as páginas até atingir o cadastro
-- Esta propagação precisava acontecer entre domínios diferentes, o que faz com que o uso de [cookie](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Cookies) não seja uma opção muito boa para isso
-- Um segundo acesso a página vindo de um outro anúncio antes do cadastro deve levar somente as **utms** do segundo anúncio em consideração, pois foi ela que motivou o cadastro, o que conta mais um ponto negativo para o cookie pois seria necessário criar regras de invalidação de cookie e replica-las através de landing pages em vários domínios.
-- Era preciso ser algo simples de ser aplicado, seja em um django, em um html estático, wordpress, ghost e etc.
+Thinking on how to solve this problem, I made a few considerations:
 
-Com isso em mente, escrevi o **utmkeeper** (nome bem sugestivo né?!).
+- The solution must ensure the **UTM** propagation from the landing page until the login/signup
+- The propagation need to happen across different domains, and that made me discard the possibility to use [cookies](https://developer.mozilla.org/en/docs/Web/HTTP/Cookies)
+- We don't want to consider the previous access to the landing page because the only access that matters is the one that turned into a login/signup
+- It should be something simple to integrate with different platforms like Django, Ghost, WordPress, and even static HTML.
+
+With these considerations in mind, I came with the **utmkeeper** (very descriptive name right?).
 
 ## utmkeeper
 
-O **utmkeeper** é uma biblioteca escrita em **javacript** que tem o único propósito de capturar as **utms** e aplicá-las em todos os links e formulários da página sem interferir em sua navegabilidade.
+The **utmkeeper** is a javascript library with the single purpose of capture the **UTMs** and reapply them on every link and form of the page without affecting its navigability. 
 
-Com ele eu consigo propagar as **utms** na navegação do usuário mesmo que ela aconteça entre domínios, manter sempre o último conjunto de **utms** utilizado para chegar inicialmente no site e aplicá-lo facilmente em diferentes plataformas.
+With it, I can propagate the UTMs through the user navigation even if it happens across domains always keeping the UTM group that started that particular flow of navigation. It also is easy to apply on different platforms.
 
-Para usar o **utmkeeper** basta baixar o pacote pelo repositório [https://github.com/humrochagf/utmkeeper/releases](https://github.com/humrochagf/utmkeeper/releases)  ou instalar através do npm:
+To use the **utmkeeper** you can download the package from its repository [https://github.com/humrochagf/utmkeeper/releases](https://github.com/humrochagf/utmkeeper/releases) or installs it from npm:
 
 ```console
 npm install utmkeeper
 ```
 
-Em seguida adicionar o script ao final do **html** antes da tag de fechamento `</body>`:
+After that, add the following script at the end of the HTML before the `</body>` closing tag:
 
 ```html
 <script src="path/to/utmkeeper.js" charset="utf-8"></script>
@@ -56,7 +58,7 @@ Em seguida adicionar o script ao final do **html** antes da tag de fechamento `<
 </script>
 ```
 
-A função `load` é responsável por carregar a biblioteca e persistir a **utm** pela navegação. Nela podemos passar um **objeto** de configuração:
+The function `load` is responsible for loading the library and persisting the UTM through navigation. At the function we can pass a configuration **object**:
 
 ```javascript
 {
@@ -67,12 +69,12 @@ A função `load` é responsável por carregar a biblioteca e persistir a **utm*
 }
 ```
 
-- **forceOriginUTM**: recebe um **booleano** que indica se você quer ou não sobrescrever qualquer **utm** que já estiver em algum link da página. Seu valor padrão é `true`
-- **fillForms**: recebe um **booleano** que indica se você deseja adicionar as **utms** nos formulários da página. Caso já exista um campo para ele seu valor será preenchido, caso contrário um campo do tipo `hidden` será adicionado no formulário para cada **utm**. Seu valor padrão é `true`
-- **utmObject**: recebe um **objeto** onde serão salvos as **utms**, pode ser usado para enviar valores iniciais de utm para serem usados caso algo aquela **utm** não seja preenchida
-- **postLoad**: recebe uma função de um parâmetro que será rodada ao final do processamento da função `load` sendo este parâmetro um objeto com as **utms** extraídas. Ele pode ser usado para rodar alguma lógica customizada como enviar estes dados para um gerenciador de leads como o [mautic](https://www.mautic.org/)
+- **forceOriginUTM**: receives a **boolean** that indicates if you want to override any UTM that can be at some link inside the page. Its default value is `true`
+- **fillForms**: receives a **boolean** to indicate if you want to add the UTMs at the page forms. In case the UTM fields already exist in the form, it only fills it. Otherwise, it creates the fields as `hidden`. Its default value is `true`
+- **utmObject**: receives an **object** with pre-set UTMs. It can be used to set default values for UTMs
+- **postLoad**: receives a single-parameter function that will run at the end of the `load` function. This single parameter is an object with the extracted UTMs in it, so you can use them on a custom logic like sending leads to [mautic](https://www.mautic.org/)
 
-Um exemplo da função `load` com todos os parâmetros é o seguinte:
+Check the following example with all the parameters passed to the `load` function:
 
 ```javascript
 utmkeeper.load({
@@ -85,36 +87,24 @@ utmkeeper.load({
 });
 ```
 
-## Resultado
+## Result
 
-O gráfico a seguir é um recorte do período de transição em que foi feita a aplicação do **utmkeeper** nas landing pages da [Configr](https://configr.com/?utm_source=humberto&utm_campaign=post-utm&utm_content=link-resultado) sendo representado pela cor **azul** o total de usuários cadastrados por dia, em **vermelho** o total que chegavam ao cadastro sem a **utm** e em **verde** o total de usuários que chegavam ao cadastro com **utm**:
+The following graph is a slice of the transition period of the **utmkeeper** configuration at  [Configr](https://configr.com/?utm_source=humberto&utm_campaign=post-utm&utm_content=link-resultado) landing pages. The **blue** color is the total of leads coming to the login/signup, the **red** color is the number of leads **without UTM**, and the **green** is the number of leads **with UTM** :
 
-![gráfico de utm](utm-graph.png)
+![utm graph](/blog/melhorando-a-rastreabilidade-de-utm-no-seu-site/utm-graph.png)
 
-A facilidade de aplicação do **utmkeeper** ajudou bastante no processo de implantação da solução trazendo um rápido resultado nas métricas de rastreio.
-
-## Jabá
-
-Vou aproveitar o contexto desta postagem para falar um pouquinho da [Configr](https://configr.com/?utm_source=humberto&utm_campaign=post-utm&utm_content=link-jaba). Nós trabalhamos diariamente para trazer o poder da hospedagem em Cloud para todos aqueles que utilizam a internet como ferramenta de trabalho e não necessariamente possuem conhecimento técnico ou uma equipe que gerencie sua infraestrutura.
-
-Por isso estamos sempre em busca de profissionais competentes e apaixonados pelo que fazem para integrar a nossa equipe. Se você mora em Brasília e tem interesse em fazer parte do nosso time mande seu currículo para a gente em **jobs@configr.com**
-
-![we want you](domo-we-want-you.png)
-
-Nas próximas semanas selecionaremos alguém para a área de frontent.
-
-- Nosso foco é em pessoas com experiência com **Angular 2+**.
-
-*Ter alguma familiaridade com o framework de backend Django da linguagem python seria interesante.*
-
-No mais é só escolher o seu lado no **CS 1.6**
-
-![domo cs](domo-cs.png)
+The easy to integrate feature from **utmkeeper** helped a lot to put the solution to production, bringing a quick result to the tracking metrics.
 ---
 pub_date: 2018-09-14
 ---
-share_image: utm.png
+share_image: /blog/melhorando-a-rastreabilidade-de-utm-no-seu-site/utm.png
 ---
-summary: Melhore a rastreabilidade dos parâmetros de UTM nas landing pages de seus site de forma fácil com o utmkeeper
+summary: Learn how to quickly improve the tracking from the UTM tags on your landing pages with utmkeeper
 ---
-title: Melhorando a rastreabilidade de UTM no seu site
+title: Improving the UTM tracking of your website
+---
+_discoverable: yes
+---
+_slug: improving-the-utm-tracking-of-your-website
+---
+tags: javascript

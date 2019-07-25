@@ -92,27 +92,11 @@ O gráfico a seguir é um recorte do período de transição em que foi feita a 
 ![gráfico de utm](utm-graph.png)
 
 A facilidade de aplicação do **utmkeeper** ajudou bastante no processo de implantação da solução trazendo um rápido resultado nas métricas de rastreio.
-
-## Jabá
-
-Vou aproveitar o contexto desta postagem para falar um pouquinho da [Configr](https://configr.com/?utm_source=humberto&utm_campaign=post-utm&utm_content=link-jaba). Nós trabalhamos diariamente para trazer o poder da hospedagem em Cloud para todos aqueles que utilizam a internet como ferramenta de trabalho e não necessariamente possuem conhecimento técnico ou uma equipe que gerencie sua infraestrutura.
-
-Por isso estamos sempre em busca de profissionais competentes e apaixonados pelo que fazem para integrar a nossa equipe. Se você mora em Brasília e tem interesse em fazer parte do nosso time mande seu currículo para a gente em **jobs@configr.com**
-
-![we want you](domo-we-want-you.png)
-
-Nas próximas semanas selecionaremos alguém para a área de frontent.
-
-- Nosso foco é em pessoas com experiência com **Angular 2+**.
-
-*Ter alguma familiaridade com o framework de backend Django da linguagem python seria interesante.*
-
-No mais é só escolher o seu lado no **CS 1.6**
-
-![domo cs](domo-cs.png)
 ---
 summary: Melhore a rastreabilidade dos parâmetros de UTM nas landing pages de seus site de forma fácil com o utmkeeper
 ---
 pub_date: 2018-09-14
 ---
 share_image: utm.png
+---
+tags: javascript
